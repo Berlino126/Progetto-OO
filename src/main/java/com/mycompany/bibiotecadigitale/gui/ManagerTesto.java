@@ -351,6 +351,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         } else {
             try {
                 int codice = Integer.parseInt(CodiceTesto.getText());
+
                 // Verifica se il testo con lo stesso codice già esiste nel database
                 if (testoDAO.testoExists(codice)) {
                     JOptionPane.showMessageDialog(this, "Il testo con il codice " + codice + " esiste già nel database");
@@ -362,35 +363,37 @@ public class ManagerTesto extends javax.swing.JFrame {
                     boolean disponibilita = DisponibilitaTesto.getSelectedItem().toString().equals("Disponibile");
                     String formato = FormTesto.getSelectedItem().toString();
                     String tipologia = TipologiaTesto.getSelectedItem().toString();
+
                     if (tipologia.equals("Libro")) {
                         // Inserisci il testo come Libro con attributi di default
                         String genere = "Non disponibile"; // Imposta il valore di default
                         int capitoli = 0; // Imposta il valore di default
                         int pagine = 0; // Imposta il valore di default
+                        String eventoPresentazione = "Non disponibile";
+                        String Collana = "Non disponibile";
                         try {
-                            Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine);
+                            Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, eventoPresentazione, Collana);
                             libroDAO.insertLibro(libro);
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento del libro");
                         }
-
-                    }
-                    if (tipologia.equals("Articolo Scientifico")) {
-                        // Inserisci il testo come Articolo Scientifico con attributi di default
+                    } else if (tipologia.equals("Articolo Scientifico")) {
+                        // Inserisci il testo come Articolo Scientifico con attributi aggiunti
                         String universita = "Non disponibile"; // Imposta il valore di default
                         String riassunto = "Non disponibile"; // Imposta il valore di default
+                        String nomeRivista = "Non disponibile";
+                        String argomento = "Non disponibile";
+                        String responsabile = "Non disponibile";
+                        String luogoConferenza = "Non disponibile";
+                        Date dataConferenza = new Date(); // Imposta il valore di default
+
                         try {
-                            ArticoloScientifico articolo = new ArticoloScientifico(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, universita, riassunto);
+                            ArticoloScientifico articolo = new ArticoloScientifico(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
                             articoloScientificoDAO.insertArticoloScientifico(articolo);
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento dell'articolo");
                         }
-
-
                     }
-                    // Inserisci il testo come generico (Testo)
-                    //Testo testo = new Testo(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia);
-                    //testoDAO.insertTesto(testo);
 
                     JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente");
                     refreshTestoTable();
