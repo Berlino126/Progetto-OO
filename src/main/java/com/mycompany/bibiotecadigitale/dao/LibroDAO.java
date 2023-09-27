@@ -14,17 +14,22 @@ public class LibroDAO extends TestoDAO {
         insertTesto(libro);
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Libro (CodTesto, Genere, Capitoli, Pagine) VALUES (?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Libro (CodTesto, Genere, Capitoli, Pagine, EventoPresentazione, Collana) VALUES (?, ?, ?, ?, ?, ?)");
             preparedStatement.setInt(1, libro.getCodTesto());
             preparedStatement.setString(2, libro.getGenere());
             preparedStatement.setInt(3, libro.getCapitoli());
             preparedStatement.setInt(4, libro.getPagine());
+            preparedStatement.setString(5, libro.getEventoPresentazione());
+            preparedStatement.setString(6, libro.getCollana());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             // Gestisci l'eccezione
         }
     }
+
+    // Aggiungi metodi per l'accesso agli attributi mancanti (EventoPresentazione e Collana) se necessario
+
     public void deleteLibro(int codice) {
         try {
             // Elimina il record dalla tabella Libro
@@ -38,16 +43,19 @@ public class LibroDAO extends TestoDAO {
         // Chiamata alla funzione deleteTesto per eliminare il record dalla tabella Testo
         deleteTesto(codice);
     }
+
     public void updateLibro(Libro libro) {
         updateTesto(libro);
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE Libro SET Genere = ?, Capitoli = ?, Pagine = ? WHERE CodTesto = ?");
+                    "UPDATE Libro SET Genere = ?, Capitoli = ?, Pagine = ?, EventoPresentazione = ?, Collana = ? WHERE CodTesto = ?");
             preparedStatement.setString(1, libro.getGenere());
             preparedStatement.setInt(2, libro.getCapitoli());
             preparedStatement.setInt(3, libro.getPagine());
-            preparedStatement.setInt(4, libro.getCodTesto());
+            preparedStatement.setString(4, libro.getEventoPresentazione());
+            preparedStatement.setString(5, libro.getCollana());
+            preparedStatement.setInt(6, libro.getCodTesto());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
