@@ -4,6 +4,10 @@
  */
 package com.mycompany.bibiotecadigitale.gui;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author visci
@@ -31,7 +35,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,8 +80,8 @@ public class Login extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(204, 0, 51));
 
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 0, 51));
+        jPasswordField1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(204, 0, 51));
 
         jComboBox1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(204, 0, 51));
@@ -101,10 +105,40 @@ public class Login extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 0, 51));
         jButton1.setText("ACCEDI");
+        jButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String modalita = (String) jComboBox1.getSelectedItem();
+                String codiceUtente = jTextField1.getText();
+                String password = jPasswordField1.getText();
+                if(modalita.equals("ADMIN") && codiceUtente.equals("admin1") && password.equals("password")) {
+                    ManagerTesto managerTesto = new ManagerTesto();
+                    managerTesto.setVisible(true);
+                    dispose();
+                } else if (modalita.equals("UTENTE") && codiceUtente.equals("utente1") && password.equals("password")) {
+                    //qua va la finestra che l'utente visualizzerà
+                    InterfacciaUtente interfacciaUtente = new InterfacciaUtente();
+                    interfacciaUtente.setVisible(true);
+                    dispose();
+                }
+            else {
+                    // Accesso non riuscito, mostra un messaggio di errore
+                    JOptionPane.showMessageDialog(Login.this, "Accesso non riuscito. Verifica le credenziali.","Errore di accesso", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+        });
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 0, 51));
         jButton2.setText("PULISCI");
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Pulisci i campi di input
+                jTextField1.setText("");
+                jPasswordField1.setText("");
+            }
+        });
 
         jLabel6.setBackground(new java.awt.Color(204, 0, 51));
         jLabel6.setFont(new java.awt.Font("Footlight MT Light", 0, 8)); // NOI18N
@@ -141,7 +175,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -161,7 +195,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(72, 72, 72)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -260,6 +294,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 }
