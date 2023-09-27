@@ -22,13 +22,22 @@ CREATE TABLE Libro (
     genere VARCHAR(255),
     capitoli INT,
     pagine INT,
+    EventoPresentazione VARCHAR(255),
+    Collana VARCHAR(255),
     FOREIGN KEY (codTesto) REFERENCES Testo(codTesto) ON DELETE CASCADE
 );
+
 
 
 CREATE TABLE ArticoloScientifico (
     codTesto INT PRIMARY KEY,
     universita VARCHAR(255),
     riassunto TEXT,
+    nomerivista VARCHAR(255),
+    argomento VARCHAR(255),
+    responsabile VARCHAR(255),
+    luogoconferenza VARCHAR(255),
+    dataconferenza DATE,
     FOREIGN KEY (codTesto) REFERENCES Testo(codTesto) ON DELETE CASCADE
 );
+
