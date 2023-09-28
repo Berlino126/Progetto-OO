@@ -22,7 +22,7 @@ CREATE TABLE Libro (
     genere VARCHAR(255),
     capitoli INT,
     pagine INT,
-    EventoPresentazione VARCHAR(255),
+    Evento VARCHAR(255),
     Collana VARCHAR(255),
     FOREIGN KEY (codTesto) REFERENCES Testo(codTesto) ON DELETE CASCADE
 );
