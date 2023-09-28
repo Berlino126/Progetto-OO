@@ -4,21 +4,27 @@
  */
 package com.mycompany.bibiotecadigitale.gui;
 
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.Testo;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  *
  * @author franc
  */
-public class InterfacciaUtente extends javax.swing.JFrame {
+public class InterfacciaLibro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InterfacciaUtente
-     */
-    public InterfacciaUtente() {
+    private LibroDAO libroDAO;
+    public InterfacciaLibro() {
         initComponents();
+        libroDAO = new LibroDAO();
+        refreshLibroTable();
     }
 
     /**
@@ -33,27 +39,29 @@ public class InterfacciaUtente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        BibliotecaDigitaleLB = new javax.swing.JLabel();
-        NomeTestoTF = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        TipologiaTestoCB = new javax.swing.JComboBox<>();
-        AggiungiTestoBTN = new javax.swing.JButton();
-        FiltraBTN = new javax.swing.JButton();
-        AggiornaBTN = new javax.swing.JButton();
-        PulisciTestoBTN = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        GenereLB = new javax.swing.JLabel();
+        GenereTF = new javax.swing.JTextField();
+        CapitoliTF = new javax.swing.JTextField();
+        CapitoliLB = new javax.swing.JLabel();
+        ModificaTesto = new javax.swing.JButton();
+        PulisciTesto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabellaTesti = new javax.swing.JTable();
-        QuantitaTF = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        FormatoTestoCB = new javax.swing.JComboBox<>();
-        ListaProdottiLB = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Carrello = new javax.swing.JTextArea();
-        AcquistaOraBTN = new javax.swing.JButton();
-        AnnullaBTN = new javax.swing.JButton();
+        PagineTF = new javax.swing.JTextField();
+        PagineLB = new javax.swing.JLabel();
+        EventoTF = new javax.swing.JTextField();
+        EventoLB = new javax.swing.JLabel();
+        CollanaLB = new javax.swing.JLabel();
+        CollanaTF = new javax.swing.JTextField();
+        CodiceLB = new javax.swing.JLabel();
+        CodiceTF = new javax.swing.JTextField();
+        ArticoliLB = new javax.swing.JLabel();
+        TestiLB = new javax.swing.JLabel();
+        LOGOUTLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new Color(204, 0, 51));
+        setBackground(new java.awt.Color(204, 0, 51));
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 51));
@@ -64,73 +72,68 @@ public class InterfacciaUtente extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 51));
         jLabel9.setText("x");
-        jLabel9.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel9MouseClicked(evt);
             }
         });
 
-        BibliotecaDigitaleLB.setBackground(new java.awt.Color(204, 0, 51));
-        BibliotecaDigitaleLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        BibliotecaDigitaleLB.setForeground(new java.awt.Color(204, 0, 51));
-        BibliotecaDigitaleLB.setText("BIBLIOTECA DIGITALE");
+        jLabel3.setBackground(new java.awt.Color(204, 0, 51));
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel3.setText("LIBRI");
 
-        NomeTestoTF.setName(""); // NOI18N
+        GenereLB.setBackground(new java.awt.Color(204, 0, 51));
+        GenereLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        GenereLB.setForeground(new java.awt.Color(204, 0, 51));
+        GenereLB.setText("Genere");
+        GenereLB.setToolTipText("");
 
-        jLabel7.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel7.setText("Nome");
-
-        TipologiaTestoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Articolo Scientifico" }));
-        TipologiaTestoCB.addActionListener(new java.awt.event.ActionListener() {
+        GenereTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipologiaTestoCBActionPerformed(evt);
+                TitoloTFActionPerformed(evt);
             }
         });
 
-        AggiungiTestoBTN.setText("Aggiungi");
-        AggiungiTestoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        CapitoliLB.setBackground(new java.awt.Color(204, 0, 51));
+        CapitoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CapitoliLB.setForeground(new java.awt.Color(204, 0, 51));
+        CapitoliLB.setText("Capitoli");
+
+        ModificaTesto.setText("Modifica");
+        ModificaTesto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AggiungiTestoBTNMouseClicked(evt);
+                ModificaTestoMouseClicked(evt);
             }
         });
 
-        FiltraBTN.setText("Filtra");
-        FiltraBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FiltraBTNActionPerformed(evt);
+        TabellaTesti.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabellaTestoMouseClicked(evt);
             }
         });
 
-        AggiornaBTN.setText("Aggiorna");
-        AggiornaBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AggiornaBTNActionPerformed(evt);
+        PulisciTesto.setText("Pulisci");
+        PulisciTesto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PulisciTestoMouseClicked(evt);
             }
         });
 
-        PulisciTestoBTN.setText("Pulisci");
-        PulisciTestoBTN.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                PulisciTestoBTNMouseClicked(evt);
-            }
-        });
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Titolo", "Genere", "Anno Pubblicazione", "Formato", "Edizione", "Disponibilità", "Tipologia"
+                        "Codice", "Genere", "Capitoli", "Pagine", "Evento", "Collana"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, true
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -139,150 +142,200 @@ public class InterfacciaUtente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TabellaTesti);
 
-        jLabel11.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel11.setText("Quantità");
+        PagineLB.setBackground(new java.awt.Color(204, 0, 51));
+        PagineLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        PagineLB.setForeground(new java.awt.Color(204, 0, 51));
+        PagineLB.setText("Pagine");
 
-        FormatoTestoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digitale", "Cartaceo", "AudioLibro" }));
-
-        ListaProdottiLB.setBackground(new java.awt.Color(204, 0, 51));
-        ListaProdottiLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        ListaProdottiLB.setForeground(new java.awt.Color(204, 0, 51));
-        ListaProdottiLB.setText("LISTA PRODOTTI");
-
-        Carrello.setColumns(20);
-        Carrello.setRows(5);
-        jScrollPane2.setViewportView(Carrello);
-
-        AcquistaOraBTN.setText("Acquista ora");
-        AcquistaOraBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AcquistaOraBTNMouseClicked(evt);
-            }
-        });
-        AcquistaOraBTN.addActionListener(new java.awt.event.ActionListener() {
+        EventoTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcquistaOraBTNActionPerformed(evt);
+                EventoTFActionPerformed(evt);
             }
         });
 
-        AnnullaBTN.setText("Annulla");
+        EventoLB.setBackground(new java.awt.Color(204, 0, 51));
+        EventoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        EventoLB.setForeground(new java.awt.Color(204, 0, 51));
+        EventoLB.setText("Evento");
+        EventoLB.setToolTipText("");
+
+        CollanaLB.setBackground(new java.awt.Color(204, 0, 51));
+        CollanaLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CollanaLB.setForeground(new java.awt.Color(204, 0, 51));
+        CollanaLB.setText("Collana");
+        CollanaLB.setToolTipText("");
+
+        CollanaTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CollanaTFActionPerformed(evt);
+            }
+        });
+
+        CodiceLB.setBackground(new java.awt.Color(204, 0, 51));
+        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CodiceLB.setForeground(new java.awt.Color(204, 0, 51));
+        CodiceLB.setText("Codice");
+        CodiceLB.setToolTipText("");
+
+        CodiceTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CodiceTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jLabel11)
-                                                                        .addComponent(jLabel7))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(NomeTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(QuantitaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                .addComponent(AggiungiTestoBTN)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(PulisciTestoBTN)
-                                                                .addGap(40, 40, 40)))
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(BibliotecaDigitaleLB)
-                                                                .addGap(271, 271, 271)
-                                                                .addComponent(jLabel9))
-                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                        .addGap(38, 38, 38)
-                                                                                        .addComponent(TipologiaTestoCB, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addGap(18, 18, 18)
-                                                                                        .addComponent(FormatoTestoCB, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                        .addComponent(FiltraBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addGap(18, 18, 18))
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                                                        .addComponent(ListaProdottiLB)
-                                                                                        .addGap(46, 46, 46)))
-                                                                        .addComponent(AggiornaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(29, 29, 29)))))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(298, 298, 298)
-                                                .addComponent(AcquistaOraBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(55, 55, 55)
-                                                .addComponent(AnnullaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(269, 269, 269)
+                                .addComponent(jLabel9)
                                 .addContainerGap())
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(166, 166, 166)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(GenereLB)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(GenereTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(CodiceLB)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(CodiceTF)))
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(EventoLB)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(EventoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(ModificaTesto)
+                                                                .addGap(105, 105, 105))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(CapitoliLB)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(CapitoliTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(42, 42, 42)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(CollanaLB)
+                                                        .addComponent(PagineLB))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(CollanaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(PagineTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(84, 84, 84))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(168, 168, 168)
+                                                .addComponent(PulisciTesto)
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(94, 94, 94))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(CapitoliLB)
+                                        .addComponent(CapitoliTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(PagineLB)
+                                        .addComponent(PagineTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CodiceLB)
+                                        .addComponent(CodiceTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(BibliotecaDigitaleLB)
-                                                        .addComponent(jLabel9))
-                                                .addGap(1, 1, 1)
-                                                .addComponent(ListaProdottiLB)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(TipologiaTestoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(FormatoTestoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(FiltraBTN)
-                                                        .addComponent(AggiornaBTN))
                                                 .addGap(18, 18, 18)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(NomeTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jLabel7))))
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(EventoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(EventoLB)
+                                                        .addComponent(GenereTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(GenereLB)))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(171, 171, 171)
+                                                .addGap(17, 17, 17)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(QuantitaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel11))
-                                                .addGap(46, 46, 46)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(PulisciTestoBTN)
-                                                        .addComponent(AggiungiTestoBTN))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(CollanaLB)
+                                                        .addComponent(CollanaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(AcquistaOraBTN)
-                                        .addComponent(AnnullaBTN))
-                                .addGap(9, 9, 9))
+                                        .addComponent(PulisciTesto)
+                                        .addComponent(ModificaTesto))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(25, Short.MAX_VALUE))
         );
+
+
+        ArticoliLB.setBackground(new java.awt.Color(204, 0, 51));
+        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        ArticoliLB.setText("Articoli Scientifici");
+        ArticoliLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ArticoloMouseClicked(evt);
+            }
+        });
+
+
+        TestiLB.setBackground(new java.awt.Color(204, 0, 51));
+        TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TestiLB.setText("Testi");
+        TestiLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TestoMouseClicked(evt);
+            }
+        });
+
+
+        LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        LOGOUTLB.setText("LOGOUT");
+        LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LOGOUTMouseClicked(evt);
+            }
+        });
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ArticoliLB)
+                                        .addComponent(TestiLB)
+                                        .addComponent(LOGOUTLB))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
+
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(92, 92, 92)
+                                                .addComponent(ArticoliLB)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(TestiLB)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(LOGOUTLB)))
+                                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -293,58 +346,128 @@ public class InterfacciaUtente extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>
 
+    private void TitoloTFActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void EventoTFActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void CollanaTFActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void CodiceTFActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void ModificaTestoMouseClicked (java.awt.event.MouseEvent evt) {
+        if (CodiceTF.getText().isEmpty() || GenereTF.getText().isEmpty() || CapitoliTF.getText().isEmpty() || PagineTF.getText().isEmpty() || EventoTF.getText().isEmpty() || CollanaTF.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Informazioni mancanti");
+        } else {
+            try {
+                int codice = Integer.parseInt(CodiceTF.getText());
+                String genere = GenereTF.getText();
+                int capitoli = Integer.parseInt(CapitoliTF.getText());
+                int pagine = Integer.parseInt(PagineTF.getText());
+                String evento = EventoTF.getText();
+                String collana = CollanaTF.getText();
+                libroDAO.updateLibro(codice, genere, capitoli, pagine, evento, collana);
+                JOptionPane.showMessageDialog(this, "Testo modificato correttamente");
+                refreshLibroTable();
+                //clearTextFields();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Il codice testo deve essere un numero intero");
+            }
+        }
+    }
+
+
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
     }
 
-    private void PulisciTestoBTNMouseClicked(MouseEvent evt) {
-        NomeTestoTF.setText("");
-        QuantitaTF.setText("");
-    }
-    private void TipologiaTestoCBActionPerformed(java.awt.event.ActionEvent evt) {
-
+    private void TestoMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        ManagerTesto managerTesto = new ManagerTesto();
+        managerTesto.setVisible(true);
     }
 
-    private void AggiungiTestoBTNMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-
+    private void ArticoloMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        //interfacciaarticolo
     }
 
-    private void FiltraBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }
+    private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt)
+    {
+        GenereTF.setText("");
+        CapitoliTF.setText("");
+        PagineTF.setText("");
     }
 
-    private void AggiornaBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void clearTextFields() {
+        GenereTF.setText("");
+        CapitoliTF.setText("");
+        PagineTF.setText("");
     }
 
-    private void AcquistaOraBTNMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+    private void refreshLibroTable() {
+        DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
+        model.setRowCount(0); // Cancella tutte le righe attuali
 
+        List<Libro> libri = LibroDAO.getAllLibri();
+
+        for (Libro libro : libri) {
+            model.addRow(new Object[]{
+                    libro.getCodTesto(),
+                    libro.getGenere(),
+                    libro.getCapitoli(),
+                    libro.getPagine(),
+                    libro.getEvento(),
+                    libro.getCollana(),
+            });
+        }
+    }
+    private void TabellaTestoMouseClicked(java.awt.event.MouseEvent evt) {
+        DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
+        int Indice = TabellaTesti.getSelectedRow();
+
+        if (Indice != -1) { // Verifica se è stato selezionato un elemento valido
+            CodiceTF.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
+            GenereTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
+
+            // Verifica se la data è nulla prima di convertirla in una stringa
+            Object capitoliValue = model.getValueAt(Indice, 2);
+            if (capitoliValue != null) {
+                int capitoli = Integer.parseInt(capitoliValue.toString());
+                CapitoliTF.setText(String.valueOf(capitoli));
+            } else {
+                CapitoliTF.setText("");
+            }
+
+            // Imposta il valore selezionato nei JTextField
+            PagineTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
+            EventoTF.setText(model.getValueAt(Indice, 4) != null ? model.getValueAt(Indice, 4).toString() : "");
+            CollanaTF.setText(model.getValueAt(Indice, 5) != null ? model.getValueAt(Indice, 5).toString() : "");
+        }
     }
 
-    private void AcquistaOraBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -366,32 +489,34 @@ public class InterfacciaUtente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfacciaUtente().setVisible(true);
+                new InterfacciaLibro().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton AcquistaOraBTN;
-    private javax.swing.JButton AggiornaBTN;
-    private javax.swing.JButton AggiungiTestoBTN;
-    private javax.swing.JButton AnnullaBTN;
-    private javax.swing.JLabel BibliotecaDigitaleLB;
-    private javax.swing.JTextArea Carrello;
-    private javax.swing.JButton FiltraBTN;
-    private javax.swing.JComboBox<String> FormatoTestoCB;
-    private javax.swing.JLabel ListaProdottiLB;
-    private javax.swing.JTextField NomeTestoTF;
-    private javax.swing.JButton PulisciTestoBTN;
-    private javax.swing.JTextField QuantitaTF;
+    private javax.swing.JLabel ArticoliLB;
+    private javax.swing.JLabel CapitoliLB;
+    private javax.swing.JTextField CapitoliTF;
+    private javax.swing.JLabel CodiceLB;
+    private javax.swing.JTextField CodiceTF;
+    private javax.swing.JLabel CollanaLB;
+    private javax.swing.JTextField CollanaTF;
+    private javax.swing.JLabel EventoLB;
+    private javax.swing.JTextField EventoTF;
+    private javax.swing.JLabel GenereLB;
+    private javax.swing.JLabel LOGOUTLB;
+    private javax.swing.JButton ModificaTesto;
+    private javax.swing.JLabel PagineLB;
+    private javax.swing.JTextField PagineTF;
+    private javax.swing.JButton PulisciTesto;
     private javax.swing.JTable TabellaTesti;
-    private javax.swing.JComboBox<String> TipologiaTestoCB;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel TestiLB;
+    private javax.swing.JTextField GenereTF;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration
 }
