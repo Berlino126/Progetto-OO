@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.bibiotecadigitale.gui;
 
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
 import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
 import com.mycompany.bibiotecadigitale.model.Libro;
 import com.mycompany.bibiotecadigitale.model.Testo;
 
@@ -12,6 +10,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
     private LibroDAO libroDAO;
     public InterfacciaLibro() {
         initComponents();
-        libroDAO = new LibroDAO();
+        LibroDAO libroDAO = new LibroDAO();
     }
 
     /**
@@ -58,6 +57,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         ArticoliLB = new javax.swing.JLabel();
         TestiLB = new javax.swing.JLabel();
         LOGOUTLB = new javax.swing.JLabel();
+        UtentiLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
@@ -106,14 +106,12 @@ public class InterfacciaLibro extends javax.swing.JFrame {
             }
         });
 
-
         PulisciTesto.setText("Pulisci");
         PulisciTesto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PulisciTestoMouseClicked(evt);
             }
         });
-
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -127,7 +125,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false
+                    true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -269,29 +267,26 @@ public class InterfacciaLibro extends javax.swing.JFrame {
                                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-
         ArticoliLB.setBackground(new java.awt.Color(204, 0, 51));
         ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        ArticoliLB.setText("Articoli Scientifici");
+        ArticoliLB.setText("ARTICOLI SCIENTIFICI");
         ArticoliLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ArticoloMouseClicked(evt);
             }
         });
 
-
         TestiLB.setBackground(new java.awt.Color(204, 0, 51));
         TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        TestiLB.setText("Testi");
+        TestiLB.setText("TESTI");
         TestiLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TestoMouseClicked(evt);
             }
         });
 
-
         LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
-        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         LOGOUTLB.setText("LOGOUT");
         LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -299,37 +294,53 @@ public class InterfacciaLibro extends javax.swing.JFrame {
             }
         });
 
+        UtentiLB.setBackground(new java.awt.Color(204, 0, 51));
+        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        UtentiLB.setText("UTENTI");
+        UtentiLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UtenteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ArticoliLB)
-                                        .addComponent(TestiLB)
-                                        .addComponent(LOGOUTLB))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-        );
-
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(ArticoliLB))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(92, 92, 92)
-                                                .addComponent(ArticoliLB)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(TestiLB)
-                                                .addGap(18, 18, 18)
+                                                .addContainerGap()
+                                                .addComponent(TestiLB))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(UtentiLB))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(36, 36, 36)
                                                 .addComponent(LOGOUTLB)))
-                                .addContainerGap(10, Short.MAX_VALUE))
+                                .addGap(20, 20, 20)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(ArticoliLB)
+                                .addGap(18, 18, 18)
+                                .addComponent(TestiLB)
+                                .addGap(18, 18, 18)
+                                .addComponent(UtentiLB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LOGOUTLB)
+                                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -375,7 +386,6 @@ public class InterfacciaLibro extends javax.swing.JFrame {
                 String evento = EventoTF.getText();
                 String collana = CollanaTF.getText();
 
-
                 libroDAO.updateLibro(codice, genere, capitoli, pagine, evento, collana);
 
                 JOptionPane.showMessageDialog(this, "Testo modificato correttamente");
@@ -400,6 +410,8 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
     private void ArticoloMouseClicked(java.awt.event.MouseEvent evt) {
         dispose();
+        InterfacciaArticolo interfacciaArticolo = new InterfacciaArticolo();
+        interfacciaArticolo.setVisible(true);
         //interfacciaarticolo
     }
 
@@ -407,6 +419,12 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         dispose();
         Login login = new Login();
         login.setVisible(true);
+    }
+
+    private void UtenteMouseClicked (java.awt.event.MouseEvent evt) {
+        dispose();
+        InterfacciaUtente interfacciaUtente = new InterfacciaUtente();
+        interfacciaUtente.setVisible(true);
     }
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt)
     {
@@ -491,6 +509,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
     private javax.swing.JTable TabellaTesti;
     private javax.swing.JLabel TestiLB;
     private javax.swing.JTextField GenereTF;
+    private javax.swing.JLabel UtentiLB;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
