@@ -1,4 +1,3 @@
-
 package com.mycompany.bibiotecadigitale.model;
 import java.util.Date;
 
@@ -6,15 +5,15 @@ public class Libro extends Testo {
     private String genere;
     private int capitoli;
     private int pagine;
-    private String eventoPresentazione;
+    private String evento;
     private String collana;
 
-    public Libro(Integer codTesto, String titolo, Date annoPubblicazione, String edizione, boolean disponibilita, String formato, String tipologia, String genere, int capitoli, int pagine, String eventoPresentazione, String collana) {
+    public Libro(Integer codTesto, String titolo, Date annoPubblicazione, String edizione, boolean disponibilita, String formato, String tipologia, String genere, int capitoli, int pagine, String evento, String collana) {
         super(codTesto, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia);
         this.genere = genere;
         this.capitoli = capitoli;
         this.pagine = pagine;
-        this.eventoPresentazione = eventoPresentazione;
+        this.evento = evento;
         this.collana = collana;
     }
 
@@ -42,12 +41,12 @@ public class Libro extends Testo {
         this.pagine = pagine;
     }
 
-    public String getEventoPresentazione() {
-        return eventoPresentazione;
+    public String getEvento() {
+        return evento;
     }
 
-    public void setEventoPresentazione(String eventoPresentazione) {
-        this.eventoPresentazione = eventoPresentazione;
+    public void setEvento(String evento) {
+        this.evento = evento;
     }
 
     public String getCollana() {
