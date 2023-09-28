@@ -369,10 +369,10 @@ public class ManagerTesto extends javax.swing.JFrame {
                         String genere = "Non disponibile"; // Imposta il valore di default
                         int capitoli = 0; // Imposta il valore di default
                         int pagine = 0; // Imposta il valore di default
-                        String eventoPresentazione = "Non disponibile";
+                        String evento = "Non disponibile";
                         String Collana = "Non disponibile";
                         try {
-                            Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, eventoPresentazione, Collana);
+                            Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, evento, Collana);
                             libroDAO.insertLibro(libro);
                         } catch (Exception e) {
                             JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento del libro");
