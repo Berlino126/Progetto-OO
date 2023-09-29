@@ -3,8 +3,10 @@ CREATE TABLE Utente (
     nome VARCHAR(255),
     cognome VARCHAR(255),
     email VARCHAR(255),
-    telefono BIGINT
+    telefono BIGINT,
+    password VARCHAR(255)
 );
+
 
 CREATE TABLE Testo (
     codTesto INT PRIMARY KEY,
