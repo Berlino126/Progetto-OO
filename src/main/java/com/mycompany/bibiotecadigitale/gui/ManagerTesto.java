@@ -1,13 +1,13 @@
-package com.mycompany.bibiotecadigitale.gui;
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import com.mycompany.bibiotecadigitale.model.Libro;
-import com.mycompany.bibiotecadigitale.model.Testo;
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import com.mycompany.bibiotecadigitale.model.Utente;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import main.java.com.mycompany.bibiotecadigitale.model.Libro;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
 
 import java.awt.event.MouseEvent;
 import java.text.Normalizer;
@@ -37,29 +37,33 @@ public class ManagerTesto extends javax.swing.JFrame {
         //FormatoTesto = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        CodiceTesto = new javax.swing.JTextField();
-        TitoloTesto = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        ChiudiFinestra = new javax.swing.JLabel();
+        ManagerTestiLB = new javax.swing.JLabel();
+        CodiceLB = new javax.swing.JLabel();
+        TipologiaLB = new javax.swing.JLabel();
+        CodiceTestoTF = new javax.swing.JTextField();
+        TitoloTestoTF = new javax.swing.JTextField();
+        TitoloLB = new javax.swing.JLabel();
         TipologiaTesto = new javax.swing.JComboBox<>();
-        AggiungiTesto = new javax.swing.JButton();
-        ModificaTesto = new javax.swing.JButton();
-        EliminaTesto = new javax.swing.JButton();
-        PulisciTesto = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        AggiungiTestoBTN = new javax.swing.JButton();
+        ModificaTestoBTN = new javax.swing.JButton();
+        EliminaTestoBTN = new javax.swing.JButton();
+        PulisciTestoBTN = new javax.swing.JButton();
+        ScrollTabella = new javax.swing.JScrollPane();
         TabellaTesti = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        AnnoPubblicazioneTesto = new javax.swing.JTextField();
-        EdizioneTesto = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        AnnoPubblicazioneLB = new javax.swing.JLabel();
+        AnnoPubblicazioneTestoTF = new javax.swing.JTextField();
+        EdizioneTestoTF = new javax.swing.JTextField();
+        FormatoLB = new javax.swing.JLabel();
+        EdizioneLB = new javax.swing.JLabel();
         FormTesto = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        TipologiaLB2 = new javax.swing.JLabel();
+        DisponibilitaLB = new javax.swing.JLabel();
         DisponibilitaTesto = new javax.swing.JComboBox<>();
+        ArticoliLB = new javax.swing.JLabel();
+        LibriLB = new javax.swing.JLabel();
+        LOGOUTLB = new javax.swing.JLabel();
+        UtentiLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
@@ -69,66 +73,66 @@ public class ManagerTesto extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel9.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel9.setText("x");
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
+        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
+        ChiudiFinestra.setText("x");
+        ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                ChiudiFinestraMouseClicked(evt);
             }
         });
 
-        jLabel3.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel3.setText("MANAGER TESTI");
+        ManagerTestiLB.setBackground(new java.awt.Color(204, 0, 51));
+        ManagerTestiLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ManagerTestiLB.setForeground(new java.awt.Color(204, 0, 51));
+        ManagerTestiLB.setText("MANAGER TESTI");
 
-        jLabel5.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel5.setText("Codice");
-        jLabel5.setToolTipText("");
+        CodiceLB.setBackground(new java.awt.Color(204, 0, 51));
+        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CodiceLB.setForeground(new java.awt.Color(204, 0, 51));
+        CodiceLB.setText("Codice");
+        CodiceLB.setToolTipText("");
 
-        jLabel6.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel6.setText("Tipologia");
+        TipologiaLB.setBackground(new java.awt.Color(204, 0, 51));
+        TipologiaLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TipologiaLB.setForeground(new java.awt.Color(204, 0, 51));
+        TipologiaLB.setText("Tipologia");
 
-        CodiceTesto.addActionListener(new java.awt.event.ActionListener() {
+        CodiceTestoTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CodiceTestoActionPerformed(evt);
             }
         });
 
-        jLabel7.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel7.setText("Titolo");
+        TitoloLB.setBackground(new java.awt.Color(204, 0, 51));
+        TitoloLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TitoloLB.setForeground(new java.awt.Color(204, 0, 51));
+        TitoloLB.setText("Titolo");
 
-        TipologiaTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Articolo Scientifico", " ", " " }));
+        TipologiaTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Articolo Scientifico"}));
 
-        AggiungiTesto.setText("Aggiungi");
-        AggiungiTesto.addMouseListener(new java.awt.event.MouseAdapter() {
+        AggiungiTestoBTN.setText("Aggiungi");
+        AggiungiTestoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AggiungiTestoMouseClicked(evt);
             }
         });
 
-        ModificaTesto.setText("Modifica");
-        ModificaTesto.addMouseListener(new java.awt.event.MouseAdapter() {
+        ModificaTestoBTN.setText("Modifica");
+        ModificaTestoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ModificaTestoMouseClicked(evt);
             }
         });
-        EliminaTesto.setText("Elimina");
-        EliminaTesto.addMouseListener(new java.awt.event.MouseAdapter() {
+        EliminaTestoBTN.setText("Elimina");
+        EliminaTestoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 EliminaTestoMouseClicked(evt);
             }
         });
-        PulisciTesto.setText("Pulisci");
-        PulisciTesto.addMouseListener(new java.awt.event.MouseAdapter() {
+        PulisciTestoBTN.setText("Pulisci");
+        PulisciTestoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PulisciTestoMouseClicked(evt);
             }
@@ -158,36 +162,36 @@ public class ManagerTesto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TabellaTesti);
+        ScrollTabella.setViewportView(TabellaTesti);
 
-        jLabel8.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel8.setText("Anno Pubblicazione");
+        AnnoPubblicazioneLB.setBackground(new java.awt.Color(204, 0, 51));
+        AnnoPubblicazioneLB.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        AnnoPubblicazioneLB.setForeground(new java.awt.Color(204, 0, 51));
+        AnnoPubblicazioneLB.setText("Anno Pubblicazione");
 
-        jLabel10.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel10.setText("Formato");
+        FormatoLB.setBackground(new java.awt.Color(204, 0, 51));
+        FormatoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        FormatoLB.setForeground(new java.awt.Color(204, 0, 51));
+        FormatoLB.setText("Formato");
 
-        jLabel11.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel11.setText("Edizione");
+        EdizioneLB.setBackground(new java.awt.Color(204, 0, 51));
+        EdizioneLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        EdizioneLB.setForeground(new java.awt.Color(204, 0, 51));
+        EdizioneLB.setText("Edizione");
 
-        FormTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digitale", "Cartaceo", "AudioLibro", " " }));
+        FormTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digitale", "Cartaceo", "AudioLibro"}));
 
-        jLabel12.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel12.setText("Tipologia");
+        TipologiaLB2.setBackground(new java.awt.Color(204, 0, 51));
+        TipologiaLB2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TipologiaLB2.setForeground(new java.awt.Color(204, 0, 51));
+        TipologiaLB2.setText("Tipologia");
 
-        jLabel13.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel13.setText("Disponibilità");
+        DisponibilitaLB.setBackground(new java.awt.Color(204, 0, 51));
+        DisponibilitaLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        DisponibilitaLB.setForeground(new java.awt.Color(204, 0, 51));
+        DisponibilitaLB.setText("Disponibilità");
 
-        DisponibilitaTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False", " " }));
+        DisponibilitaTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False"}));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -202,18 +206,18 @@ public class ManagerTesto extends javax.swing.JFrame {
                                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                                                                 .addGap(205, 205, 205)
-                                                                                .addComponent(jLabel3))
+                                                                                .addComponent(ManagerTestiLB))
                                                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(CodiceLB, javax.swing.GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                        .addComponent(jLabel7)
+                                                                                        .addComponent(TitoloLB)
                                                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                         .addGap(97, 97, 97)
                                                                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                                                .addComponent(CodiceTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(TitoloTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(AnnoPubblicazioneTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(CodiceTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(TitoloTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(AnnoPubblicazioneTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                                                 .addComponent(DisponibilitaTesto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                                                         .addGap(92, 92, 92)
                                                                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -221,42 +225,42 @@ public class ManagerTesto extends javax.swing.JFrame {
                                                                                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                                                                .addComponent(jLabel11)
-                                                                                                                                                .addComponent(jLabel10))
+                                                                                                                                                .addComponent(EdizioneLB)
+                                                                                                                                                .addComponent(FormatoLB))
                                                                                                                                         .addGap(23, 23, 23))
                                                                                                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                                                                                                        .addComponent(jLabel12)
+                                                                                                                                        .addComponent(TipologiaLB2)
                                                                                                                                         .addGap(18, 18, 18)))
                                                                                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                                                                                .addComponent(EdizioneTesto, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                                                                                                                .addComponent(EdizioneTestoTF, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                                                                                                                                 .addComponent(FormTesto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                                                                 .addComponent(TipologiaTesto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                                                                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                                                        .addComponent(EliminaTesto)
+                                                                                                                        .addComponent(EliminaTestoBTN)
                                                                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                                        .addComponent(PulisciTesto)
+                                                                                                                        .addComponent(PulisciTestoBTN)
                                                                                                                         .addGap(35, 35, 35))))
                                                                                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                         .addGap(51, 51, 51)
                                                                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                                                        .addComponent(AggiungiTesto)
+                                                                                                                        .addComponent(AggiungiTestoBTN)
                                                                                                                         .addGap(18, 18, 18)
-                                                                                                                        .addComponent(ModificaTesto))
-                                                                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                                                                                                        .addComponent(ModificaTestoBTN))
+                                                                                                                .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                                                                 .addGap(43, 43, Short.MAX_VALUE)
-                                                                .addComponent(jLabel9))
+                                                                .addComponent(ChiudiFinestra))
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(jLabel8)
+                                                                .addComponent(AnnoPubblicazioneLB)
                                                                 .addGap(0, 0, Short.MAX_VALUE))))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGap(128, 128, 128)
-                                                                .addComponent(jLabel6))
+                                                                .addComponent(TipologiaLB))
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addContainerGap()
-                                                                .addComponent(jLabel13)))
+                                                                .addComponent(DisponibilitaLB)))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
         );
@@ -265,52 +269,101 @@ public class ManagerTesto extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel9))
+                                        .addComponent(ManagerTestiLB)
+                                        .addComponent(ChiudiFinestra))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(29, 29, 29)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(jLabel5)
-                                                        .addComponent(CodiceTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(EdizioneTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel11))
+                                                        .addComponent(CodiceLB)
+                                                        .addComponent(CodiceTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(EdizioneTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(EdizioneLB))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(TitoloTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel7)
-                                                        .addComponent(jLabel10)
+                                                        .addComponent(TitoloTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(TitoloLB)
+                                                        .addComponent(FormatoLB)
                                                         .addComponent(FormTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(jLabel8)
-                                                        .addComponent(AnnoPubblicazioneTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(AnnoPubblicazioneLB)
+                                                        .addComponent(AnnoPubblicazioneTestoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(TipologiaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel12))
+                                                        .addComponent(TipologiaLB2))
                                                 .addGap(18, 18, 18)
                                                 .addComponent(DisponibilitaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel13)
+                                                .addComponent(DisponibilitaLB)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TipologiaLB, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(AggiungiTesto)
-                                        .addComponent(ModificaTesto)
-                                        .addComponent(EliminaTesto)
-                                        .addComponent(PulisciTesto))
+                                        .addComponent(AggiungiTestoBTN)
+                                        .addComponent(ModificaTestoBTN)
+                                        .addComponent(EliminaTestoBTN)
+                                        .addComponent(PulisciTestoBTN))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        ArticoliLB.setBackground(new java.awt.Color(204, 0, 51));
+        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        ArticoliLB.setText("ARTICOLI SCIENTIFICI");
+        ArticoliLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ArticoloMouseClicked(evt);
+            }
+        });
+
+        LibriLB.setBackground(new java.awt.Color(204, 0, 51));
+        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        LibriLB.setText("LIBRI");
+        LibriLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LibroMouseClicked(evt);
+            }
+        });
+
+        LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LOGOUTLB.setText("LOGOUT");
+        LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LOGOUTMouseClicked(evt);
+            }
+        });
+
+        UtentiLB.setBackground(new java.awt.Color(204, 0, 51));
+        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        UtentiLB.setText("UTENTI");
+        UtentiLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UtenteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(ArticoliLB))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(LibriLB))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(UtentiLB))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(36, 36, 36)
+                                                .addComponent(LOGOUTLB)))
+                                .addGap(20, 20, 20)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
@@ -320,6 +373,16 @@ public class ManagerTesto extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(ArticoliLB)
+                                .addGap(18, 18, 18)
+                                .addComponent(LibriLB)
+                                .addGap(18, 18, 18)
+                                .addComponent(UtentiLB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LOGOUTLB)
+                                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -335,31 +398,31 @@ public class ManagerTesto extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>
+    }
 
     private void CodiceTestoActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {
+    private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
     }
 
 
     private void AggiungiTestoMouseClicked(java.awt.event.MouseEvent evt) {
-        if (CodiceTesto.getText().isEmpty() || TitoloTesto.getText().isEmpty() || EdizioneTesto.getText().isEmpty()) {
+        if (CodiceTestoTF.getText().isEmpty() || TitoloTestoTF.getText().isEmpty() || EdizioneTestoTF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Non hai inserito correttamente i dati");
         } else {
             try {
-                int codice = Integer.parseInt(CodiceTesto.getText());
+                int codice = Integer.parseInt(CodiceTestoTF.getText());
 
                 // Verifica se il testo con lo stesso codice già esiste nel database
                 if (testoDAO.testoExists(codice)) {
                     JOptionPane.showMessageDialog(this, "Il testo con il codice " + codice + " esiste già nel database");
                 } else {
-                    String titolo = TitoloTesto.getText();
+                    String titolo = TitoloTestoTF.getText();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    Date annoPubblicazione = dateFormat.parse(AnnoPubblicazioneTesto.getText());
-                    String edizione = EdizioneTesto.getText();
+                    Date annoPubblicazione = dateFormat.parse(AnnoPubblicazioneTestoTF.getText());
+                    String edizione = EdizioneTestoTF.getText();
                     boolean disponibilita = DisponibilitaTesto.getSelectedItem().toString().equals("Disponibile");
                     String formato = FormTesto.getSelectedItem().toString();
                     String tipologia = TipologiaTesto.getSelectedItem().toString();
@@ -413,8 +476,8 @@ public class ManagerTesto extends javax.swing.JFrame {
         int Indice = TabellaTesti.getSelectedRow();
 
         if (Indice != -1) { // Verifica se è stato selezionato un elemento valido
-            CodiceTesto.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
-            TitoloTesto.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
+            CodiceTestoTF.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
+            TitoloTestoTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
 
             // Verifica se la data è nulla prima di convertirla in una stringa
             Object annoPubblicazioneValue = model.getValueAt(Indice, 2);
@@ -422,12 +485,12 @@ public class ManagerTesto extends javax.swing.JFrame {
                 java.util.Date annoPubblicazioneDate = (java.util.Date) annoPubblicazioneValue;
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String annoPubblicazioneString = dateFormat.format(annoPubblicazioneDate);
-                AnnoPubblicazioneTesto.setText(annoPubblicazioneString);
+                AnnoPubblicazioneTestoTF.setText(annoPubblicazioneString);
             } else {
-                AnnoPubblicazioneTesto.setText("");
+                AnnoPubblicazioneTestoTF.setText("");
             }
 
-            EdizioneTesto.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
+            EdizioneTestoTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
 
             // Imposta il valore selezionato nei JComboBox
             String disponibilita = model.getValueAt(Indice, 4) != null ? model.getValueAt(Indice, 4).toString() : "";
@@ -441,19 +504,19 @@ public class ManagerTesto extends javax.swing.JFrame {
     }
 
     private void ModificaTestoMouseClicked(java.awt.event.MouseEvent evt) {
-        if (CodiceTesto.getText().isEmpty() || TitoloTesto.getText().isEmpty() || EdizioneTesto.getText().isEmpty()) {
+        if (CodiceTestoTF.getText().isEmpty() || TitoloTestoTF.getText().isEmpty() || EdizioneTestoTF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Informazioni mancanti");
         } else {
             try {
-                int codice = Integer.parseInt(CodiceTesto.getText());
-                String titolo = TitoloTesto.getText();
+                int codice = Integer.parseInt(CodiceTestoTF.getText());
+                String titolo = TitoloTestoTF.getText();
 
                 // Ottenere la data come stringa dal campo AnnoPubblicazioneTesto
-                String annoPubblicazioneText = AnnoPubblicazioneTesto.getText();
+                String annoPubblicazioneText = AnnoPubblicazioneTestoTF.getText();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 java.util.Date annoPubblicazione = dateFormat.parse(annoPubblicazioneText);
 
-                String edizione = EdizioneTesto.getText();
+                String edizione = EdizioneTestoTF.getText();
                 boolean disponibilita = DisponibilitaTesto.getSelectedItem().toString().equals("Disponibile");
                 String formato = FormTesto.getSelectedItem().toString();
                 String tipologia = TipologiaTesto.getSelectedItem().toString();
@@ -473,11 +536,11 @@ public class ManagerTesto extends javax.swing.JFrame {
     }
 
     private void EliminaTestoMouseClicked(java.awt.event.MouseEvent evt) {
-        if (CodiceTesto.getText().isEmpty()) {
+        if (CodiceTestoTF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Inserisci il codice del testo da eliminare");
         } else {
             try {
-                int codice = Integer.parseInt(CodiceTesto.getText());
+                int codice = Integer.parseInt(CodiceTestoTF.getText());
                 String tipologia = TipologiaTesto.getSelectedItem().toString();
                 if(tipologia.equals("Libro"))
                 {
@@ -498,11 +561,36 @@ public class ManagerTesto extends javax.swing.JFrame {
             }
         }
     }
+
+    private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        InterfacciaLibro interfacciaLibro = new InterfacciaLibro();
+        interfacciaLibro.setVisible(true);
+    }
+
+    private void ArticoloMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        InterfacciaArticolo interfacciaArticolo = new InterfacciaArticolo();
+        interfacciaArticolo.setVisible(true);
+        //interfacciaarticolo
+    }
+
+    private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }
+
+    private void UtenteMouseClicked (java.awt.event.MouseEvent evt) {
+        dispose();
+        ManagerUtenti managerUtenti = new ManagerUtenti();
+        managerUtenti.setVisible(true);
+    }
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt)
     {
-        TitoloTesto.setText("");
-        CodiceTesto.setText("");
-        EdizioneTesto.setText("");
+        TitoloTestoTF.setText("");
+        CodiceTestoTF.setText("");
+        EdizioneTestoTF.setText("");
         DisponibilitaTesto.setSelectedIndex(0);
         FormTesto.setSelectedIndex(0);
         TipologiaTesto.setSelectedIndex(0);
@@ -528,10 +616,10 @@ public class ManagerTesto extends javax.swing.JFrame {
     }
 
     private void clearTextFields() {
-        CodiceTesto.setText("");
-        TitoloTesto.setText("");
-        AnnoPubblicazioneTesto.setText("");
-        EdizioneTesto.setText("");
+        CodiceTestoTF.setText("");
+        TitoloTestoTF.setText("");
+        AnnoPubblicazioneTestoTF.setText("");
+        EdizioneTestoTF.setText("");
         DisponibilitaTesto.setSelectedIndex(0); // Imposta la selezione predefinita
         FormTesto.setSelectedIndex(0); // Imposta la selezione predefinita
         TipologiaTesto.setSelectedIndex(0); // Imposta la selezione predefinita
@@ -571,30 +659,34 @@ public class ManagerTesto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton AggiungiTesto;
-    private javax.swing.JTextField AnnoPubblicazioneTesto;
-    private javax.swing.JTextField CodiceTesto;
+    private javax.swing.JButton AggiungiTestoBTN;
+    private javax.swing.JTextField AnnoPubblicazioneTestoTF;
+    private javax.swing.JTextField CodiceTestoTF;
     private javax.swing.JComboBox<String> DisponibilitaTesto;
-    private javax.swing.JTextField EdizioneTesto;
-    private javax.swing.JButton EliminaTesto;
+    private javax.swing.JTextField EdizioneTestoTF;
+    private javax.swing.JButton EliminaTestoBTN;
     private javax.swing.JComboBox<String> FormTesto;
-    private javax.swing.JButton ModificaTesto;
-    private javax.swing.JButton PulisciTesto;
+    private javax.swing.JButton ModificaTestoBTN;
+    private javax.swing.JButton PulisciTestoBTN;
     private javax.swing.JTable TabellaTesti;
     private javax.swing.JComboBox<String> TipologiaTesto;
-    private javax.swing.JTextField TitoloTesto;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField TitoloTestoTF;
+    private javax.swing.JLabel FormatoLB;
+    private javax.swing.JLabel EdizioneLB;
+    private javax.swing.JLabel TipologiaLB2;
+    private javax.swing.JLabel DisponibilitaLB;
+    private javax.swing.JLabel ManagerTestiLB;
+    private javax.swing.JLabel CodiceLB;
+    private javax.swing.JLabel TipologiaLB;
+    private javax.swing.JLabel TitoloLB;
+    private javax.swing.JLabel AnnoPubblicazioneLB;
+    private javax.swing.JLabel ChiudiFinestra;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane ScrollTabella;
+    private javax.swing.JLabel UtentiLB;
+    private javax.swing.JLabel LOGOUTLB;
+    private javax.swing.JLabel ArticoliLB;
+    private javax.swing.JLabel LibriLB;
     // End of variables declaration
 }
