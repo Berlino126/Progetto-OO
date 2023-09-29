@@ -40,4 +40,9 @@ CREATE TABLE ArticoloScientifico (
     dataconferenza DATE,
     FOREIGN KEY (codTesto) REFERENCES Testo(codTesto) ON DELETE CASCADE
 );
+CREATE TABLE Admin (
+    id INT PRIMARY KEY,
+    nome VARCHAR(255),
+    password VARCHAR(255)
+);
 
