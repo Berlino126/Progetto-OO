@@ -1,7 +1,8 @@
-
-package com.mycompany.bibiotecadigitale.gui;
-import com.mycompany.bibiotecadigitale.model.Utente;
-import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+package main.java.com.mycompany.bibiotecadigitale.gui;
+import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
 
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -9,64 +10,71 @@ import javax.swing.table.DefaultTableModel;
 
 public class ManagerUtenti extends javax.swing.JFrame {
 
-    private  UtenteDAO utenteDAO;
+    private UtenteDAO utenteDAO;
     public ManagerUtenti() {
     initComponents();
     utenteDAO = new UtenteDAO();
     refreshUtenteTable();
 }
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        ChiudiFinestra = new javax.swing.JLabel();
+        ManagerUtentiLB = new javax.swing.JLabel();
+        CodiceLB = new javax.swing.JLabel();
         CodiceUtente = new javax.swing.JTextField();
         NomeUtente = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        NomeLB = new javax.swing.JLabel();
         AggiungiUtente = new javax.swing.JButton();
         ModificaUtente = new javax.swing.JButton();
         EliminaUtente = new javax.swing.JButton();
         PulisciUtente = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        ScrollTabella = new javax.swing.JScrollPane();
         TabellaUtente = new javax.swing.JTable();
-        jLabel13 = new javax.swing.JLabel();
+        CognomeLB = new javax.swing.JLabel();
         CognomeUtente = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        EmailLB = new javax.swing.JLabel();
+        TelefonoLB = new javax.swing.JLabel();
         TelefonoUtente = new javax.swing.JTextField();
         EmailUtente = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        ListaUtentiLB = new javax.swing.JLabel();
+        LibriLB = new javax.swing.JLabel();
+        TestiLB = new javax.swing.JLabel();
+        LOGOUTLB = new javax.swing.JLabel();
+        ArticoliLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 0, 51));
+        setUndecorated(true);
+
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 51));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel10.setText("x");
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
+        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
+        ChiudiFinestra.setText("x");
+        ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
             }
         });
 
 
-        jLabel4.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel4.setText("MANAGER UTENTI");
+        ManagerUtentiLB.setBackground(new java.awt.Color(204, 0, 51));
+        ManagerUtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ManagerUtentiLB.setForeground(new java.awt.Color(204, 0, 51));
+        ManagerUtentiLB.setText("MANAGER UTENTI");
 
-        jLabel8.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel8.setText("Codice");
-        jLabel8.setToolTipText("");
+        CodiceLB.setBackground(new java.awt.Color(204, 0, 51));
+        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CodiceLB.setForeground(new java.awt.Color(204, 0, 51));
+        CodiceLB.setText("Codice");
+        CodiceLB.setToolTipText("");
 
         CodiceUtente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,10 +88,10 @@ public class ManagerUtenti extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel12.setText("Nome");
+        NomeLB.setBackground(new java.awt.Color(204, 0, 51));
+        NomeLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        NomeLB.setForeground(new java.awt.Color(204, 0, 51));
+        NomeLB.setText("Nome");
 
         AggiungiUtente.setText("Aggiungi");
         AggiungiUtente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,12 +145,12 @@ public class ManagerUtenti extends javax.swing.JFrame {
                 TabellaUtenteMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(TabellaUtente);
+        ScrollTabella.setViewportView(TabellaUtente);
 
-        jLabel13.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel13.setText("Cognome");
+        CognomeLB.setBackground(new java.awt.Color(204, 0, 51));
+        CognomeLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CognomeLB.setForeground(new java.awt.Color(204, 0, 51));
+        CognomeLB.setText("Cognome");
 
         CognomeUtente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,15 +158,15 @@ public class ManagerUtenti extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel14.setText("Email");
+        EmailLB.setBackground(new java.awt.Color(204, 0, 51));
+        EmailLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        EmailLB.setForeground(new java.awt.Color(204, 0, 51));
+        EmailLB.setText("Email");
 
-        jLabel15.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel15.setText("Telefono");
+        TelefonoLB.setBackground(new java.awt.Color(204, 0, 51));
+        TelefonoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TelefonoLB.setForeground(new java.awt.Color(204, 0, 51));
+        TelefonoLB.setText("Telefono");
 
         TelefonoUtente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,10 +180,10 @@ public class ManagerUtenti extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel11.setText("LISTA UTENTI");
+        ListaUtentiLB.setBackground(new java.awt.Color(204, 0, 51));
+        ListaUtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        ListaUtentiLB.setForeground(new java.awt.Color(204, 0, 51));
+        ListaUtentiLB.setText("LISTA UTENTI");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -187,22 +195,22 @@ public class ManagerUtenti extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
+                                .addComponent(CodiceLB)
                                 .addGap(501, 501, 501)
                                 .addComponent(EmailUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(272, 272, 272)
-                                .addComponent(jLabel4)))
+                                .addComponent(ManagerUtentiLB)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addComponent(jLabel10))
+                        .addComponent(ChiudiFinestra))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
+                            .addComponent(CognomeLB)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(550, 550, 550)
                                 .addComponent(TelefonoUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                                .addComponent(NomeLB)
                                 .addGap(102, 102, 102)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CodiceUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,8 +222,8 @@ public class ManagerUtenti extends javax.swing.JFrame {
                                                 .addGroup(jPanel3Layout.createSequentialGroup()
                                                     .addGap(239, 239, 239)
                                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel14)
-                                                        .addComponent(jLabel15))
+                                                        .addComponent(EmailLB)
+                                                        .addComponent(TelefonoLB))
                                                     .addGap(84, 84, 84))
                                                 .addGroup(jPanel3Layout.createSequentialGroup()
                                                     .addComponent(AggiungiUtente)
@@ -225,12 +233,12 @@ public class ManagerUtenti extends javax.swing.JFrame {
                                                     .addComponent(EliminaUtente)
                                                     .addGap(18, 18, 18)))
                                             .addComponent(PulisciUtente))
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(347, 347, 347)
-                .addComponent(jLabel11)
+                .addComponent(ListaUtentiLB)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -238,23 +246,23 @@ public class ManagerUtenti extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel10))
+                    .addComponent(ManagerUtentiLB)
+                    .addComponent(ChiudiFinestra))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(CodiceLB)
                     .addComponent(CodiceUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
+                    .addComponent(EmailLB)
                     .addComponent(EmailUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel15)
+                    .addComponent(NomeLB)
+                    .addComponent(TelefonoLB)
                     .addComponent(TelefonoUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                    .addComponent(CognomeLB)
                     .addComponent(CognomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -263,27 +271,79 @@ public class ManagerUtenti extends javax.swing.JFrame {
                     .addComponent(EliminaUtente)
                     .addComponent(PulisciUtente))
                 .addGap(27, 27, 27)
-                .addComponent(jLabel11)
+                .addComponent(ListaUtentiLB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        LibriLB.setBackground(new java.awt.Color(204, 0, 51));
+        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        LibriLB.setText("LIBRI");
+        LibriLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LibroMouseClicked(evt);
+            }
+        });
+
+        TestiLB.setBackground(new java.awt.Color(204, 0, 51));
+        TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TestiLB.setText("TESTI");
+        TestiLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TestoMouseClicked(evt);
+            }
+        });
+
+        LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LOGOUTLB.setText("LOGOUT");
+        LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LOGOUTMouseClicked(evt);
+            }
+        });
+
+        ArticoliLB.setBackground(new java.awt.Color(204, 0, 51));
+        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        ArticoliLB.setText("ARTICOLI SCIENTIFICI");
+        ArticoliLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ArticoloMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(LOGOUTLB)
+                                        .addComponent(LibriLB, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ArticoliLB)
+                                        .addComponent(TestiLB))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(7, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(ArticoliLB)
+                                .addGap(18, 18, 18)
+                                .addComponent(TestiLB)
+                                .addGap(18, 18, 18)
+                                .addComponent(LibriLB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LOGOUTLB)
+                                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -430,6 +490,32 @@ public class ManagerUtenti extends javax.swing.JFrame {
         EmailUtente.setText("");
         TelefonoUtente.setText("");
     }
+
+    private void TestoMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        ManagerTesto managerTesto = new ManagerTesto();
+        managerTesto.setVisible(true);
+    }
+
+    private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }
+
+    private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
+        dispose();
+        InterfacciaLibro interfacciaLibro = new InterfacciaLibro();
+        interfacciaLibro.setVisible(true);
+        //interfacciaarticolo
+    }
+
+    private void ArticoloMouseClicked (java.awt.event.MouseEvent evt) {
+        dispose();
+        InterfacciaArticolo interfacciaArticolo = new InterfacciaArticolo();
+        interfacciaArticolo.setVisible(true);
+    }
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -449,16 +535,20 @@ public class ManagerUtenti extends javax.swing.JFrame {
     private javax.swing.JButton PulisciUtente;
     private javax.swing.JTable TabellaUtente;
     private javax.swing.JTextField TelefonoUtente;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel ChiudiFinestra;
+    private javax.swing.JLabel ListaUtentiLB;
+    private javax.swing.JLabel NomeLB;
+    private javax.swing.JLabel CognomeLB;
+    private javax.swing.JLabel EmailLB;
+    private javax.swing.JLabel TelefonoLB;
+    private javax.swing.JLabel ManagerUtentiLB;
+    private javax.swing.JLabel CodiceLB;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane ScrollTabella;
+    private javax.swing.JLabel TestiLB;
+    private javax.swing.JLabel LOGOUTLB;
+    private javax.swing.JLabel ArticoliLB;
+    private javax.swing.JLabel LibriLB;
     // End of variables declaration//GEN-END:variables
 }
