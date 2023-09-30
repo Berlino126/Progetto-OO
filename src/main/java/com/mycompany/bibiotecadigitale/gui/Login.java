@@ -1,6 +1,10 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import com.mycompany.bibiotecadigitale.gui.AcquistoUtentee;
+import main.java.com.mycompany.bibiotecadigitale.gui.AcquistoUtentee;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -108,7 +112,7 @@ public class Login extends javax.swing.JFrame {
                     dispose();
                 } else if (modalita.equals("UTENTE") && codiceUtente.equals("utente1") && password.equals("password")) {
                     //qua va la finestra che l'utente visualizzerà
-                    com.mycompany.bibiotecadigitale.gui.AcquistoUtentee acquistoUtentee = new AcquistoUtentee();
+                    AcquistoUtentee acquistoUtentee = new AcquistoUtentee();
                     acquistoUtentee.setVisible(true);
                     dispose();
                 }
