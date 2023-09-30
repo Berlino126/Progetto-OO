@@ -1,29 +1,12 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
-
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-/**
- *
- * @author franc
- */
-public class InterfacciaArticolo extends javax.swing.JFrame {
-
+{
+    private TestoDAO testoDAO;
     private ArticoloScientificoDAO articoloScientificoDAO;
 
     public InterfacciaArticolo() {
         initComponents();
-        ArticoloScientificoDAO articoloScientificoDAO = new ArticoloScientificoDAO();
+        testoDAO = new TestoDAO();
+        articoloScientificoDAO = new ArticoloScientificoDAO();
+        refreshArticoloTable();
     }
 
     private void initComponents() {
@@ -132,6 +115,12 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
             }
         });
         ScrollTabella.setViewportView(TabellaTesti);
+        TabellaTesti.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                TabellaTestoMouseClicked(e);
+            }
+        });
 
         RivistaLB.setBackground(new java.awt.Color(204, 0, 51));
         RivistaLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -411,6 +400,30 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    private void TabellaTestoMouseClicked(java.awt.event.MouseEvent evt) {
+        DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
+        int Indice = TabellaTesti.getSelectedRow();
+        if (Indice != -1) {
+            CodiceTF.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
+            ResponsabileTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
+            ArgomentoTF.setText(model.getValueAt(Indice, 2) != null ? model.getValueAt(Indice, 2).toString() : "");
+            RivistaTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
+            UniversitàTF.setText(model.getValueAt(Indice, 4) != null ? model.getValueAt(Indice, 4).toString() : "");
+            RiassuntoTF.setText(model.getValueAt(Indice, 5) != null ? model.getValueAt(Indice, 5).toString() : "");
+            LuogoTF.setText(model.getValueAt(Indice, 6) != null ? model.getValueAt(Indice, 6).toString() : "");
+            // Verifica se la data è nulla prima di convertirla in una stringa
+            Object dataConferenzaValue = model.getValueAt(Indice, 7);
+            if (dataConferenzaValue != null) {
+                java.util.Date dataConferenzaDate = (java.util.Date) dataConferenzaValue;
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String annoPubblicazioneString = dateFormat.format(dataConferenzaDate);
+                DataTF.setText(annoPubblicazioneString);
+            } else {
+                DataTF.setText("");
+            }
+        }
+    }
+
     private void ResponsabileTFActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -449,9 +462,10 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
                 String luogoConferenza = LuogoTF.getText();
                 String dataConferenzaText= DataTF.getText();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                java.util.Date dataConferenza = dateFormat.parse(dataConferenzaText);
+                Date dataConferenza = dateFormat.parse(dataConferenzaText);
 
-                articoloScientificoDAO.updateArticoloScientifico(codice, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, (java.sql.Date) dataConferenza);
+
+                articoloScientificoDAO.updateArticoloScientifico(codice, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
 
                 JOptionPane.showMessageDialog(this, "Testo modificato correttamente");
                 refreshArticoloTable();
@@ -483,9 +497,18 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
     }
 
     private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
-        dispose();
-        Login login = new Login();
-        login.setVisible(true);
+        UIManager.put("OptionPane.yesButtonText", "Si");
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler uscire?", "Conferma uscita", JOptionPane.YES_NO_OPTION);
+
+        // Verifica della scelta dell'utente
+        if (scelta == JOptionPane.YES_OPTION) {
+            // L'utente ha confermato l'uscita, puoi chiudere la finestra
+            dispose();
+            Login login = new Login();
+            login.setVisible(true);
+        } else {
+            // L'utente ha annullato l'uscita, la finestra continua
+        }
     }
 
     private void UtenteMouseClicked (java.awt.event.MouseEvent evt) {
