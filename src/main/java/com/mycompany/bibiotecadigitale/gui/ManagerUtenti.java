@@ -1,3 +1,4 @@
+
 package main.java.com.mycompany.bibiotecadigitale.gui;
 import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
 import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
@@ -5,7 +6,7 @@ import main.java.com.mycompany.bibiotecadigitale.model.Utente;
 import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
 
 import java.util.List;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class ManagerUtenti extends javax.swing.JFrame {
@@ -433,11 +434,16 @@ public class ManagerUtenti extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Inserisci il codice dell'utente da eliminare");
         } else {
             try {
-                int codice = Integer.parseInt(CodiceUtente.getText());
-                utenteDAO.deleteUtente(codice);
-                JOptionPane.showMessageDialog(this, "Utente eliminato correttamente");
-                refreshUtenteTable();
-                clearFields();
+                UIManager.put("OptionPane.yesButtonText", "Si");
+                int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare l'utente selezionato?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION);
+                if (scelta == JOptionPane.YES_OPTION) {
+                    int codice = Integer.parseInt(CodiceUtente.getText());
+                    utenteDAO.deleteUtente(codice);
+                    JOptionPane.showMessageDialog(this, "Utente eliminato correttamente");
+                    refreshUtenteTable();
+                    clearFields();
+                }
+                else {}
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Il codice utente deve essere un numero intero");
             }
@@ -498,9 +504,18 @@ public class ManagerUtenti extends javax.swing.JFrame {
     }
 
     private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
-        dispose();
-        Login login = new Login();
-        login.setVisible(true);
+        UIManager.put("OptionPane.yesButtonText", "Si");
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler uscire?", "Conferma uscita", JOptionPane.YES_NO_OPTION);
+
+        // Verifica della scelta dell'utente
+        if (scelta == JOptionPane.YES_OPTION) {
+            // L'utente ha confermato l'uscita, puoi chiudere la finestra
+            dispose();
+            Login login = new Login();
+            login.setVisible(true);
+        } else {
+            // L'utente ha annullato l'uscita, la finestra continua
+        }
     }
 
     private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
