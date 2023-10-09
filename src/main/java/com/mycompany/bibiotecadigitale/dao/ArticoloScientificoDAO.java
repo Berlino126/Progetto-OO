@@ -1,7 +1,7 @@
-package com.mycompany.bibiotecadigitale.dao;
+package main.java.com.mycompany.bibiotecadigitale.dao;
 
-import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import com.mycompany.bibiotecadigitale.model.Libro;
+import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import main.java.com.mycompany.bibiotecadigitale.model.Libro;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class ArticoloScientificoDAO extends TestoDAO {
         }
     }
 
-    public void updateArticoloScientifico(int codice, String universita, String riassunto, String nomeRivista, String argomento, String responsabile, String luogoConferenza, Date dataConferenza) {
+    public void updateArticoloScientifico(int codice, String universita, String riassunto, String nomeRivista, String argomento, String responsabile, String luogoConferenza, java.util.Date dataConferenza) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE ArticoloScientifico SET Universita = ?, Riassunto = ?, NomeRivista = ?, Argomento = ?, Responsabile = ?, LuogoConferenza = ?, DataConferenza = ? WHERE CodTesto = ?");
@@ -82,7 +82,8 @@ public class ArticoloScientificoDAO extends TestoDAO {
             preparedStatement.setString(4, argomento);
             preparedStatement.setString(5, responsabile);
             preparedStatement.setString(6, luogoConferenza);
-            preparedStatement.setDate(7, dataConferenza);
+            java.sql.Date sqlDate = new java.sql.Date(dataConferenza.getTime());
+            preparedStatement.setDate(7, sqlDate);
             preparedStatement.setInt(8, codice);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
