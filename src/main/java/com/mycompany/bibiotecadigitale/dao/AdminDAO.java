@@ -10,16 +10,7 @@ public class AdminDAO {
     private Connection connection;
 
     public AdminDAO() {
-        // Inizializza la connessione al database qui
-        String url = "jdbc:postgresql://localhost/DatabaseOO";
-        String user = "postgres";
-        String password = "profbarra";
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gestisci l'eccezione
-        }
+        connection = ConnectionManager.getConnection();
     }
 
     public List<Admin> getAllAdmins() {
@@ -76,6 +67,24 @@ public class AdminDAO {
             e.printStackTrace();
             // Gestisci l'eccezione
         }
+    }
+    public boolean verificaCredenziali(int codiceUtente, String passwordUtente) {
+        boolean credenzialiValide = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM Admin WHERE id = ? AND password = ?");
+            preparedStatement.setInt(1, codiceUtente );
+            preparedStatement.setString(2, passwordUtente);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                credenzialiValide = count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+        return credenzialiValide;
     }
 
     // Altre operazioni CRUD e metodi accessori qui
