@@ -11,16 +11,7 @@ public class TestoDAO {
     protected Connection connection;
 
     public TestoDAO() {
-        // Inizializza la connessione al database qui
-        String url = "jdbc:postgresql://localhost/DatabaseOO";
-        String user = "postgres";
-        String password = "profbarra";
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gestisci l'eccezione
-        }
+        connection = ConnectionManager.getConnection();
     }
 
     public List<Testo> getAllTesti() {
