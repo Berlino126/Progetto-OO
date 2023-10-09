@@ -1,66 +1,56 @@
 package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Utente;
 
-import java.awt.event.MouseEvent;
-import java.text.Normalizer;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Vector;
+
 /**
  *
  * @author franc
  */
 public class AcquistoUtentee extends javax.swing.JFrame {
     private TestoDAO testoDAO;
-    private ArticoloScientificoDAO articoloScientificoDAO;
-    private LibroDAO libroDAO;
     public AcquistoUtentee() {
-        testoDAO = new TestoDAO();
-        articoloScientificoDAO = new ArticoloScientificoDAO();
-        libroDAO = new LibroDAO();
         initComponents();
+        testoDAO = new TestoDAO();
+        refreshTestoTable();
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         ChiudiFinestra = new javax.swing.JLabel();
         BibliotecaDigitaleLB = new javax.swing.JLabel();
+        TitoloLB = new javax.swing.JLabel();
         TitoloTF = new javax.swing.JTextField();
-        NomeLB = new javax.swing.JLabel();
-        BoxTipologiaTesto = new javax.swing.JComboBox<>();
-        AggiungiBTN = new javax.swing.JButton();
-        PulisciBTN = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabellaTesti = new javax.swing.JTable();
-        BoxFormatoTesto = new javax.swing.JComboBox<>();
+        GenereTF = new javax.swing.JTextField();
         GenereLB = new javax.swing.JLabel();
-        ResocontoLB = new javax.swing.JLabel();
+        TipologiaTestoBOX = new javax.swing.JComboBox<>();
+        AggiungiBTN = new javax.swing.JButton();
         FiltraBTN = new javax.swing.JButton();
-        AggiornaBTN = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ResocontoTEXT = new javax.swing.JTextArea();
+        EliminaBTN = new javax.swing.JButton();
+        PulisciBTN = new javax.swing.JButton();
+        ScrollTabella1 = new javax.swing.JScrollPane();
+        TabellaTesti = new javax.swing.JTable();
+        EdizioneTF = new javax.swing.JTextField();
+        EdizioneLB = new javax.swing.JLabel();
+        FormatoTestoBOX = new javax.swing.JComboBox<>();
         ListaProdottiLB = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TabellaResoconto = new javax.swing.JTable();
+        ResocontoLB = new javax.swing.JLabel();
         RichiediOraBTN = new javax.swing.JButton();
         AnnullaBTN = new javax.swing.JButton();
-        GenereTF = new javax.swing.JTextField();
-        EdizioneLB = new javax.swing.JLabel();
-        EdizioneTF = new javax.swing.JTextField();
         LOGOUTLB = new javax.swing.JLabel();
+        ModificaPasswordLB = new javax.swing.JLabel();
+        RimuoviBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
@@ -81,18 +71,55 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
 
         BibliotecaDigitaleLB.setBackground(new java.awt.Color(204, 0, 51));
-        BibliotecaDigitaleLB.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        BibliotecaDigitaleLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         BibliotecaDigitaleLB.setForeground(new java.awt.Color(204, 0, 51));
         BibliotecaDigitaleLB.setText("BIBLIOTECA DIGITALE");
 
-        NomeLB.setBackground(new java.awt.Color(204, 0, 51));
-        NomeLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        NomeLB.setForeground(new java.awt.Color(204, 0, 51));
-        NomeLB.setText("Titolo");
+        TitoloLB.setBackground(new java.awt.Color(204, 0, 51));
+        TitoloLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        TitoloLB.setForeground(new java.awt.Color(204, 0, 51));
+        TitoloLB.setText("Titolo");
+        TitoloLB.setToolTipText("");
 
-        BoxTipologiaTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Articolo Scientifico"}));
+        TitoloTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TitoloTFActionPerformed(evt);
+            }
+        });
+
+        GenereLB.setBackground(new java.awt.Color(204, 0, 51));
+        GenereLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        GenereLB.setForeground(new java.awt.Color(204, 0, 51));
+        GenereLB.setText("Genere");
+
+        TipologiaTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Articolo Scientifico", " ", " " }));
+        TipologiaTestoBOX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipologiaTestoBOXActionPerformed(evt);
+            }
+        });
 
         AggiungiBTN.setText("Aggiungi");
+        AggiungiBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AggiungiMouseClicked(evt);
+            }
+        });
+
+        FiltraBTN.setText("Filtra");
+        FiltraBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FiltraMouseClicked(evt);
+            }
+        });
+
+
+        EliminaBTN.setText("Aggiorna");
+        EliminaBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AggiornaBTNActionPerformed(evt);
+            }
+        });
 
         PulisciBTN.setText("Pulisci");
         PulisciBTN.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,46 +136,58 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                         {null, null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Titolo", "Genere", "Anno Pubblicazione", "Formato", "Edizione", "Disponibilità", "Tipologia"
+                        "Titolo", "Genere", "Anno Pubblicazione", "Edizione", "Disponibilità", "Formato", "Tipologia"
                 }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false, false, true
+            };
 
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ScrollTabella1.setViewportView(TabellaTesti);
         TabellaTesti.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TabellaTestiMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(TabellaTesti);
-
-        BoxFormatoTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digitale", "Cartaceo", "AudioLibro"}));
-
-        GenereLB.setBackground(new java.awt.Color(204, 0, 51));
-        GenereLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        GenereLB.setForeground(new java.awt.Color(204, 0, 51));
-        GenereLB.setText("Genere");
-
-        ResocontoLB.setBackground(new java.awt.Color(204, 0, 51));
-        ResocontoLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        ResocontoLB.setForeground(new java.awt.Color(204, 0, 51));
-        ResocontoLB.setText("RESOCONTO:");
-
-        FiltraBTN.setText("Filtra");
-        FiltraBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FiltraBTNActionPerformed(evt);
+                TabellaTestoMouseClicked(evt);
             }
         });
 
-        AggiornaBTN.setText("Aggiorna");
+        EdizioneLB.setBackground(new java.awt.Color(204, 0, 51));
+        EdizioneLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        EdizioneLB.setForeground(new java.awt.Color(204, 0, 51));
+        EdizioneLB.setText("Edizione");
 
-        ResocontoTEXT.setColumns(20);
-        ResocontoTEXT.setRows(5);
-        jScrollPane2.setViewportView(ResocontoTEXT);
+        FormatoTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digitale", "Cartaceo", "AudioLibro", " " }));
 
         ListaProdottiLB.setBackground(new java.awt.Color(204, 0, 51));
-        ListaProdottiLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ListaProdottiLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         ListaProdottiLB.setForeground(new java.awt.Color(204, 0, 51));
         ListaProdottiLB.setText("LISTA PRODOTTI");
+
+        TabellaResoconto.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+
+                },
+                new String [] {
+                        "Titolo", "Genere", "Anno Pubblicazione", "Edizione", "Disponibilità", "Formato", "Tipologia"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(TabellaResoconto);
+
+        ResocontoLB.setBackground(new java.awt.Color(204, 0, 51));
+        ResocontoLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        ResocontoLB.setForeground(new java.awt.Color(204, 0, 51));
+        ResocontoLB.setText("RESOCONTO:");
 
         RichiediOraBTN.setText("Richiedi Ora");
         RichiediOraBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -158,106 +197,110 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
 
         AnnullaBTN.setText("Annulla");
+        AnnullaBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AnnullaMouseClicked(evt);
+            }
+        });
 
-        EdizioneLB.setBackground(new java.awt.Color(204, 0, 51));
-        EdizioneLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        EdizioneLB.setForeground(new java.awt.Color(204, 0, 51));
-        EdizioneLB.setText("Edizione");
+        RimuoviBTN.setText("Rimuovi");
+        RimuoviBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RimuoviMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(ResocontoLB)
-                                .addGap(400, 400, 400))
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(330, 330, 330)
-                                .addComponent(RichiediOraBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84)
-                                .addComponent(AnnullaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addContainerGap(61, Short.MAX_VALUE)
+                                                .addComponent(AggiungiBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(37, 37, 37)
+                                                .addComponent(PulisciBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(68, 68, 68))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                                .addGap(26, 26, 26)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(EdizioneLB)
+                                                        .addComponent(TitoloLB)
+                                                        .addComponent(GenereLB))
+                                                .addGap(61, 61, 61)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(EdizioneTF, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                                        .addComponent(GenereTF)
+                                                        .addComponent(TitoloTF))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(4, 4, 4))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                        .addComponent(GenereTF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                                                                .addComponent(EdizioneLB)
-                                                                                                .addGap(18, 18, 18)
-                                                                                                .addComponent(EdizioneTF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                        .addComponent(TitoloTF, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGap(18, 18, 18))
-                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                .addGap(63, 63, 63)
-                                                                                .addComponent(AggiungiBTN)
-                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(PulisciBTN)
-                                                                                .addGap(30, 30, 30)))
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(BibliotecaDigitaleLB)
-                                                                                .addGap(232, 232, 232)
-                                                                                .addComponent(ChiudiFinestra))
-                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                                .addGap(28, 28, 28)
+                                                .addComponent(TipologiaTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(FormatoTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                                                .addComponent(FiltraBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(EliminaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(38, 38, 38))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(BibliotecaDigitaleLB)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(ChiudiFinestra, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap())
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(GenereLB)
-                                                        .addComponent(NomeLB))
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGap(249, 249, 249)
-                                                                .addComponent(BoxTipologiaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(BoxFormatoTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(102, 102, 102)
-                                                                .addComponent(FiltraBTN)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(AggiornaBTN))
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 488, Short.MAX_VALUE)
-                                                                .addComponent(ListaProdottiLB)
-                                                                .addGap(212, 212, 212))))))
+                                                .addComponent(ScrollTabella1)
+                                                .addContainerGap())))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(ListaProdottiLB)
+                                .addGap(175, 175, 175))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(RimuoviBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ResocontoLB)
+                                .addGap(362, 362, 362))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane2)
+                                .addContainerGap())
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(253, 253, 253)
+                                .addComponent(RichiediOraBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(AnnullaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(BibliotecaDigitaleLB)
-                                                        .addComponent(ChiudiFinestra))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(ListaProdottiLB)
-                                                .addGap(22, 22, 22)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(BoxTipologiaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(BoxFormatoTesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(FiltraBTN)
-                                                        .addComponent(AggiornaBTN))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addContainerGap(10, Short.MAX_VALUE)
+                                                .addComponent(BibliotecaDigitaleLB))
+                                        .addComponent(ChiudiFinestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ListaProdottiLB)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(65, 65, 65)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(NomeLB)
-                                                        .addComponent(TitoloTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(25, 25, 25)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(PulisciBTN, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(TitoloLB)
+                                                                        .addComponent(TitoloTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(21, 21, 21)
+                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(FormatoTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(TipologiaTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(FiltraBTN)
+                                                                        .addComponent(EliminaBTN))))
+                                                .addGap(14, 14, 14)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                                         .addComponent(GenereLB)
@@ -266,20 +309,27 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                                         .addComponent(EdizioneLB)
                                                                         .addComponent(EdizioneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(56, 56, 56)
-                                                                .addComponent(AggiungiBTN)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                                .addComponent(ResocontoLB)
+                                                                .addGap(54, 54, 54)
+                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(PulisciBTN)
+                                                                        .addComponent(AggiungiBTN)))
+                                                        .addComponent(ScrollTabella1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(13, 13, 13)
+                                                .addComponent(ResocontoLB))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(RimuoviBTN)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(RichiediOraBTN)
                                         .addComponent(AnnullaBTN))
-                                .addGap(11, 11, 11))
+                                .addContainerGap())
         );
 
-        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         LOGOUTLB.setText("LOGOUT");
         LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -287,48 +337,70 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             }
         });
 
+        ModificaPasswordLB.setBackground(new java.awt.Color(204, 0, 51));
+        ModificaPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        ModificaPasswordLB.setText("Modifica Password");
+        ModificaPasswordLB.setToolTipText("");
+        ModificaPasswordLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ModificaPasswordMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(LOGOUTLB, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(34, 34, 34)
+                                                .addComponent(LOGOUTLB))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(ModificaPasswordLB, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap())
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(LOGOUTLB)
-                                                .addGap(64, 64, 64))))
+                                .addComponent(ModificaPasswordLB, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(LOGOUTLB)
+                                .addGap(39, 39, 39))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>
+    }
 
-    private void FiltraBTNActionPerformed(java.awt.event.ActionEvent evt) {
+    private void TitoloTFActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void AggiornaBTNActionPerformed(java.awt.event.ActionEvent evt) {
+        refreshTestoTable();
+    }
+
+    private void TipologiaTestoBOXActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -340,20 +412,68 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         System.exit(0);
     }
 
-    private void TabellaTestiMouseClicked(java.awt.event.MouseEvent evt) {
+    private void refreshTestoTable() {
+        DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
+        model.setRowCount(0); // Cancella tutte le righe attuali
+
+        List<Testo> testi = testoDAO.getAllTesti();
+
+        for (Testo testo : testi) {
+            model.addRow(new Object[]{
+                    testo.getCodTesto(),
+                    testo.getTitolo(),
+                    testo.getAnnoPubblicazione(),
+                    testo.getEdizione(),
+                    testo.isDisponibilita() ? "True" : "False", // Modifica la rappresentazione della disponibilità
+                    testo.getFormato(),
+                    testo.getTipologia()
+            });
+        }
+    }
+
+    private void aggiornaInterfacciaConTestiFiltrati(List<Testo> testiFiltrati) {
+        DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
+        // Rimuovi tutte le righe attualmente presenti nella tabella
+        model.setRowCount(0);
+
+        // Aggiungi le righe dei testi filtrati alla tabella
+        for (Testo testo : testiFiltrati) {
+            // Creare un array di oggetti che rappresentano una riga di dati
+            // Ed aggiungere la riga alla tabella
+            model.addRow(new Object[] {
+                    testo.getCodTesto(),
+                    testo.getTitolo(),
+                    testo.getAnnoPubblicazione(),
+                    testo.getEdizione(),
+                    testo.isDisponibilita(),
+                    testo.getFormato(),
+                    testo.getTipologia()
+            });
+        }
+
+        // Aggiorna l'interfaccia utente per riflettere i nuovi dati
+        model.fireTableDataChanged();
+    }
+
+
+    private void TabellaTestoMouseClicked(java.awt.event.MouseEvent evt) {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         int Indice = TabellaTesti.getSelectedRow();
+
         if (Indice != -1) { // Verifica se è stato selezionato un elemento valido
             TitoloTF.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
             GenereTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
-            String formato = model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "";
-            EdizioneTF.setText(model.getValueAt(Indice, 4) != null ? model.getValueAt(Indice, 4).toString() : "");
+            EdizioneTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
+
+            // Imposta il valore selezionato nei JComboBox
+            String formato = model.getValueAt(Indice, 5) != null ? model.getValueAt(Indice, 5).toString() : "";
             String tipologia = model.getValueAt(Indice, 6) != null ? model.getValueAt(Indice, 6).toString() : "";
 
-            BoxFormatoTesto.setSelectedItem(formato);
-            BoxTipologiaTesto.setSelectedItem(tipologia);
+            FormatoTestoBOX.setSelectedItem(formato);
+            TipologiaTestoBOX.setSelectedItem(tipologia);
         }
     }
+
 
     private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
         UIManager.put("OptionPane.yesButtonText", "Si");
@@ -370,16 +490,101 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         }
     }
 
-    private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt)
-    {
-        TitoloTF.setText("");
-        EdizioneTF.setText("");
-        GenereTF.setText("");
+    private void AggiungiMouseClicked(java.awt.event.MouseEvent evt) {
+        JOptionPane.showMessageDialog(null, "Il testo selezionato è stato aggiunto al resoconto.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
+        DefaultTableModel modelTesti = (DefaultTableModel) TabellaTesti.getModel();
+        DefaultTableModel modelResoconto = (DefaultTableModel) TabellaResoconto.getModel();
+        // Ottieni le righe selezionate dalla tabella sorgente
+        int[] selectedRows = TabellaTesti.getSelectedRows();
+
+        // Indica quali colonne della tabella sorgente desideri copiare nella tabella di destinazione
+        int[] colonneDaCopiare = {0, 2, 3}; // Ad esempio, copiamo la colonna 0, 2 e 3 dalla tabella sorgente
+
+        // Copia le righe selezionate dalla tabella sorgente alla tabella di destinazione
+        for (int selectedRow : selectedRows) {
+            Vector<Object> rowData = new Vector<>();
+
+            for (int colonna : colonneDaCopiare) {
+                rowData.add(modelTesti.getValueAt(selectedRow, colonna));
+            }
+            modelResoconto.addRow(rowData);
+        }
     }
 
+    private void AnnullaMouseClicked(java.awt.event.MouseEvent evt) {
+        UIManager.put("OptionPane.yesButtonText", "Si");
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler annullare il tuo resoconto?", "Conferma annullamento", JOptionPane.YES_NO_OPTION);
+        DefaultTableModel modelResoconto = (DefaultTableModel) TabellaResoconto.getModel();
+        if (scelta == JOptionPane.YES_OPTION) {
+            // Rimuovi tutte le righe dalla tabella di destinazione
+            while (modelResoconto.getRowCount() > 0) {
+                modelResoconto.removeRow(0);
+            }
+            JOptionPane.showMessageDialog(null, "Resoconto annullato.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
+        } else {}
+    }
+    private void ModificaPasswordMouseClicked(java.awt.event.MouseEvent evt) {
+        UIManager.put("OptionPane.yesButtonText", "Si");
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler modificare la password? Verrà aperta una nuova finestra per la modifica della password.", "Conferma modifica", JOptionPane.YES_NO_OPTION);
 
+        // Verifica della scelta dell'utente
+        if (scelta == JOptionPane.YES_OPTION) {
+            // L'utente ha confermato l'uscita, puoi chiudere la finestra
+            dispose();
+        } else {
+            // L'utente ha annullato l'uscita, la finestra continua
+        }
+    }
+
+    private void FiltraMouseClicked (java.awt.event.MouseEvent evt) {
+        String formatoCB = FormatoTestoBOX.getSelectedItem().toString();
+        String tipologiacb = TipologiaTestoBOX.getSelectedItem().toString();
+        List<Testo> testiFiltrati = testoDAO.getTestiByFormatoETipologia(formatoCB, tipologiacb);
+        aggiornaInterfacciaConTestiFiltrati(testiFiltrati);
+    }
+
+    private void RimuoviMouseClicked (java.awt.event.ActionEvent evt) {
+        DefaultTableModel modelResoconto = (DefaultTableModel) TabellaResoconto.getModel();
+
+        // Ottieni l'indice della riga selezionata nella tabella di destinazione
+        int selectedRow = TabellaResoconto.getSelectedRow();
+        UIManager.put("OptionPane.yesButtonText", "Si");
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler rimuovere dal resoconto il testo selezionato?", "Conferma rimozione", JOptionPane.YES_NO_OPTION);
+
+        // Verifica della scelta dell'utente
+        if (scelta == JOptionPane.YES_OPTION) {
+
+            // Verifica se è stata selezionata una riga
+            if (selectedRow != -1) {
+                // Rimuovi la riga selezionata dalla tabella di destinazione
+                modelResoconto.removeRow(selectedRow);
+                JOptionPane.showMessageDialog(null, "Il testo selezionato è stato rimosso dal resoconto.", "Conferma rimozione", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Nessuna riga è stata selezionata, mostra un messaggio di avviso all'utente
+                JOptionPane.showMessageDialog(null, "Seleziona una riga da eliminare.", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        else {}
+    }
+
+    private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
+        TitoloTF.setText("");
+        GenereTF.setText("");
+        EdizioneTF.setText("");
+    }
+
+    private void clearTextField() {
+        TitoloTF.setText("");
+        GenereTF.setText("");
+        EdizioneTF.setText("");
+    }
 
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -405,31 +610,32 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton AggiornaBTN;
     private javax.swing.JButton AggiungiBTN;
     private javax.swing.JButton AnnullaBTN;
     private javax.swing.JLabel BibliotecaDigitaleLB;
-    private javax.swing.JComboBox<String> BoxFormatoTesto;
-    private javax.swing.JComboBox<String> BoxTipologiaTesto;
+    private javax.swing.JLabel ChiudiFinestra;
     private javax.swing.JLabel EdizioneLB;
     private javax.swing.JTextField EdizioneTF;
-    private javax.swing.JButton FiltraBTN;
+    private javax.swing.JButton EliminaBTN;
+    private javax.swing.JComboBox<String> FormatoTestoBOX;
     private javax.swing.JLabel GenereLB;
     private javax.swing.JTextField GenereTF;
     private javax.swing.JLabel LOGOUTLB;
     private javax.swing.JLabel ListaProdottiLB;
-    private javax.swing.JLabel NomeLB;
+    private javax.swing.JButton FiltraBTN;
+    private javax.swing.JLabel ModificaPasswordLB;
     private javax.swing.JButton PulisciBTN;
     private javax.swing.JLabel ResocontoLB;
-    private javax.swing.JTextArea ResocontoTEXT;
     private javax.swing.JButton RichiediOraBTN;
+    private javax.swing.JButton RimuoviBTN;
+    private javax.swing.JTable TabellaResoconto;
     private javax.swing.JTable TabellaTesti;
+    private javax.swing.JComboBox<String> TipologiaTestoBOX;
+    private javax.swing.JLabel TitoloLB;
     private javax.swing.JTextField TitoloTF;
-    private javax.swing.JLabel ChiudiFinestra;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane ScrollTabella1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration
 }
-
