@@ -1,8 +1,7 @@
-package main.java.com.mycompany.bibiotecadigitale.dao;
+package com.mycompany.bibiotecadigitale.dao;
 
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import com.mycompany.bibiotecadigitale.model.Libro;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,15 +11,7 @@ public class ArticoloScientificoDAO extends TestoDAO {
     private static Connection connection;
     public ArticoloScientificoDAO() {
         super();
-        String url = "jdbc:postgresql://localhost/Bible3";
-        String user = "postgres";
-        String password = "francy09";
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gestisci l'eccezione
-        }
+        connection = ConnectionManager.getConnection();
     }
 
     public static List<ArticoloScientifico> getAllArticolo() {
@@ -81,7 +72,7 @@ public class ArticoloScientificoDAO extends TestoDAO {
         }
     }
 
-    public void updateArticoloScientifico(int codice, String universita, String riassunto, String nomeRivista, String argomento, String responsabile, String luogoConferenza, java.util.Date dataConferenza) {
+    public void updateArticoloScientifico(int codice, String universita, String riassunto, String nomeRivista, String argomento, String responsabile, String luogoConferenza, Date dataConferenza) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE ArticoloScientifico SET Universita = ?, Riassunto = ?, NomeRivista = ?, Argomento = ?, Responsabile = ?, LuogoConferenza = ?, DataConferenza = ? WHERE CodTesto = ?");
@@ -91,8 +82,7 @@ public class ArticoloScientificoDAO extends TestoDAO {
             preparedStatement.setString(4, argomento);
             preparedStatement.setString(5, responsabile);
             preparedStatement.setString(6, luogoConferenza);
-            java.sql.Date sqlDate = new java.sql.Date(dataConferenza.getTime());
-            preparedStatement.setDate(7, sqlDate);
+            preparedStatement.setDate(7, dataConferenza);
             preparedStatement.setInt(8, codice);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -114,4 +104,5 @@ public class ArticoloScientificoDAO extends TestoDAO {
         // Chiamata alla funzione deleteTesto per eliminare il record dalla tabella Testo
         deleteTesto(codice);
     }
+
 }
