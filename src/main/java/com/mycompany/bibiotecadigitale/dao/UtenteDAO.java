@@ -10,16 +10,7 @@ public class UtenteDAO {
     private Connection connection;
 
     public UtenteDAO() {
-        // Inizializza la connessione al database qui
-        String url = "jdbc:postgresql://localhost/DatabaseOO";
-        String user = "postgres";
-        String password = "profbarra";
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gestisci l'eccezione
-        }
+        connection = ConnectionManager.getConnection();
     }
 
     public List<Utente> getAllUtenti() {
@@ -33,7 +24,8 @@ public class UtenteDAO {
                 String cognome = resultSet.getString("Cognome");
                 String email = resultSet.getString("Email");
                 long telefono = resultSet.getLong("Telefono");
-                Utente utente = new Utente(codice, nome, cognome, email, telefono);
+                String password = resultSet.getString("Password");
+                Utente utente = new Utente(codice, nome, cognome, email, telefono, password);
                 utenti.add(utente);
             }
         } catch (SQLException e) {
@@ -45,12 +37,13 @@ public class UtenteDAO {
 
     public void insertUtente(Utente utente) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Utente (CodUtente, Nome, Cognome, Email, Telefono) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Utente (CodUtente, Nome, Cognome, Email, Telefono, Password) VALUES (?, ?, ?, ?, ?, ?)");
             preparedStatement.setInt(1, utente.getCodUtente());
             preparedStatement.setString(2, utente.getNome());
             preparedStatement.setString(3, utente.getCognome());
             preparedStatement.setString(4, utente.getEmail());
             preparedStatement.setLong(5, utente.getTelefono());
+            preparedStatement.setString(6, utente.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,12 +53,13 @@ public class UtenteDAO {
 
     public void updateUtente(Utente utente) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Utente SET Nome=?, Cognome=?, Email=?, Telefono=? WHERE CodUtente=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Utente SET Nome=?, Cognome=?, Email=?, Telefono=?, Password=? WHERE CodUtente=?");
             preparedStatement.setString(1, utente.getNome());
             preparedStatement.setString(2, utente.getCognome());
             preparedStatement.setString(3, utente.getEmail());
             preparedStatement.setLong(4, utente.getTelefono());
-            preparedStatement.setInt(5, utente.getCodUtente());
+            preparedStatement.setString(5, utente.getPassword());
+            preparedStatement.setInt(6, utente.getCodUtente());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,7 +81,7 @@ public class UtenteDAO {
     public boolean utenteExists(int codice) {
         boolean exists = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM Testo WHERE CodTesto = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM Utente WHERE CodUtente = ?");
             preparedStatement.setInt(1, codice);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -100,6 +94,25 @@ public class UtenteDAO {
             // Gestisci l'eccezione
         }
         return exists;
+    }
+
+    public boolean verificaCredenziali(int codiceUtente, String passwordUtente) {
+        boolean credenzialiValide = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM Utente WHERE CodUtente = ? AND Password = ?");
+            preparedStatement.setInt(1, codiceUtente);
+            preparedStatement.setString(2, passwordUtente);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                credenzialiValide = count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+        return credenzialiValide;
     }
 
     public void close() {
