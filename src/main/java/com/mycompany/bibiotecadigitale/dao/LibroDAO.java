@@ -13,16 +13,7 @@ public class LibroDAO extends TestoDAO {
 
     public LibroDAO() {
         super();
-        // Inizializza la connessione al database qui
-        String url = "jdbc:postgresql://localhost/DatabaseOO";
-        String user = "postgres";
-        String password = "profbarra";
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gestisci l'eccezione
-        }
+        connection = ConnectionManager.getConnection();
     }
 
     public static List<Libro> getAllLibri() {
