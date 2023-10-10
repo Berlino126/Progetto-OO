@@ -122,7 +122,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
                         {null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Codice", "Genere", "Capitoli", "Pagine", "Evento", "Collana"
+                        "Titolo", "Anno", "Formato", "Edizione", "Disponibilità", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
