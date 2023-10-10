@@ -47,4 +47,11 @@ CREATE TABLE Admin (
     nome VARCHAR(255),
     password VARCHAR(255)
 );
+CREATE TABLE Richiesta (
+    CodRichiesta INT PRIMARY KEY, 
+    DataRichiesta DATE, 
+    CodiceUtente INT, 
+    FOREIGN KEY (CodiceUtente) REFERENCES Utente(codUtente) ON DELETE CASCADE
+);
+    
 
