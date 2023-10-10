@@ -140,13 +140,10 @@ public class ManagerTesto extends javax.swing.JFrame {
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
+
                 },
                 new String [] {
-                        "Titolo", "Genere", "Anno Pubblicazione", "Formato", "Disponibilita", "Edizione", "Tipologia"
+                        "Codice", "Titolo", "Anno Pubblicazione", "Edizione", "Disponibilita", "Formato", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
