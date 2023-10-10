@@ -1,17 +1,8 @@
-{
+public class UtenteDAO {
     private Connection connection;
 
     public UtenteDAO() {
-        // Inizializza la connessione al database qui
-        String url = "jdbc:postgresql://localhost/Bible";
-        String user = "postgres";
-        String password = "francy09";
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gestisci l'eccezione
-        }
+        connection = ConnectionManager.getConnection();
     }
 
     public List<Utente> getAllUtenti() {
@@ -25,8 +16,8 @@
                 String cognome = resultSet.getString("Cognome");
                 String email = resultSet.getString("Email");
                 long telefono = resultSet.getLong("Telefono");
-                //String password = resultSet.getString("Password");
-                Utente utente = new Utente(codice, nome, cognome, email, telefono);
+                String password = resultSet.getString("Password");
+                Utente utente = new Utente(codice, nome, cognome, email, telefono, password);
                 utenti.add(utente);
             }
         } catch (SQLException e) {
@@ -36,13 +27,15 @@
         return utenti;
     }
 
-    public void insertUtente(String Nome, String Cognome, String Email, long Telefono) {
+    public void insertUtente(Utente utente) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Utente (Nome, Cognome, Email, Telefono) VALUES (?, ?, ?, ?)");
-            preparedStatement.setString(1, Nome);
-            preparedStatement.setString(2, Cognome);
-            preparedStatement.setString(3, Email);
-            preparedStatement.setLong(4, Telefono);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Utente (CodUtente, Nome, Cognome, Email, Telefono, Password) VALUES (?, ?, ?, ?, ?, ?)");
+            preparedStatement.setInt(1, utente.getCodUtente());
+            preparedStatement.setString(2, utente.getNome());
+            preparedStatement.setString(3, utente.getCognome());
+            preparedStatement.setString(4, utente.getEmail());
+            preparedStatement.setLong(5, utente.getTelefono());
+            preparedStatement.setString(6, utente.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,28 +43,15 @@
         }
     }
 
-    public void registerUtente(String Nome, String Cognome, String Email, long Telefono, String password) {
+    public void updateUtente(Utente utente) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Utente (Nome, Cognome, Email, Telefono, Password) VALUES (?, ?, ?, ?, ?)");
-            preparedStatement.setString(1, Nome);
-            preparedStatement.setString(2, Cognome);
-            preparedStatement.setString(3, Email);
-            preparedStatement.setLong(4, Telefono);
-            preparedStatement.setString(5, password);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Gestisci l'eccezione
-        }
-    }
-
-    public void updateUtente(String nome, String cognome, String email, long telefono) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Utente SET Nome=?, Cognome=?, Email=?, Telefono=? WHERE CodUtente=?");
-            preparedStatement.setString(1, nome);
-            preparedStatement.setString(2, cognome);
-            preparedStatement.setString(3, email);
-            preparedStatement.setLong(4, telefono);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Utente SET Nome=?, Cognome=?, Email=?, Telefono=?, Password=? WHERE CodUtente=?");
+            preparedStatement.setString(1, utente.getNome());
+            preparedStatement.setString(2, utente.getCognome());
+            preparedStatement.setString(3, utente.getEmail());
+            preparedStatement.setLong(4, utente.getTelefono());
+            preparedStatement.setString(5, utente.getPassword());
+            preparedStatement.setInt(6, utente.getCodUtente());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,7 +73,7 @@
     public boolean utenteExists(int codice) {
         boolean exists = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM Testo WHERE CodTesto = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM Utente WHERE CodUtente = ?");
             preparedStatement.setInt(1, codice);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -106,6 +86,20 @@
             // Gestisci l'eccezione
         }
         return exists;
+    }
+    public void registerUtente(String Nome, String Cognome, String Email, long Telefono, String password) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Utente (Nome, Cognome, Email, Telefono, Password) VALUES (?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, Nome);
+            preparedStatement.setString(2, Cognome);
+            preparedStatement.setString(3, Email);
+            preparedStatement.setLong(4, Telefono);
+            preparedStatement.setString(5, password);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
     }
 
     public boolean verificaCredenziali(int codiceUtente, String passwordUtente) {
@@ -126,7 +120,6 @@
         }
         return credenzialiValide;
     }
-
 
     public void close() {
         try {
