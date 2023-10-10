@@ -1,4 +1,31 @@
-{
+package main.java.com.mycompany.bibiotecadigitale.gui;
+
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import main.java.com.mycompany.bibiotecadigitale.model.Libro;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.Normalizer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.UIManager;
+
+/**
+ *
+ * @author franc
+ */
+
+public class InterfacciaArticolo extends javax.swing.JFrame {
     private TestoDAO testoDAO;
     private ArticoloScientificoDAO articoloScientificoDAO;
 
