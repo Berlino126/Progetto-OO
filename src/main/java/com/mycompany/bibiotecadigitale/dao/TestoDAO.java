@@ -14,6 +14,40 @@ public class TestoDAO {
         connection = ConnectionManager.getConnection();
     }
 
+public List<Testo> getTestiByFormatoETipologia(String formato, String tipologia) {
+        List<Testo> testi = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM Testo WHERE Formato = ? AND Tipologia = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, formato);
+            preparedStatement.setString(2, tipologia);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Integer codice = resultSet.getInt("CodTesto");
+                String titolo = resultSet.getString("Titolo");
+
+                // Ottieni la data dal database come java.sql.Date
+                java.sql.Date sqlDate = resultSet.getDate("AnnoPubblicazione");
+                Date annoPubblicazione = new Date(sqlDate.getTime());
+
+                String edizione = resultSet.getString("Edizione");
+                boolean disponibilita = resultSet.getBoolean("Disponibilita");
+
+                Testo testo = new Testo(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia);
+                testi.add(testo);
+            }
+
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+        return testi;
+    }
+
+    
     public List<Testo> getAllTesti() {
         List<Testo> testi = new ArrayList<>();
         try {
