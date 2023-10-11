@@ -41,10 +41,12 @@ public class Controller {
         login.setVisible(true);
     }
 
-    protected void AccediUtente() {
+    protected void AccediUtente(int codiceUtente) {
         login.dispose();
         updatingUtente.dispose();
         acquistoUtentee.setController(this);
+        acquistoUtentee.setCodice(codiceUtente);
+        //System.out.println(codiceUtente);
         acquistoUtentee.setVisible(true);
     }
 
@@ -78,7 +80,7 @@ public class Controller {
         interfacciaArticolo.dispose();
         managerTesto.dispose();
         managerUtenti.setController(this);
-
+        managerUtenti.refreshUtenteTable();
         managerUtenti.setVisible(true);
     }
     protected void ApriTesti()

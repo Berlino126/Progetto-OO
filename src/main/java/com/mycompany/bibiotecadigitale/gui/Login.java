@@ -1,3 +1,4 @@
+
 package com.mycompany.bibiotecadigitale.gui;
 import com.mycompany.bibiotecadigitale.model.Utente;
 import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
@@ -244,7 +245,6 @@ public class Login extends javax.swing.JFrame {
     private void RegistratiMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ApriRegistrazione();
     }
-
     private void AccediMouseClicked(java.awt.event.MouseEvent evt) {
         if (CodiceUtente.getText().isEmpty() || PasswordUtente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Credenziali mancanti");
@@ -260,7 +260,7 @@ public class Login extends javax.swing.JFrame {
 
                     UtenteDAO utenteDAO = new UtenteDAO();
                     if (utenteDAO.verificaCredenziali(codiceUtente, passwordUtente)) {
-                        controller.AccediUtente();
+                        controller.AccediUtente(codiceUtente);
                     } else {
                         JOptionPane.showMessageDialog(this, "Credenziali utente non valide");
                     }
@@ -278,8 +278,6 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }
-
-
 
     private void PulisciMouseClicked(java.awt.event.MouseEvent evt) {
         CodiceUtente.setText("");

@@ -199,7 +199,7 @@ public class UpdatingUtente extends javax.swing.JFrame {
     }
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {
-        controller.AccediUtente();
+        controller.Logout();
     }
     public void setController(Controller controller)
     {

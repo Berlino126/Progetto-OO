@@ -18,6 +18,7 @@ import java.util.Vector;
 public class AcquistoUtentee extends javax.swing.JFrame {
     private TestoDAO testoDAO;
     private Controller controller;
+    private int codiceutente;
     public AcquistoUtentee() {
         initComponents();
         testoDAO = new TestoDAO();
@@ -416,6 +417,10 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     public void setController(Controller controller)
     {
         this.controller = controller;
+    }
+    public void setCodice(int codice)
+    {
+        this.codiceutente = codice;
     }
     private void refreshTestoTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
