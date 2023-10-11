@@ -1,8 +1,10 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.gui.AcquistoUtentee;
+import com.mycompany.bibiotecadigitale.gui.Login;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import com.mycompany.bibiotecadigitale.model.Utente;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author franc
  */
 public class Registrazione extends javax.swing.JFrame {
-
+    private Controller controller;
     private UtenteDAO utenteDAO;
     public Registrazione() {
         initComponents();
@@ -282,6 +284,10 @@ public class Registrazione extends javax.swing.JFrame {
     private void TelefonoTFActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+    public void setController(Controller controller)
+    {
+        this.controller = controller;
+    }
 
     private void RegistratiMouseClicked (java.awt.event.MouseEvent evt) {
         if (NomeTF.getText().isEmpty() || CognomeTF.getText().isEmpty() || TelefonoTF.getText().isEmpty()
@@ -320,15 +326,13 @@ public class Registrazione extends javax.swing.JFrame {
 
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
-                dispose();
-                Login login = new Login();
-                login.setVisible(true);
-            }
+            controller.Logout(); //il principio è lo stesso quindi sfrutto questa funzione
+        }
         else {}
     }
 
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
-        System.exit(0);
+        controller.ChiudiApp();
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
