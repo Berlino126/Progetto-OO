@@ -95,13 +95,33 @@ public class UtenteDAO {
     }
     public void registerUtente(String Nome, String Cognome, String Email, long Telefono, String password) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Utente (Nome, Cognome, Email, Telefono, Password) VALUES (?, ?, ?, ?, ?)");
-            preparedStatement.setString(1, Nome);
-            preparedStatement.setString(2, Cognome);
-            preparedStatement.setString(3, Email);
-            preparedStatement.setLong(4, Telefono);
-            preparedStatement.setString(5, password);
+            // Ottenere il massimo valore di codUtente
+            String getMaxCodUtenteQuery = "SELECT MAX(codUtente) FROM Utente";
+            PreparedStatement maxCodUtenteStatement = connection.prepareStatement(getMaxCodUtenteQuery);
+            ResultSet resultSet = maxCodUtenteStatement.executeQuery();
+
+            int maxCodUtente = 0;
+            if (resultSet.next()) {
+                maxCodUtente = resultSet.getInt(1);
+            }
+
+            // Incrementare il massimo valore di codUtente di 1 per ottenere il nuovo valore
+            int newCodUtente = maxCodUtente + 1;
+
+            // Inserire il nuovo record con il nuovo valore di codUtente
+            String insertQuery = "INSERT INTO Utente (codUtente, Nome, Cognome, Email, Telefono, Password) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setInt(1, newCodUtente);
+            preparedStatement.setString(2, Nome);
+            preparedStatement.setString(3, Cognome);
+            preparedStatement.setString(4, Email);
+            preparedStatement.setLong(5, Telefono);
+            preparedStatement.setString(6, password);
+
             preparedStatement.executeUpdate();
+
+            maxCodUtenteStatement.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             // Gestisci l'eccezione
