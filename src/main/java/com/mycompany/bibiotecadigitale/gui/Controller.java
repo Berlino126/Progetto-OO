@@ -15,6 +15,7 @@ public class Controller {
     private InterfacciaArticolo interfacciaArticolo;
     private InterfacciaLibro interfacciaLibro;
     private UpdatingUtente updatingUtente;
+    private Registrazione registrazione;
     private UtenteDAO utenteDAO;
     private AdminDAO adminDAO;
     private TestoDAO testoDAO;
@@ -22,7 +23,7 @@ public class Controller {
     private ArticoloScientificoDAO articoloScientificoDAO;
     private RichiestaDAO richiestaDAO;
 
-    public Controller(Login login, ManagerTesto managerTesto, ManagerUtenti managerUtenti, UpdatingAdmin updatingAdmin, AcquistoUtentee acquistoUtentee, Loading loading, InterfacciaArticolo interfacciaArticolo, InterfacciaLibro interfacciaLibro, UpdatingUtente updatingUtente) {
+    public Controller(Login login, ManagerTesto managerTesto, ManagerUtenti managerUtenti, UpdatingAdmin updatingAdmin, AcquistoUtentee acquistoUtentee, Loading loading, InterfacciaArticolo interfacciaArticolo, InterfacciaLibro interfacciaLibro, UpdatingUtente updatingUtente, Registrazione registrazione) {
         this.login = login;
         this.managerTesto = managerTesto;
         this.managerUtenti = managerUtenti;
@@ -32,6 +33,7 @@ public class Controller {
         this.interfacciaArticolo = interfacciaArticolo;
         this.interfacciaLibro = interfacciaLibro;
         this.updatingUtente = updatingUtente;
+        this.registrazione = registrazione;
         UtenteDAO utenteDAO = new UtenteDAO();
         AdminDAO adminDAO = new AdminDAO();
         // Mostra la finestra di login
@@ -90,6 +92,7 @@ public class Controller {
         interfacciaLibro.dispose();
         interfacciaArticolo.dispose();
         acquistoUtentee.dispose();
+        registrazione.dispose();
         login.setController(this);
         login.setVisible(true);
     }
@@ -120,6 +123,12 @@ public class Controller {
         }
         System.exit(0);
     }
+    protected void ApriRegistrazione()
+    {
+        login.dispose();
+        registrazione.setController(this);
+        registrazione.setVisible(true);
+    }
 
 
     public static void main(String[] args) {
@@ -133,7 +142,8 @@ public class Controller {
         InterfacciaArticolo interfacciaArticolo = new InterfacciaArticolo();
         InterfacciaLibro interfacciaLibro = new InterfacciaLibro();
         UpdatingUtente updatingutente = new UpdatingUtente();
+        Registrazione registrazione = new Registrazione();
         // Creazione dell'istanza del controller
-        Controller controller = new Controller(login, managerTesto, managerUtenti, updatingadmin, acquistoUtentee, loading, interfacciaArticolo, interfacciaLibro, updatingutente);
+        Controller controller = new Controller(login, managerTesto, managerUtenti, updatingadmin, acquistoUtentee, loading, interfacciaArticolo, interfacciaLibro, updatingutente, registrazione);
     }
 }
