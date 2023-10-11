@@ -51,6 +51,7 @@ public class Controller {
     protected void AccediAdmin() {
         login.dispose();
         managerTesto.setController(this);
+        managerTesto.refreshTestoTable();
         managerTesto.setVisible(true);
     }
 
@@ -59,6 +60,7 @@ public class Controller {
         managerUtenti.dispose();
         interfacciaArticolo.dispose();
         interfacciaLibro.setController(this);
+        interfacciaLibro.refreshLibroTable();
         interfacciaLibro.setVisible(true);
     }
 
@@ -67,6 +69,7 @@ public class Controller {
         managerUtenti.dispose();
         interfacciaLibro.dispose();
         interfacciaArticolo.setController(this);
+        interfacciaArticolo.refreshArticoloTable();
         interfacciaArticolo.setVisible(true);
     }
 
@@ -75,6 +78,7 @@ public class Controller {
         interfacciaArticolo.dispose();
         managerTesto.dispose();
         managerUtenti.setController(this);
+
         managerUtenti.setVisible(true);
     }
     protected void ApriTesti()
@@ -83,6 +87,7 @@ public class Controller {
         interfacciaArticolo.dispose();
         interfacciaLibro.dispose();
         managerTesto.setController(this);
+        managerTesto.refreshTestoTable();
         managerTesto.setVisible(true);
     }
 
