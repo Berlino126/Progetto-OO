@@ -1,10 +1,10 @@
-package com.mycompany.bibiotecadigitale.gui;
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
 
-import com.mycompany.bibiotecadigitale.gui.Login;
-import com.mycompany.bibiotecadigitale.model.Testo;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.gui.Controller;
+import main.java.com.mycompany.bibiotecadigitale.gui.Login;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
@@ -16,14 +16,17 @@ import java.util.Vector;
  * @author franc
  */
 public class AcquistoUtentee extends javax.swing.JFrame {
+
     private TestoDAO testoDAO;
     private Controller controller;
     private int codiceutente;
+
     public AcquistoUtentee() {
         initComponents();
         testoDAO = new TestoDAO();
         refreshTestoTable();
     }
+
 
     private void initComponents() {
 
@@ -35,25 +38,24 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         TitoloTF = new javax.swing.JTextField();
         GenereTF = new javax.swing.JTextField();
         GenereLB = new javax.swing.JLabel();
-        TipologiaTestoBOX = new javax.swing.JComboBox<>();
-        AggiungiBTN = new javax.swing.JButton();
+        TipologiaTestoBOX = new javax.swing.JComboBox<String>();
+        RichiediBTN = new javax.swing.JButton();
         FiltraBTN = new javax.swing.JButton();
-        EliminaBTN = new javax.swing.JButton();
+        RipristinaBTN = new javax.swing.JButton();
         PulisciBTN = new javax.swing.JButton();
-        ScrollTabella1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         TabellaTesti = new javax.swing.JTable();
         EdizioneTF = new javax.swing.JTextField();
         EdizioneLB = new javax.swing.JLabel();
-        FormatoTestoBOX = new javax.swing.JComboBox<>();
+        FormatoTestoBOX = new javax.swing.JComboBox<String>();
         ListaProdottiLB = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TabellaResoconto = new javax.swing.JTable();
         ResocontoLB = new javax.swing.JLabel();
-        RichiediOraBTN = new javax.swing.JButton();
-        AnnullaBTN = new javax.swing.JButton();
+        EliminaBTN = new javax.swing.JButton();
+        RimuoviBTN = new javax.swing.JButton();
         LOGOUTLB = new javax.swing.JLabel();
         ModificaPasswordLB = new javax.swing.JLabel();
-        RimuoviBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
@@ -95,32 +97,31 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         GenereLB.setForeground(new java.awt.Color(204, 0, 51));
         GenereLB.setText("Genere");
 
-        TipologiaTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Libro", "Articolo Scientifico", " ", " " }));
+        TipologiaTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Libro", "Articolo Scientifico"}));
         TipologiaTestoBOX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TipologiaTestoBOXActionPerformed(evt);
             }
         });
 
-        AggiungiBTN.setText("Aggiungi");
-        AggiungiBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        RichiediBTN.setText("Richiedi");
+        RichiediBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AggiungiMouseClicked(evt);
+                RichiediMouseClicked(evt);
             }
         });
 
         FiltraBTN.setText("Filtra");
-       /* FiltraBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        FiltraBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 FiltraMouseClicked(evt);
             }
-        });*/
+        });
 
-
-        EliminaBTN.setText("Aggiorna");
-        EliminaBTN.addActionListener(new java.awt.event.ActionListener() {
+        RipristinaBTN.setText("Ripristina");
+        RipristinaBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AggiornaBTNActionPerformed(evt);
+                RipristinaBTNActionPerformed(evt);
             }
         });
 
@@ -132,14 +133,9 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
+                new Object [][] {},
                 new String [] {
-                        "Titolo", "Genere", "Anno Pubblicazione", "Edizione", "Disponibilità", "Formato", "Tipologia"
+                        "Titolo", "Genere", "Anno Pubblicazione", "Formato", "Edizione", "Disponibilità", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -150,7 +146,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        ScrollTabella1.setViewportView(TabellaTesti);
+        jScrollPane1.setViewportView(TabellaTesti);
         TabellaTesti.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TabellaTestoMouseClicked(evt);
@@ -162,7 +158,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         EdizioneLB.setForeground(new java.awt.Color(204, 0, 51));
         EdizioneLB.setText("Edizione");
 
-        FormatoTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digitale", "Cartaceo", "AudioLibro", " " }));
+        FormatoTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Digitale", "Cartaceo", "AudioLibro"}));
 
         ListaProdottiLB.setBackground(new java.awt.Color(204, 0, 51));
         ListaProdottiLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -170,15 +166,13 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         ListaProdottiLB.setText("LISTA PRODOTTI");
 
         TabellaResoconto.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-
-                },
+                new Object [][] {},
                 new String [] {
-                        "Titolo", "Genere", "Anno Pubblicazione", "Edizione", "Disponibilità", "Formato", "Tipologia"
+                        "Titolo", "Anno Pubblicazione", "Formato", "Edizione", "Tipologia", "Data Richiesta", "Stato"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, true
+                    false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -190,19 +184,12 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         ResocontoLB.setBackground(new java.awt.Color(204, 0, 51));
         ResocontoLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         ResocontoLB.setForeground(new java.awt.Color(204, 0, 51));
-        ResocontoLB.setText("RESOCONTO:");
+        ResocontoLB.setText("LIBRERIA:");
 
-        RichiediOraBTN.setText("Richiedi Ora");
-        RichiediOraBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RichiediOraBTNActionPerformed(evt);
-            }
-        });
-
-        AnnullaBTN.setText("Annulla");
-        AnnullaBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        EliminaBTN.setText("Elimina");
+        EliminaBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AnnullaMouseClicked(evt);
+                EliminaMouseClicked(evt);
             }
         });
 
@@ -221,7 +208,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addContainerGap(61, Short.MAX_VALUE)
-                                                .addComponent(AggiungiBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(RichiediBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(37, 37, 37)
                                                 .addComponent(PulisciBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(68, 68, 68))
@@ -246,7 +233,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                                 .addComponent(FiltraBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(EliminaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(RipristinaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(38, 38, 38))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(BibliotecaDigitaleLB)
@@ -254,7 +241,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                                 .addComponent(ChiudiFinestra, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap())
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(ScrollTabella1)
+                                                .addComponent(jScrollPane1)
                                                 .addContainerGap())))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -263,19 +250,17 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(120, 120, 120)
                                 .addComponent(RimuoviBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(173, 173, 173)
                                 .addComponent(ResocontoLB)
-                                .addGap(362, 362, 362))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jScrollPane2)
                                 .addContainerGap())
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(253, 253, 253)
-                                .addComponent(RichiediOraBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(AnnullaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EliminaBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(346, 346, 346))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +286,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                                                         .addComponent(FormatoTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addComponent(TipologiaTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addComponent(FiltraBTN)
-                                                                        .addComponent(EliminaBTN))))
+                                                                        .addComponent(RipristinaBTN))))
                                                 .addGap(14, 14, 14)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -315,20 +300,18 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                                                 .addGap(54, 54, 54)
                                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                                         .addComponent(PulisciBTN)
-                                                                        .addComponent(AggiungiBTN)))
-                                                        .addComponent(ScrollTabella1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(13, 13, 13)
+                                                                        .addComponent(RichiediBTN)))
+                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
                                                 .addComponent(ResocontoLB))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(RimuoviBTN)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(RichiediOraBTN)
-                                        .addComponent(AnnullaBTN))
-                                .addContainerGap())
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EliminaBTN)
+                                .addGap(10, 10, 10))
         );
 
         LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
@@ -399,7 +382,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void AggiornaBTNActionPerformed(java.awt.event.ActionEvent evt) {
+    private void RipristinaBTNActionPerformed(java.awt.event.ActionEvent evt) {
         refreshTestoTable();
     }
 
@@ -498,8 +481,8 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         }
     }
 
-    private void AggiungiMouseClicked(java.awt.event.MouseEvent evt) {
-        JOptionPane.showMessageDialog(null, "Il testo selezionato è stato aggiunto al resoconto.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
+    private void RichiediMouseClicked(java.awt.event.MouseEvent evt) {
+        JOptionPane.showMessageDialog(null, "Il testo selezionato è stato aggiunto alla libreria.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
         DefaultTableModel modelTesti = (DefaultTableModel) TabellaTesti.getModel();
         DefaultTableModel modelResoconto = (DefaultTableModel) TabellaResoconto.getModel();
         // Ottieni le righe selezionate dalla tabella sorgente
@@ -519,16 +502,16 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         }
     }
 
-    private void AnnullaMouseClicked(java.awt.event.MouseEvent evt) {
+    private void EliminaMouseClicked(java.awt.event.MouseEvent evt) {
         UIManager.put("OptionPane.yesButtonText", "Si");
-        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler annullare il tuo resoconto?", "Conferma annullamento", JOptionPane.YES_NO_OPTION);
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare TUTTA la libreria? I dati andranno persi.", "Conferma eliminazione", JOptionPane.YES_NO_OPTION);
         DefaultTableModel modelResoconto = (DefaultTableModel) TabellaResoconto.getModel();
         if (scelta == JOptionPane.YES_OPTION) {
             // Rimuovi tutte le righe dalla tabella di destinazione
             while (modelResoconto.getRowCount() > 0) {
                 modelResoconto.removeRow(0);
             }
-            JOptionPane.showMessageDialog(null, "Resoconto annullato.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Libreria eliminata.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
         } else {}
     }
     private void ModificaPasswordMouseClicked(java.awt.event.MouseEvent evt) {
@@ -556,7 +539,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         // Ottieni l'indice della riga selezionata nella tabella di destinazione
         int selectedRow = TabellaResoconto.getSelectedRow();
         UIManager.put("OptionPane.yesButtonText", "Si");
-        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler rimuovere dal resoconto il testo selezionato?", "Conferma rimozione", JOptionPane.YES_NO_OPTION);
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler rimuovere dalla libreria il testo selezionato?", "Conferma rimozione", JOptionPane.YES_NO_OPTION);
 
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
@@ -565,7 +548,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             if (selectedRow != -1) {
                 // Rimuovi la riga selezionata dalla tabella di destinazione
                 modelResoconto.removeRow(selectedRow);
-                JOptionPane.showMessageDialog(null, "Il testo selezionato è stato rimosso dal resoconto.", "Conferma rimozione", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Il testo selezionato è stato rimosso dalla libreria.", "Conferma rimozione", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 // Nessuna riga è stata selezionata, mostra un messaggio di avviso all'utente
                 JOptionPane.showMessageDialog(null, "Seleziona una riga da eliminare.", "Attenzione", JOptionPane.WARNING_MESSAGE);
@@ -585,6 +568,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         GenereTF.setText("");
         EdizioneTF.setText("");
     }
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -608,17 +592,17 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AcquistoUtentee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
 
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AcquistoUtentee().setVisible(true);
             }
-        });*/
+        });
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton AggiungiBTN;
-    private javax.swing.JButton AnnullaBTN;
     private javax.swing.JLabel BibliotecaDigitaleLB;
     private javax.swing.JLabel ChiudiFinestra;
     private javax.swing.JLabel EdizioneLB;
@@ -633,8 +617,9 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private javax.swing.JLabel ModificaPasswordLB;
     private javax.swing.JButton PulisciBTN;
     private javax.swing.JLabel ResocontoLB;
-    private javax.swing.JButton RichiediOraBTN;
+    private javax.swing.JButton RichiediBTN;
     private javax.swing.JButton RimuoviBTN;
+    private javax.swing.JButton RipristinaBTN;
     private javax.swing.JTable TabellaResoconto;
     private javax.swing.JTable TabellaTesti;
     private javax.swing.JComboBox<String> TipologiaTestoBOX;
@@ -642,7 +627,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private javax.swing.JTextField TitoloTF;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane ScrollTabella1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration
 }
