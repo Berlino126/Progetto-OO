@@ -326,9 +326,7 @@ public class Registrazione extends javax.swing.JFrame {
 
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
-            dispose();
-            Login login = new Login();
-            login.setVisible(true);
+            controller.Logount();
         }
         else {}
     }
