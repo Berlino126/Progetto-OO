@@ -305,9 +305,7 @@ public class Registrazione extends javax.swing.JFrame {
             String password = String.valueOf(PasswordPF.getPassword());
             utenteDAO.registerUtente(nome, cognome, email, telefono, password);
             JOptionPane.showMessageDialog(this, "Registrazione avvenuta con successo!");
-            dispose();
-            AcquistoUtentee acquistoUtentee = new AcquistoUtentee();
-            acquistoUtentee.setVisible(true);
+            controller.Logout();
         }
     }
 
@@ -326,7 +324,7 @@ public class Registrazione extends javax.swing.JFrame {
 
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
-            controller.Logount();
+            controller.Logout(); //il principio è lo stesso quindi sfrutto questa funzione
         }
         else {}
     }
