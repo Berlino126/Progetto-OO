@@ -303,7 +303,7 @@ public class InterfacciaUtente extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {
-        System.exit(0);
+
     }
 
     private void PulisciTestoBTNMouseClicked(MouseEvent evt) {

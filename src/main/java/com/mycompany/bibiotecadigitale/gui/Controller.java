@@ -1,5 +1,10 @@
 package com.mycompany.bibiotecadigitale.gui;
-
+import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import com.mycompany.bibiotecadigitale.dao.AdminDAO;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
 public class Controller {
     private Login login;
     private ManagerTesto managerTesto;
@@ -10,6 +15,12 @@ public class Controller {
     private InterfacciaArticolo interfacciaArticolo;
     private InterfacciaLibro interfacciaLibro;
     private UpdatingUtente updatingUtente;
+    private UtenteDAO utenteDAO;
+    private AdminDAO adminDAO;
+    private TestoDAO testoDAO;
+    private LibroDAO libroDAO;
+    private ArticoloScientificoDAO articoloScientificoDAO;
+    private RichiestaDAO richiestaDAO;
 
     public Controller(Login login, ManagerTesto managerTesto, ManagerUtenti managerUtenti, UpdatingAdmin updatingAdmin, AcquistoUtentee acquistoUtentee, Loading loading, InterfacciaArticolo interfacciaArticolo, InterfacciaLibro interfacciaLibro, UpdatingUtente updatingUtente) {
         this.login = login;
@@ -21,7 +32,8 @@ public class Controller {
         this.interfacciaArticolo = interfacciaArticolo;
         this.interfacciaLibro = interfacciaLibro;
         this.updatingUtente = updatingUtente;
-
+        UtenteDAO utenteDAO = new UtenteDAO();
+        AdminDAO adminDAO = new AdminDAO();
         // Mostra la finestra di login
         login.setController(this);
         login.setVisible(true);
@@ -87,6 +99,27 @@ public class Controller {
         updatingUtente.setController(this);
         updatingUtente.setVisible(true);
     }
+    protected void ChiudiApp() {
+        if (utenteDAO != null) {
+            utenteDAO.close();
+        }
+        if (adminDAO != null) {
+            adminDAO.close();
+        }
+        if (testoDAO != null) {
+            testoDAO.close();
+        }
+        if (libroDAO != null) {
+            libroDAO.close();
+        }
+        if (articoloScientificoDAO != null) {
+            articoloScientificoDAO.close();
+        }
+        if (richiestaDAO != null) {
+            richiestaDAO.close();
+        }
+        System.exit(0);
+    }
 
 
     public static void main(String[] args) {
@@ -100,7 +133,6 @@ public class Controller {
         InterfacciaArticolo interfacciaArticolo = new InterfacciaArticolo();
         InterfacciaLibro interfacciaLibro = new InterfacciaLibro();
         UpdatingUtente updatingutente = new UpdatingUtente();
-
         // Creazione dell'istanza del controller
         Controller controller = new Controller(login, managerTesto, managerUtenti, updatingadmin, acquistoUtentee, loading, interfacciaArticolo, interfacciaLibro, updatingutente);
     }

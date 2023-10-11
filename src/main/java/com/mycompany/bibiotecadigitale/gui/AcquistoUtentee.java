@@ -411,7 +411,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     }
 
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
-        System.exit(0);
+        controller.ChiudiApp();
     }
     public void setController(Controller controller)
     {

@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author franc
  */
 public class Registrazione extends javax.swing.JFrame {
-
+    private Controller controller;
     private UtenteDAO utenteDAO;
     public Registrazione() {
         initComponents();
@@ -284,6 +284,10 @@ public class Registrazione extends javax.swing.JFrame {
     private void TelefonoTFActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+    public void setController(Controller controller)
+    {
+        this.controller = controller;
+    }
 
     private void RegistratiMouseClicked (java.awt.event.MouseEvent evt) {
         if (NomeTF.getText().isEmpty() || CognomeTF.getText().isEmpty() || TelefonoTF.getText().isEmpty()
@@ -330,7 +334,7 @@ public class Registrazione extends javax.swing.JFrame {
     }
 
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
-        System.exit(0);
+        controller.ChiudiApp();
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

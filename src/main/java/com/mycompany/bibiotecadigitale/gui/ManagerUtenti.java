@@ -381,7 +381,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailUtenteActionPerformed
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {
-        System.exit(0);
+        controller.ChiudiApp();
     }
     public void setController(Controller controller)
     {

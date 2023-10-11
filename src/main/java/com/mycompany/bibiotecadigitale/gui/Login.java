@@ -227,7 +227,7 @@ public class Login extends javax.swing.JFrame {
         this.controller = controller;
     }
     private void ChiudiMouseClicked(java.awt.event.MouseEvent evt) {
-        System.exit(0);
+        controller.ChiudiApp();
     }
     private void AccediMouseClicked(java.awt.event.MouseEvent evt) {
         if (CodiceUtente.getText().isEmpty() || PasswordUtente.getText().isEmpty()) {
@@ -248,7 +248,7 @@ public class Login extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(this, "Credenziali utente non valide");
                     }
-                    utenteDAO.close();
+                    //utenteDAO.close();
                 } else {
                     AdminDAO adminDAO1 = new AdminDAO();
                     if (adminDAO1.verificaCredenziali(codiceUtente, passwordUtente)) {

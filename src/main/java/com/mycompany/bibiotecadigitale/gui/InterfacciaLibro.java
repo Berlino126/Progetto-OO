@@ -393,7 +393,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {
-        System.exit(0);
+        controller.ChiudiApp();
     }
 
     private void TestoMouseClicked(java.awt.event.MouseEvent evt) {

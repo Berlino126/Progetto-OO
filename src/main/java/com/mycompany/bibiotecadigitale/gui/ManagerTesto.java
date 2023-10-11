@@ -407,7 +407,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
-        System.exit(0);
+        controller.ChiudiApp();
     }
     public void setController(Controller controller)
     {

@@ -55,5 +55,16 @@ public class RichiestaDAO {
             // Gestisci l'eccezione
         }
     }
-    //NON SI PREVEDONO ELIMINAZIONI E MODIFICHE SULLE RICHIESTE
+    public void close() {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+    }
 }
+
+//NON SI PREVEDONO ELIMINAZIONI E MODIFICHE SULLE RICHIESTE
