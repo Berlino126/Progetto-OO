@@ -1,4 +1,4 @@
-package main.java.com.mycompany.bibiotecadigitale.model;
+package com.mycompany.bibiotecadigitale.model;
 
 public class Utente {
     private int codUtente;
@@ -6,15 +6,15 @@ public class Utente {
     private String cognome;
     private String email;
     private long telefono;
-    private String password;
+    private String password; // Aggiunta dell'attributo password
 
-    public Utente(int codice, String nome, String cognome, String email, long telefono) {
-        this.codUtente = codice;
+    public Utente(int codUtente, String nome, String cognome, String email, long telefono, String password) {
+        this.codUtente = codUtente;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.telefono = telefono;
-        this.password = password;
+        this.password = password; // Inizializzazione dell'attributo password
     }
 
     public int getCodUtente() {
@@ -56,9 +56,11 @@ public class Utente {
     public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }

@@ -1,13 +1,18 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.gui.InterfacciaLibro;
+import com.mycompany.bibiotecadigitale.gui.Login;
+import com.mycompany.bibiotecadigitale.gui.ManagerTesto;
+import com.mycompany.bibiotecadigitale.gui.ManagerUtenti;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.Testo;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,6 +31,7 @@ import javax.swing.UIManager;
  */
 
 public class InterfacciaArticolo extends javax.swing.JFrame {
+    private Controller controller;
     private TestoDAO testoDAO;
     private ArticoloScientificoDAO articoloScientificoDAO;
 
@@ -474,6 +480,10 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
     private void DataTFActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+    public void setController(Controller controller)
+    {
+        this.controller = controller;
+    }
 
     private void ModificaTestoMouseClicked (java.awt.event.MouseEvent evt) {
         if (CodiceTF.getText().isEmpty() || ResponsabileTF.getText().isEmpty() || RivistaTF.getText().isEmpty() || RiassuntoTF.getText().isEmpty() || ArgomentoTF.getText().isEmpty() || UniversitàTF.getText().isEmpty() || LuogoTF.getText().isEmpty() || DataTF.getText().isEmpty()) {
@@ -511,16 +521,11 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
     }
 
     private void TestoMouseClicked(java.awt.event.MouseEvent evt) {
-        dispose();
-        ManagerTesto managerTesto = new ManagerTesto();
-        managerTesto.setVisible(true);
+        controller.ApriTesti();
     }
 
     private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
-        dispose();
-        InterfacciaLibro interfacciaLibro = new InterfacciaLibro();
-        interfacciaLibro.setVisible(true);
-        //interfacciaarticolo
+        controller.ApriLibri();
     }
 
     private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
@@ -530,18 +535,14 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
             // L'utente ha confermato l'uscita, puoi chiudere la finestra
-            dispose();
-            Login login = new Login();
-            login.setVisible(true);
+            controller.Logout();
         } else {
             // L'utente ha annullato l'uscita, la finestra continua
         }
     }
 
     private void UtenteMouseClicked (java.awt.event.MouseEvent evt) {
-        dispose();
-        ManagerUtenti managerUtenti = new ManagerUtenti();
-        managerUtenti.setVisible(true);
+        controller.ApriUtenti();
     }
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt)
     {

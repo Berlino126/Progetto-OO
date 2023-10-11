@@ -1,13 +1,14 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.Testo;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 
 import java.awt.event.MouseEvent;
 import java.text.Normalizer;
@@ -22,6 +23,7 @@ public class ManagerTesto extends javax.swing.JFrame {
     private TestoDAO testoDAO;
     private ArticoloScientificoDAO articoloScientificoDAO;
     private LibroDAO libroDAO;
+    private Controller controller;
     public ManagerTesto(){
         initComponents();
         testoDAO = new TestoDAO();
@@ -140,10 +142,13 @@ public class ManagerTesto extends javax.swing.JFrame {
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-
+                        {null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Codice", "Titolo", "Anno Pubblicazione", "Edizione", "Disponibilita", "Formato", "Tipologia"
+                        "Titolo", "Genere", "Anno Pubblicazione", "Formato", "Disponibilita", "Edizione", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -404,7 +409,10 @@ public class ManagerTesto extends javax.swing.JFrame {
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
     }
-
+    public void setController(Controller controller)
+    {
+        this.controller = controller;
+    }
 
     private void AggiungiTestoMouseClicked(java.awt.event.MouseEvent evt) {
         if (CodiceTestoTF.getText().isEmpty() || TitoloTestoTF.getText().isEmpty() || EdizioneTestoTF.getText().isEmpty()) {
@@ -541,19 +549,19 @@ public class ManagerTesto extends javax.swing.JFrame {
                 UIManager.put("OptionPane.yesButtonText", "Si");
                 int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare il testo selezionato?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION);
                 if (scelta == JOptionPane.YES_OPTION) {
-                int codice = Integer.parseInt(CodiceTestoTF.getText());
-                String tipologia = TipologiaTesto.getSelectedItem().toString();
-                if(tipologia.equals("Libro"))
-                {
-                    libroDAO.deleteLibro(codice);
-                }
-                if(tipologia.equals("Articolo Scientifico"))
-                {
-                    articoloScientificoDAO.deleteArticoloScientifico(codice);
-                }
-                JOptionPane.showMessageDialog(this, "Testo eliminato correttamente");
-                refreshTestoTable();
-                clearTextFields();
+                    int codice = Integer.parseInt(CodiceTestoTF.getText());
+                    String tipologia = TipologiaTesto.getSelectedItem().toString();
+                    if(tipologia.equals("Libro"))
+                    {
+                        libroDAO.deleteLibro(codice);
+                    }
+                    if(tipologia.equals("Articolo Scientifico"))
+                    {
+                        articoloScientificoDAO.deleteArticoloScientifico(codice);
+                    }
+                    JOptionPane.showMessageDialog(this, "Testo eliminato correttamente");
+                    refreshTestoTable();
+                    clearTextFields();
                 }
                 else {}
             } catch (NumberFormatException e) {
@@ -563,15 +571,11 @@ public class ManagerTesto extends javax.swing.JFrame {
     }
 
     private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
-        dispose();
-        InterfacciaLibro interfacciaLibro = new InterfacciaLibro();
-        interfacciaLibro.setVisible(true);
+        controller.ApriLibri();
     }
 
     private void ArticoloMouseClicked(java.awt.event.MouseEvent evt) {
-        dispose();
-        InterfacciaArticolo interfacciaArticolo = new InterfacciaArticolo();
-        interfacciaArticolo.setVisible(true);
+        controller.ApriArticoli();
     }
 
     private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
@@ -581,18 +585,14 @@ public class ManagerTesto extends javax.swing.JFrame {
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
             // L'utente ha confermato l'uscita, puoi chiudere la finestra
-            dispose();
-            Login login = new Login();
-            login.setVisible(true);
+            controller.Logout();
         } else {
             // L'utente ha annullato l'uscita, la finestra continua
         }
     }
 
     private void UtenteMouseClicked (java.awt.event.MouseEvent evt) {
-        dispose();
-        ManagerUtenti managerUtenti = new ManagerUtenti();
-        managerUtenti.setVisible(true);
+        controller.ApriUtenti();
     }
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt)
     {
@@ -635,37 +635,6 @@ public class ManagerTesto extends javax.swing.JFrame {
     }
 
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManagerTesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManagerTesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManagerTesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManagerTesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManagerTesto().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify
     private javax.swing.JButton AggiungiTestoBTN;

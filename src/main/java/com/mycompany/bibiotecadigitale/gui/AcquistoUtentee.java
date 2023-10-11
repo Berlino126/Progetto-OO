@@ -1,9 +1,10 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
 
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-
+import com.mycompany.bibiotecadigitale.gui.Login;
+import com.mycompany.bibiotecadigitale.model.Testo;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,7 @@ import java.util.Vector;
  */
 public class AcquistoUtentee extends javax.swing.JFrame {
     private TestoDAO testoDAO;
+    private Controller controller;
     public AcquistoUtentee() {
         initComponents();
         testoDAO = new TestoDAO();
@@ -107,11 +109,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
 
         FiltraBTN.setText("Filtra");
-        FiltraBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+       /* FiltraBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 FiltraMouseClicked(evt);
             }
-        });
+        });*/
 
 
         EliminaBTN.setText("Aggiorna");
@@ -411,7 +413,10 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
     }
-
+    public void setController(Controller controller)
+    {
+        this.controller = controller;
+    }
     private void refreshTestoTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
@@ -482,9 +487,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
             // L'utente ha confermato l'uscita, puoi chiudere la finestra
-            dispose();
-            Login login = new Login();
-            login.setVisible(true);
+            controller.Logout();
         } else {
             // L'utente ha annullato l'uscita, la finestra continua
         }
@@ -529,8 +532,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
-            // L'utente ha confermato l'uscita, puoi chiudere la finestra
-            dispose();
+            controller.ApriModificaUtente();
         } else {
             // L'utente ha annullato l'uscita, la finestra continua
         }
@@ -602,11 +604,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AcquistoUtentee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AcquistoUtentee().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify

@@ -78,4 +78,3 @@ public class ArticoloScientifico extends Testo {
         this.dataConferenza = dataConferenza;
     }
 }
-

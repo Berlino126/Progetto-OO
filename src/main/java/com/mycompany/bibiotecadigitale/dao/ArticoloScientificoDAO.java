@@ -1,12 +1,11 @@
-package main.java.com.mycompany.bibiotecadigitale.dao;
+package com.mycompany.bibiotecadigitale.dao;
 
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import com.mycompany.bibiotecadigitale.model.Libro;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 public class ArticoloScientificoDAO extends TestoDAO {
     private static Connection connection;
     public ArticoloScientificoDAO() {

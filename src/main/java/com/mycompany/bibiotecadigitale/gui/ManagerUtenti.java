@@ -1,10 +1,8 @@
 
-package main.java.com.mycompany.bibiotecadigitale.gui;
-import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Utente;
-import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-
+package com.mycompany.bibiotecadigitale.gui;
+import com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,11 +10,12 @@ import javax.swing.table.DefaultTableModel;
 public class ManagerUtenti extends javax.swing.JFrame {
 
     private UtenteDAO utenteDAO;
+    private Controller controller;
     public ManagerUtenti() {
-    initComponents();
-    utenteDAO = new UtenteDAO();
-    refreshUtenteTable();
-}
+        initComponents();
+        utenteDAO = new UtenteDAO();
+        refreshUtenteTable();
+    }
 
     private void initComponents() {
 
@@ -123,18 +122,18 @@ public class ManagerUtenti extends javax.swing.JFrame {
         });
 
         TabellaUtente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Cod", "Nome", "Cognome", "Email", "Telefono"
-            }
+                new Object [][] {
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null}
+                },
+                new String [] {
+                        "Cod", "Nome", "Cognome", "Email", "Telefono"
+                }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -189,93 +188,93 @@ public class ManagerUtenti extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(CodiceLB)
-                                .addGap(501, 501, 501)
-                                .addComponent(EmailUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(272, 272, 272)
-                                .addComponent(ManagerUtentiLB)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addComponent(ChiudiFinestra))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CognomeLB)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(554, 554, 554)
-                                .addComponent(TelefonoUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(NomeLB)
-                                .addGap(102, 102, 102)
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CodiceUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CognomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                .addComponent(CodiceLB)
+                                                                .addGap(501, 501, 501)
+                                                                .addComponent(EmailUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                .addGap(272, 272, 272)
+                                                                .addComponent(ManagerUtentiLB)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                                                .addComponent(ChiudiFinestra))
                                         .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addGap(239, 239, 239)
-                                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(EmailLB)
-                                                        .addComponent(TelefonoLB))
-                                                    .addGap(84, 84, 84))
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addComponent(AggiungiUtente)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(ModificaUtente)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(EliminaUtente)
-                                                    .addGap(18, 18, 18)))
-                                            .addComponent(PulisciUtente))
-                                        .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(347, 347, 347)
-                .addComponent(ListaUtentiLB)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(CognomeLB)
+                                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                .addGap(554, 554, 554)
+                                                                .addComponent(TelefonoUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                .addComponent(NomeLB)
+                                                                .addGap(102, 102, 102)
+                                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(CodiceUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(NomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(CognomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                                                        .addGap(239, 239, 239)
+                                                                                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                                                .addComponent(EmailLB)
+                                                                                                                .addComponent(TelefonoLB))
+                                                                                                        .addGap(84, 84, 84))
+                                                                                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                                                        .addComponent(AggiungiUtente)
+                                                                                                        .addGap(18, 18, 18)
+                                                                                                        .addComponent(ModificaUtente)
+                                                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                        .addComponent(EliminaUtente)
+                                                                                                        .addGap(18, 18, 18)))
+                                                                                        .addComponent(PulisciUtente))
+                                                                                .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(347, 347, 347)
+                                .addComponent(ListaUtentiLB)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ManagerUtentiLB)
-                    .addComponent(ChiudiFinestra))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CodiceLB)
-                    .addComponent(CodiceUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EmailLB)
-                    .addComponent(EmailUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NomeLB)
-                    .addComponent(TelefonoLB)
-                    .addComponent(TelefonoUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CognomeLB)
-                    .addComponent(CognomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AggiungiUtente)
-                    .addComponent(ModificaUtente)
-                    .addComponent(EliminaUtente)
-                    .addComponent(PulisciUtente))
-                .addGap(27, 27, 27)
-                .addComponent(ListaUtentiLB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(ManagerUtentiLB)
+                                        .addComponent(ChiudiFinestra))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(CodiceLB)
+                                        .addComponent(CodiceUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(EmailLB)
+                                        .addComponent(EmailUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(NomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(NomeLB)
+                                        .addComponent(TelefonoLB)
+                                        .addComponent(TelefonoUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(CognomeLB)
+                                        .addComponent(CognomeUtente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(AggiungiUtente)
+                                        .addComponent(ModificaUtente)
+                                        .addComponent(EliminaUtente)
+                                        .addComponent(PulisciUtente))
+                                .addGap(27, 27, 27)
+                                .addComponent(ListaUtentiLB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         LibriLB.setBackground(new java.awt.Color(204, 0, 51));
@@ -350,12 +349,12 @@ public class ManagerUtenti extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -384,6 +383,10 @@ public class ManagerUtenti extends javax.swing.JFrame {
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {
         System.exit(0);
     }
+    public void setController(Controller controller)
+    {
+        this.controller = controller;
+    }
     private void AggiungiUtenteMouseClicked(java.awt.event.MouseEvent evt) {
         if (CodiceUtente.getText().isEmpty() || NomeUtente.getText().isEmpty() || CognomeUtente.getText().isEmpty()
                 || EmailUtente.getText().isEmpty() || TelefonoUtente.getText().isEmpty()) {
@@ -395,16 +398,16 @@ public class ManagerUtenti extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Il testo con il codice " + codice + " esiste già nel database");
                 } else{
                     String nome = NomeUtente.getText();
-                String cognome = CognomeUtente.getText();
-                String email = EmailUtente.getText();
-                Long telefono = Long.parseLong(TelefonoUtente.getText());
-
-                utenteDAO.insertUtente(nome, cognome, email, telefono);
-
-                JOptionPane.showMessageDialog(this, "Utente aggiunto correttamente");
-                refreshUtenteTable();
-                clearFields();
-            }
+                    String cognome = CognomeUtente.getText();
+                    String email = EmailUtente.getText();
+                    Long telefono = Long.parseLong(TelefonoUtente.getText());
+                    String password = "1234";
+                    Utente utente = new Utente(codice, nome, cognome, email, telefono, password);
+                    utenteDAO.insertUtente(utente);
+                    JOptionPane.showMessageDialog(this, "Utente aggiunto correttamente");
+                    refreshUtenteTable();
+                    clearFields();
+                }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Il codice utente deve essere un numero intero");
             }
@@ -422,11 +425,11 @@ public class ManagerUtenti extends javax.swing.JFrame {
     }//GEN-LAST:event_TabellaUtenteMouseClicked
 
     private void PulisciUtenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PulisciUtenteMouseClicked
-    NomeUtente.setText("");
-    CodiceUtente.setText((""));
-    CognomeUtente.setText("");
-    EmailUtente.setText("");
-    TelefonoUtente.setText("");
+        NomeUtente.setText("");
+        CodiceUtente.setText((""));
+        CognomeUtente.setText("");
+        EmailUtente.setText("");
+        TelefonoUtente.setText("");
     }//GEN-LAST:event_PulisciUtenteMouseClicked
 
     private void EliminaUtenteMouseClicked(java.awt.event.MouseEvent evt) {
@@ -498,9 +501,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
     }
 
     private void TestoMouseClicked(java.awt.event.MouseEvent evt) {
-        dispose();
-        ManagerTesto managerTesto = new ManagerTesto();
-        managerTesto.setVisible(true);
+        controller.ApriTesti();
     }
 
     private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
@@ -510,34 +511,21 @@ public class ManagerUtenti extends javax.swing.JFrame {
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
             // L'utente ha confermato l'uscita, puoi chiudere la finestra
-            dispose();
-            Login login = new Login();
-            login.setVisible(true);
+            controller.Logout();
         } else {
             // L'utente ha annullato l'uscita, la finestra continua
         }
     }
 
     private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
-        dispose();
-        InterfacciaLibro interfacciaLibro = new InterfacciaLibro();
-        interfacciaLibro.setVisible(true);
-        //interfacciaarticolo
+        controller.ApriLibri();
     }
 
     private void ArticoloMouseClicked (java.awt.event.MouseEvent evt) {
-        dispose();
-        InterfacciaArticolo interfacciaArticolo = new InterfacciaArticolo();
-        interfacciaArticolo.setVisible(true);
+        controller.ApriArticoli();
     }
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManagerUtenti().setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AggiungiUtente;
