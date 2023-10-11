@@ -1,4 +1,3 @@
-
 package com.mycompany.bibiotecadigitale.gui;
 import com.mycompany.bibiotecadigitale.model.Utente;
 import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
@@ -26,7 +25,6 @@ public class Login extends javax.swing.JFrame {
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -43,6 +41,7 @@ public class Login extends javax.swing.JFrame {
         Pulisci = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        Registrati = new javax.swing.JButton();
         Chiudi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,7 +83,7 @@ public class Login extends javax.swing.JFrame {
 
         Modalita.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         Modalita.setForeground(new java.awt.Color(204, 0, 51));
-        Modalita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "UTENTE"}));
+        Modalita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "UTENTE", " " }));
 
         jLabel3.setBackground(new java.awt.Color(204, 0, 51));
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -106,7 +105,6 @@ public class Login extends javax.swing.JFrame {
         Accedi.setText("ACCEDI");
         Accedi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                //System.out.println("OK");
                 AccediMouseClicked(evt);
             }
         });
@@ -116,7 +114,6 @@ public class Login extends javax.swing.JFrame {
         Pulisci.setText("PULISCI");
         Pulisci.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                //System.out.println("PUlito");
                 PulisciMouseClicked(evt);
             }
         });
@@ -131,22 +128,18 @@ public class Login extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(204, 0, 51));
         jLabel7.setText("Francesco Pio Illiano");
 
+        Registrati.setFont(new java.awt.Font("Century Gothic", 1, 8)); // NOI18N
+        Registrati.setForeground(new java.awt.Color(204, 0, 51));
+        Registrati.setText("Registrati");
+        Registrati.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RegistratiMouseClicked(evt);
+            }
+        });
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(Accedi)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Pulisci)
-                                .addGap(40, 40, 40))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel6))
-                                .addGap(141, 141, 141))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap(37, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,6 +153,22 @@ public class Login extends javax.swing.JFrame {
                                         .addComponent(Modalita, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(CodiceUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(14, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(65, 65, 65)
+                                                .addComponent(Accedi)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel6))
+                                                .addGap(22, 22, 22)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(Pulisci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Registrati, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(52, 52, 52))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,10 +191,12 @@ public class Login extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(Accedi)
                                         .addComponent(Pulisci))
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Registrati))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 9, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(7, 7, 7))
         );
 
@@ -223,12 +234,17 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>
+
     public void setController(Controller controller) {
         this.controller = controller;
     }
     private void ChiudiMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ChiudiApp();
     }
+    private void RegistratiMouseClicked(java.awt.event.MouseEvent evt) {
+        controller.ApriRegistrazione();
+    }
+
     private void AccediMouseClicked(java.awt.event.MouseEvent evt) {
         if (CodiceUtente.getText().isEmpty() || PasswordUtente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Credenziali mancanti");
@@ -277,6 +293,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField PasswordUtente;
     private javax.swing.JButton Pulisci;
     private javax.swing.JComboBox<String> Modalita;
+    private javax.swing.JButton Registrati;
+
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
