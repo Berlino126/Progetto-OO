@@ -429,7 +429,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         PagineTF.setText("");
     }
 
-    private void refreshLibroTable() {
+    protected void refreshLibroTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
 

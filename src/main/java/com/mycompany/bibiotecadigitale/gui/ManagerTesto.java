@@ -148,7 +148,7 @@ public class ManagerTesto extends javax.swing.JFrame {
                         {null, null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Titolo", "Genere", "Anno Pubblicazione", "Formato", "Disponibilita", "Edizione", "Tipologia"
+                        "Titolo", "Codice", "Anno Pubblicazione", "Edizione", "Disponibilita", "Formato", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -429,7 +429,7 @@ public class ManagerTesto extends javax.swing.JFrame {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date annoPubblicazione = dateFormat.parse(AnnoPubblicazioneTestoTF.getText());
                     String edizione = EdizioneTestoTF.getText();
-                    boolean disponibilita = DisponibilitaTesto.getSelectedItem().toString().equals("Disponibile");
+                    boolean disponibilita = Boolean.parseBoolean(DisponibilitaTesto.getSelectedItem().toString());
                     String formato = FormTesto.getSelectedItem().toString();
                     String tipologia = TipologiaTesto.getSelectedItem().toString();
 
@@ -605,7 +605,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         AnnoPubblicazioneTestoTF.setText("");
     }
 
-    private void refreshTestoTable() {
+    protected void refreshTestoTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
 

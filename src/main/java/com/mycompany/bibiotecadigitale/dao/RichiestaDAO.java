@@ -79,14 +79,13 @@ public class RichiestaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             // Gestisci l'eccezione
-        } finally {
+        } /*finally {
             try {
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 // Gestisci l'eccezione
-            }
-        }
+            }*/
     }
     public void close() {
         try {
@@ -111,5 +110,4 @@ public class RichiestaDAO {
     }
 
 }
-
 

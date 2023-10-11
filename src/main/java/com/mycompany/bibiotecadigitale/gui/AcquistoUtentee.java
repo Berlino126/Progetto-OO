@@ -1,10 +1,11 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
 
-import main.java.com.mycompany.bibiotecadigitale.gui.Login;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
+import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
+import com.mycompany.bibiotecadigitale.gui.Login;
+import com.mycompany.bibiotecadigitale.model.Testo;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
@@ -135,7 +136,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
-                        "Titolo", "Genere", "Anno Pubblicazione", "Formato", "Edizione", "Disponibilità", "Tipologia"
+                        "Titolo", "Anno Pubblicazione", "Formato", "Edizione", "Disponibilità", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -391,7 +392,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     }
 
     private void RichiediOraBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        System.out.println("Richiedi");
     }
 
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
@@ -413,12 +414,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
         for (Testo testo : testi) {
             model.addRow(new Object[]{
-                    testo.getCodTesto(),
                     testo.getTitolo(),
                     testo.getAnnoPubblicazione(),
-                    testo.getEdizione(),
-                    testo.isDisponibilita() ? "True" : "False", // Modifica la rappresentazione della disponibilità
                     testo.getFormato(),
+                    testo.getEdizione(),
+                    testo.isDisponibilita(),
                     testo.getTipologia()
             });
         }
@@ -434,12 +434,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             // Creare un array di oggetti che rappresentano una riga di dati
             // Ed aggiungere la riga alla tabella
             model.addRow(new Object[] {
-                    testo.getCodTesto(),
                     testo.getTitolo(),
                     testo.getAnnoPubblicazione(),
+                    testo.getFormato(),
                     testo.getEdizione(),
                     testo.isDisponibilita(),
-                    testo.getFormato(),
                     testo.getTipologia()
             });
         }
@@ -455,12 +454,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
         if (Indice != -1) { // Verifica se è stato selezionato un elemento valido
             TitoloTF.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
-            GenereTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
             EdizioneTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
 
             // Imposta il valore selezionato nei JComboBox
-            String formato = model.getValueAt(Indice, 5) != null ? model.getValueAt(Indice, 5).toString() : "";
-            String tipologia = model.getValueAt(Indice, 6) != null ? model.getValueAt(Indice, 6).toString() : "";
+            String formato = model.getValueAt(Indice, 2) != null ? model.getValueAt(Indice, 2).toString() : "";
+            String tipologia = model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "";
 
             FormatoTestoBOX.setSelectedItem(formato);
             TipologiaTestoBOX.setSelectedItem(tipologia);
@@ -482,25 +480,29 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     }
 
     private void RichiediMouseClicked(java.awt.event.MouseEvent evt) {
-        JOptionPane.showMessageDialog(null, "Il testo selezionato è stato aggiunto alla libreria.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
-        DefaultTableModel modelTesti = (DefaultTableModel) TabellaTesti.getModel();
-        DefaultTableModel modelResoconto = (DefaultTableModel) TabellaResoconto.getModel();
-        // Ottieni le righe selezionate dalla tabella sorgente
-        int[] selectedRows = TabellaTesti.getSelectedRows();
+        String titolo = TitoloTF.getText();
+        String edizione = EdizioneTF.getText();
 
-        // Indica quali colonne della tabella sorgente desideri copiare nella tabella di destinazione
-        int[] colonneDaCopiare = {0, 2, 3}; // Ad esempio, copiamo la colonna 0, 2 e 3 dalla tabella sorgente
-
-        // Copia le righe selezionate dalla tabella sorgente alla tabella di destinazione
-        for (int selectedRow : selectedRows) {
-            Vector<Object> rowData = new Vector<>();
-
-            for (int colonna : colonneDaCopiare) {
-                rowData.add(modelTesti.getValueAt(selectedRow, colonna));
-            }
-            modelResoconto.addRow(rowData);
+        if (titolo.isEmpty() ||  edizione.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        TestoDAO testoDAO = new TestoDAO();
+        int codiceTesto = testoDAO.RichiediTesto(titolo, edizione);
+        System.out.println(codiceTesto);
+        if (codiceTesto > 0) {
+            RichiestaDAO richiestaDAO = new RichiestaDAO();
+            richiestaDAO.insertRichiesta(codiceutente, codiceTesto);
+            JOptionPane.showMessageDialog(this, "Richiesta inserita con successo", "Successo", JOptionPane.INFORMATION_MESSAGE);
+            TitoloTF.setText("");
+            EdizioneTF.setText("");
+        } else {
+            // Messaggio di errore se il testo non è stato trovato
+            JOptionPane.showMessageDialog(this, "Testo non trovato nel database", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
+
 
     private void EliminaMouseClicked(java.awt.event.MouseEvent evt) {
         UIManager.put("OptionPane.yesButtonText", "Si");
@@ -559,13 +561,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
         TitoloTF.setText("");
-        GenereTF.setText("");
         EdizioneTF.setText("");
     }
 
     private void clearTextField() {
         TitoloTF.setText("");
-        GenereTF.setText("");
         EdizioneTF.setText("");
     }
 

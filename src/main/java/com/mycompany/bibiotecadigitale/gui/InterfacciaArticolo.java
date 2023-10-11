@@ -567,7 +567,7 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         DataTF.setText("");
     }
 
-    private void refreshArticoloTable() {
+    protected void refreshArticoloTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
 

@@ -148,13 +148,37 @@ public class TestoDAO {
                 testi.add(testo);
             }
 
-            preparedStatement.close();
+            //preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             // Gestisci l'eccezione
         }
         return testi;
     }
+    public int RichiediTesto(String titolo, String edizione) {
+        int codiceTesto = -1; // Valore di default nel caso il testo non sia trovato
+
+        try {
+            String query = "SELECT CodTesto FROM Testo WHERE Titolo = ? AND Edizione = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, titolo);
+            preparedStatement.setString(2, edizione);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                codiceTesto = resultSet.getInt("CodTesto");
+            }
+
+            //preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+
+        return codiceTesto;
+    }
+
 
     // Altre operazioni CRUD e metodi accessori qui
 

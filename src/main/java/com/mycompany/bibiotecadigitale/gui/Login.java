@@ -84,7 +84,7 @@ public class Login extends javax.swing.JFrame {
 
         Modalita.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         Modalita.setForeground(new java.awt.Color(204, 0, 51));
-        Modalita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "UTENTE", " " }));
+        Modalita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "UTENTE"}));
 
         jLabel3.setBackground(new java.awt.Color(204, 0, 51));
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N

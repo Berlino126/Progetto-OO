@@ -476,7 +476,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
             }
         }
     }
-    private void refreshUtenteTable() {
+    protected void refreshUtenteTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaUtente.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
 
