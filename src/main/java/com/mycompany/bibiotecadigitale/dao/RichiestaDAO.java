@@ -65,6 +65,17 @@ public class RichiestaDAO {
             // Gestisci l'eccezione
         }
     }
+    public void deleteRichiesta(int codRichiesta) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE FROM Richiesta WHERE CodRichiesta = ?");
+            preparedStatement.setInt(1, codRichiesta);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+    }
+
 }
 
-//NON SI PREVEDONO ELIMINAZIONI E MODIFICHE SULLE RICHIESTE
