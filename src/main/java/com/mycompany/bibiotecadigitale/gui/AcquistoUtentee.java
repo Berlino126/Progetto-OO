@@ -1,13 +1,17 @@
-package com.mycompany.bibiotecadigitale.gui;
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
 
-import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
-import com.mycompany.bibiotecadigitale.gui.Login;
-import com.mycompany.bibiotecadigitale.model.Testo;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.gui.Controller;
+import main.java.com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
+import main.java.com.mycompany.bibiotecadigitale.gui.Login;
+import main.java.com.mycompany.bibiotecadigitale.model.LibreriaUtente;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
+import main.java.com.mycompany.bibiotecadigitale.model.Richiesta;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
@@ -19,12 +23,15 @@ import java.util.Vector;
 public class AcquistoUtentee extends javax.swing.JFrame {
 
     private TestoDAO testoDAO;
+    private RichiestaDAO richiestaDAO;
     private Controller controller;
     private int codiceutente;
+    private int codicerichiesta;
 
     public AcquistoUtentee() {
         initComponents();
         testoDAO = new TestoDAO();
+        richiestaDAO = new RichiestaDAO();
         refreshTestoTable();
     }
 
@@ -52,7 +59,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         ListaProdottiLB = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TabellaResoconto = new javax.swing.JTable();
-        ResocontoLB = new javax.swing.JLabel();
+        LibreriaLB = new javax.swing.JLabel();
         EliminaBTN = new javax.swing.JButton();
         RimuoviBTN = new javax.swing.JButton();
         LOGOUTLB = new javax.swing.JLabel();
@@ -182,10 +189,10 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(TabellaResoconto);
 
-        ResocontoLB.setBackground(new java.awt.Color(204, 0, 51));
-        ResocontoLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        ResocontoLB.setForeground(new java.awt.Color(204, 0, 51));
-        ResocontoLB.setText("LIBRERIA:");
+        LibreriaLB.setBackground(new java.awt.Color(204, 0, 51));
+        LibreriaLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        LibreriaLB.setForeground(new java.awt.Color(204, 0, 51));
+        LibreriaLB.setText("LIBRERIA:");
 
         EliminaBTN.setText("Elimina");
         EliminaBTN.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -206,25 +213,25 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addContainerGap(61, Short.MAX_VALUE)
-                                                .addComponent(RichiediBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(37, 37, 37)
-                                                .addComponent(PulisciBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(68, 68, 68))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                                 .addGap(26, 26, 26)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(EdizioneLB)
-                                                        .addComponent(TitoloLB)
-                                                        .addComponent(GenereLB))
+                                                        .addComponent(TitoloLB))
                                                 .addGap(61, 61, 61)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addComponent(EdizioneTF, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                                        .addComponent(GenereTF)
-                                                        .addComponent(TitoloTF))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                        .addComponent(TitoloTF)))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(59, 59, 59)
+                                                .addComponent(RichiediBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(41, 41, 41)
+                                                .addComponent(PulisciBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(120, 120, 120)
+                                                .addComponent(RimuoviBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(28, 28, 28)
@@ -249,10 +256,8 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                 .addComponent(ListaProdottiLB)
                                 .addGap(175, 175, 175))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(RimuoviBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(173, 173, 173)
-                                .addComponent(ResocontoLB)
+                                .addGap(383, 383, 383)
+                                .addComponent(LibreriaLB)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
@@ -273,41 +278,30 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                         .addComponent(ChiudiFinestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ListaProdottiLB)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(FormatoTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TipologiaTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(FiltraBTN)
+                                        .addComponent(RipristinaBTN)
+                                        .addComponent(TitoloLB)
+                                        .addComponent(TitoloTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                        .addComponent(TitoloLB)
-                                                                        .addComponent(TitoloTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGap(21, 21, 21)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                        .addComponent(FormatoTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(TipologiaTestoBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(FiltraBTN)
-                                                                        .addComponent(RipristinaBTN))))
-                                                .addGap(14, 14, 14)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                        .addComponent(GenereLB)
-                                                                        .addComponent(GenereTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(26, 26, 26)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                        .addComponent(EdizioneLB)
-                                                                        .addComponent(EdizioneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(54, 54, 54)
-                                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                        .addComponent(PulisciBTN)
-                                                                        .addComponent(RichiediBTN)))
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(ResocontoLB))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(RimuoviBTN)))
+                                                .addGap(29, 29, 29)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(EdizioneLB)
+                                                        .addComponent(EdizioneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(44, 44, 44)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(RichiediBTN)
+                                                        .addComponent(PulisciBTN))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(RimuoviBTN))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(LibreriaLB)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -407,7 +401,8 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         this.codiceutente = codice;
     }
 
- protected void refreshLibreriaTable() {
+
+    protected void refreshLibreriaTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaResoconto.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
 
@@ -426,7 +421,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         }
     }
 
-    
+
     private void refreshTestoTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
@@ -526,6 +521,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
     }
 
+
     private void EliminaMouseClicked(java.awt.event.MouseEvent evt) {
         UIManager.put("OptionPane.yesButtonText", "Si");
         int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler eliminare TUTTA la libreria? I dati andranno persi.", "Conferma eliminazione", JOptionPane.YES_NO_OPTION);
@@ -533,6 +529,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         if (scelta == JOptionPane.YES_OPTION) {
             // Rimuovi tutte le righe dalla tabella di destinazione
             while (modelResoconto.getRowCount() > 0) {
+                richiestaDAO.deleteRichiesta(codicerichiesta);
                 modelResoconto.removeRow(0);
             }
             JOptionPane.showMessageDialog(null, "Libreria eliminata.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
@@ -638,7 +635,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private javax.swing.JButton FiltraBTN;
     private javax.swing.JLabel ModificaPasswordLB;
     private javax.swing.JButton PulisciBTN;
-    private javax.swing.JLabel ResocontoLB;
+    private javax.swing.JLabel LibreriaLB;
     private javax.swing.JButton RichiediBTN;
     private javax.swing.JButton RimuoviBTN;
     private javax.swing.JButton RipristinaBTN;
@@ -653,3 +650,4 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration
 }
+
