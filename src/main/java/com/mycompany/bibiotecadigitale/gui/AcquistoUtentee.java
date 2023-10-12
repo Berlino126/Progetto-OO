@@ -406,6 +406,27 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     {
         this.codiceutente = codice;
     }
+
+ protected void refreshLibreriaTable() {
+        DefaultTableModel model = (DefaultTableModel) TabellaResoconto.getModel();
+        model.setRowCount(0); // Cancella tutte le righe attuali
+
+        List<LibreriaUtente> libreriaUtenteList = richiestaDAO.getAllRichiesteLibreria(codiceutente);
+
+        for (LibreriaUtente libreriaUtente : libreriaUtenteList) {
+            model.addRow(new Object[]{
+                    libreriaUtente.getTitolo(),
+                    libreriaUtente.getAnnoPubblicazione(),
+                    libreriaUtente.getFormato(),
+                    libreriaUtente.getEdizione(),
+                    libreriaUtente.getTipologia(),
+                    libreriaUtente.getDataRichiesta(),
+                    libreriaUtente.getStato(),
+            });
+        }
+    }
+
+    
     private void refreshTestoTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
@@ -480,40 +501,30 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     }
 
     private void RichiediMouseClicked(java.awt.event.MouseEvent evt) {
-        /*String titolo = TitoloTF.getText();
+        String titolo = TitoloTF.getText();
         String edizione = EdizioneTF.getText();
 
-        // Assicurati di ottenere i valori per gli altri campi come annoPubblicazione, disponibilita, formato e tipologia.
-        Date annoPubblicazione = // Ottieni il valore per l'anno di pubblicazione
-        boolean disponibilita = ; // Ottieni il valore per la disponibilità
-        String formato = ...; // Ottieni il valore per il formato
-        String tipologia = ...; // Ottieni il valore per la tipologia
-
-        if (titolo.isEmpty() || edizione.isEmpty()) {
+        if (titolo.isEmpty() ||  edizione.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
         TestoDAO testoDAO = new TestoDAO();
-
-        // Passa tutti i campi alla funzione RichiediTesto
-        int codiceTesto = testoDAO.RichiediTesto(titolo, edizione, annoPubblicazione, disponibilita, formato, tipologia);
-
+        int codiceTesto = testoDAO.RichiediTesto(titolo, edizione);
         System.out.println(codiceTesto);
-
         if (codiceTesto > 0) {
             RichiestaDAO richiestaDAO = new RichiestaDAO();
             richiestaDAO.insertRichiesta(codiceutente, codiceTesto);
             JOptionPane.showMessageDialog(this, "Richiesta inserita con successo", "Successo", JOptionPane.INFORMATION_MESSAGE);
             TitoloTF.setText("");
             EdizioneTF.setText("");
+            int selectedRow = TabellaTesti.getSelectedRow();
+            refreshLibreriaTable();
         } else {
             // Messaggio di errore se il testo non è stato trovato
             JOptionPane.showMessageDialog(this, "Testo non trovato nel database", "Errore", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
+
     }
-
-
 
     private void EliminaMouseClicked(java.awt.event.MouseEvent evt) {
         UIManager.put("OptionPane.yesButtonText", "Si");
