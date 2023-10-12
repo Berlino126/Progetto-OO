@@ -55,5 +55,9 @@ CREATE TABLE Richiesta (
     FOREIGN KEY (CodiceUtente) REFERENCES Utente(codUtente) ON DELETE CASCADE,
     FOREIGN KEY (CodiceTesto) References Testo(codTesto) ON DELETE CASCADE
 );
-    
+
+CREATE VIEW LibreriaUtente AS
+SELECT R.CodiceUtente, T.Titolo, T.AnnoPubblicazione, T.Formato, T.Edizione, T.Tipologia, R.DataRichiesta, R.Stato
+FROM Testo AS T, Richiesta AS R, Utente AS U 
+WHERE T.CodTesto = R.CodiceTesto AND R.CodiceUtente = U.CodUtente
 
