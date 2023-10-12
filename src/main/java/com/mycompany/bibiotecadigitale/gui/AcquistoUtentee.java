@@ -480,16 +480,27 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     }
 
     private void RichiediMouseClicked(java.awt.event.MouseEvent evt) {
-        String titolo = TitoloTF.getText();
+        /*String titolo = TitoloTF.getText();
         String edizione = EdizioneTF.getText();
 
-        if (titolo.isEmpty() ||  edizione.isEmpty()) {
+        // Assicurati di ottenere i valori per gli altri campi come annoPubblicazione, disponibilita, formato e tipologia.
+        Date annoPubblicazione = // Ottieni il valore per l'anno di pubblicazione
+        boolean disponibilita = ; // Ottieni il valore per la disponibilità
+        String formato = ...; // Ottieni il valore per il formato
+        String tipologia = ...; // Ottieni il valore per la tipologia
+
+        if (titolo.isEmpty() || edizione.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         TestoDAO testoDAO = new TestoDAO();
-        int codiceTesto = testoDAO.RichiediTesto(titolo, edizione);
+
+        // Passa tutti i campi alla funzione RichiediTesto
+        int codiceTesto = testoDAO.RichiediTesto(titolo, edizione, annoPubblicazione, disponibilita, formato, tipologia);
+
         System.out.println(codiceTesto);
+
         if (codiceTesto > 0) {
             RichiestaDAO richiestaDAO = new RichiestaDAO();
             richiestaDAO.insertRichiesta(codiceutente, codiceTesto);
@@ -499,9 +510,9 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         } else {
             // Messaggio di errore se il testo non è stato trovato
             JOptionPane.showMessageDialog(this, "Testo non trovato nel database", "Errore", JOptionPane.ERROR_MESSAGE);
-        }
-
+        }*/
     }
+
 
 
     private void EliminaMouseClicked(java.awt.event.MouseEvent evt) {

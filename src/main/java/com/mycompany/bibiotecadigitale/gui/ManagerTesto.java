@@ -420,7 +420,6 @@ public class ManagerTesto extends javax.swing.JFrame {
         } else {
             try {
                 int codice = Integer.parseInt(CodiceTestoTF.getText());
-
                 // Verifica se il testo con lo stesso codice già esiste nel database
                 if (testoDAO.testoExists(codice)) {
                     JOptionPane.showMessageDialog(this, "Il testo con il codice " + codice + " esiste già nel database");
@@ -433,40 +432,46 @@ public class ManagerTesto extends javax.swing.JFrame {
                     String formato = FormTesto.getSelectedItem().toString();
                     String tipologia = TipologiaTesto.getSelectedItem().toString();
 
-                    if (tipologia.equals("Libro")) {
-                        // Inserisci il testo come Libro con attributi di default
-                        String genere = "Non disponibile"; // Imposta il valore di default
-                        int capitoli = 0; // Imposta il valore di default
-                        int pagine = 0; // Imposta il valore di default
-                        String evento = "Non disponibile";
-                        String Collana = "Non disponibile";
-                        try {
-                            Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, evento, Collana);
-                            libroDAO.insertLibro(libro);
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento del libro");
-                        }
-                    } else if (tipologia.equals("Articolo Scientifico")) {
-                        // Inserisci il testo come Articolo Scientifico con attributi aggiunti
-                        String universita = "Non disponibile"; // Imposta il valore di default
-                        String riassunto = "Non disponibile"; // Imposta il valore di default
-                        String nomeRivista = "Non disponibile";
-                        String argomento = "Non disponibile";
-                        String responsabile = "Non disponibile";
-                        String luogoConferenza = "Non disponibile";
-                        Date dataConferenza = new Date(); // Imposta il valore di default
+                    // Verifica se esiste un testo con gli stessi attributi (tranne il codice)
+                    if (testoDAO.testoExistsWithSameAttributes(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia)) {
+                        JOptionPane.showMessageDialog(this, "Esiste già un testo con gli stessi attributi nel database");
+                    } else {
+                        // Continua con l'inserimento del nuovo testo nel database
+                        if (tipologia.equals("Libro")) {
+                            // Inserisci il testo come Libro con attributi di default
+                            String genere = "Non disponibile"; // Imposta il valore di default
+                            int capitoli = 0; // Imposta il valore di default
+                            int pagine = 0; // Imposta il valore di default
+                            String evento = "Non disponibile";
+                            String Collana = "Non disponibile";
+                            try {
+                                Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, evento, Collana);
+                                libroDAO.insertLibro(libro);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento del libro");
+                            }
+                        } else if (tipologia.equals("Articolo Scientifico")) {
+                            // Inserisci il testo come Articolo Scientifico con attributi aggiunti
+                            String universita = "Non disponibile"; // Imposta il valore di default
+                            String riassunto = "Non disponibile"; // Imposta il valore di default
+                            String nomeRivista = "Non disponibile";
+                            String argomento = "Non disponibile";
+                            String responsabile = "Non disponibile";
+                            String luogoConferenza = "Non disponibile";
+                            Date dataConferenza = new Date(); // Imposta il valore di default
 
-                        try {
-                            ArticoloScientifico articolo = new ArticoloScientifico(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
-                            articoloScientificoDAO.insertArticoloScientifico(articolo);
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento dell'articolo");
+                            try {
+                                ArticoloScientifico articolo = new ArticoloScientifico(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
+                                articoloScientificoDAO.insertArticoloScientifico(articolo);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento dell'articolo");
+                            }
                         }
+
+                        JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente");
+                        refreshTestoTable();
+                        clearTextFields();
                     }
-
-                    JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente");
-                    refreshTestoTable();
-                    clearTextFields();
                 }
             } catch (ParseException e) {
                 JOptionPane.showMessageDialog(this, "Errore nella data di pubblicazione. Utilizza il formato 'yyyy-MM-dd'");

@@ -155,14 +155,18 @@ public class TestoDAO {
         }
         return testi;
     }
-    public int RichiediTesto(String titolo, String edizione) {
+    public int RichiediTesto(String titolo, String edizione, Date annoPubblicazione, boolean disponibilita, String formato, String tipologia) {
         int codiceTesto = -1; // Valore di default nel caso il testo non sia trovato
 
         try {
-            String query = "SELECT CodTesto FROM Testo WHERE Titolo = ? AND Edizione = ?";
+            String query = "SELECT CodTesto FROM Testo WHERE Titolo = ? AND Edizione = ? AND AnnoPubblicazione = ? AND Disponibilita = ? AND Formato = ? AND Tipologia = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, titolo);
             preparedStatement.setString(2, edizione);
+            preparedStatement.setDate(3, new java.sql.Date(annoPubblicazione.getTime()));
+            preparedStatement.setBoolean(4, disponibilita);
+            preparedStatement.setString(5, formato);
+            preparedStatement.setString(6, tipologia);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -179,6 +183,30 @@ public class TestoDAO {
         return codiceTesto;
     }
 
+
+    public boolean testoExistsWithSameAttributes(int codice, String titolo, Date annoPubblicazione, String edizione, boolean disponibilita, String formato, String tipologia) {
+        boolean exists = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM Testo WHERE Titolo = ? AND AnnoPubblicazione = ? AND Edizione = ? AND Disponibilita = ? AND Formato = ? AND Tipologia = ? AND CodTesto <> ?");
+            preparedStatement.setString(1, titolo);
+            preparedStatement.setDate(2, new java.sql.Date(annoPubblicazione.getTime()));
+            preparedStatement.setString(3, edizione);
+            preparedStatement.setBoolean(4, disponibilita);
+            preparedStatement.setString(5, formato);
+            preparedStatement.setString(6, tipologia);
+            preparedStatement.setInt(7, codice);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                exists = count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+        return exists;
+    }
 
     // Altre operazioni CRUD e metodi accessori qui
 
