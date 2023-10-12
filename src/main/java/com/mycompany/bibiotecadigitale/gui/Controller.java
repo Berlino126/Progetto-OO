@@ -1,10 +1,10 @@
-package com.mycompany.bibiotecadigitale.gui;
-import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import com.mycompany.bibiotecadigitale.dao.AdminDAO;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
+package main.java.com.mycompany.bibiotecadigitale.gui;
+import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.AdminDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
 public class Controller {
     private Login login;
     private ManagerTesto managerTesto;
@@ -46,6 +46,7 @@ public class Controller {
         updatingUtente.dispose();
         acquistoUtentee.setController(this);
         acquistoUtentee.setCodice(codiceUtente);
+        acquistoUtentee.refreshLibreriaTable();
         //System.out.println(codiceUtente);
         acquistoUtentee.setVisible(true);
     }
