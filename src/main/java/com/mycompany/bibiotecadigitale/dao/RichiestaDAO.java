@@ -1,6 +1,8 @@
-package com.mycompany.bibiotecadigitale.dao;
+package main.java.com.mycompany.bibiotecadigitale.dao;
 
-import com.mycompany.bibiotecadigitale.model.Richiesta;
+import main.java.com.mycompany.bibiotecadigitale.model.Libreria;
+import main.java.com.mycompany.bibiotecadigitale.model.LibreriaUtente;
+import main.java.com.mycompany.bibiotecadigitale.model.Richiesta;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +17,33 @@ public class RichiestaDAO {
 
     public RichiestaDAO() {
         connection = ConnectionManager.getConnection();
+    }
+
+    public List<LibreriaUtente> getAllRichiesteLibreria(int codUtente) {
+        List<LibreriaUtente> libreriaUtenteList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM LibreriaUtente WHERE CodiceUtente = ?");
+            preparedStatement.setInt(1, codUtente);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String codiceUtente = resultSet.getString("CodiceUtente");
+                Date dataRichiesta = resultSet.getDate("DataRichiesta");
+                String stato = resultSet.getString("Stato");
+                String titolo = resultSet.getString("Titolo");
+                java.sql.Date sqlDate = resultSet.getDate("AnnoPubblicazione");
+                Date annoPubblicazione = new Date(sqlDate.getTime());
+                String edizione = resultSet.getString("Edizione");
+                String formato = resultSet.getString("Formato");
+                String tipologia = resultSet.getString("Tipologia");
+
+                LibreriaUtente libreriaUtente = new LibreriaUtente(codiceUtente, titolo, annoPubblicazione, edizione, formato, tipologia, dataRichiesta,  stato);
+                libreriaUtenteList.add(libreriaUtente);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return libreriaUtenteList;
     }
 
     public List<Richiesta> getAllRichieste(int codUtente) {
@@ -38,13 +67,13 @@ public class RichiestaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             // Gestisci l'eccezione
-        } finally {
+        /*} finally {
             try {
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 // Gestisci l'eccezione
-            }
+            }*/
         }
         return richieste;
     }
@@ -78,14 +107,7 @@ public class RichiestaDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Gestisci l'eccezione
-        } /*finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                // Gestisci l'eccezione
-            }*/
+        } 
     }
     public void close() {
         try {
@@ -110,4 +132,3 @@ public class RichiestaDAO {
     }
 
 }
-
