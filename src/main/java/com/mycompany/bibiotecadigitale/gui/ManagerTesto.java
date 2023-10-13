@@ -66,7 +66,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         LibriLB = new javax.swing.JLabel();
         LOGOUTLB = new javax.swing.JLabel();
         UtentiLB = new javax.swing.JLabel();
-        ModificaPasswordLB = UtentiLB = new javax.swing.JLabel();
+        ModificaPasswordLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
@@ -340,15 +340,6 @@ public class ManagerTesto extends javax.swing.JFrame {
             }
         });
 
-        UtentiLB.setBackground(new java.awt.Color(204, 0, 51));
-        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        UtentiLB.setText("UTENTI");
-        UtentiLB.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                UtenteMouseClicked(evt);
-            }
-        });
-
         ModificaPasswordLB.setBackground(new java.awt.Color(204, 0, 51));
         ModificaPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         ModificaPasswordLB.setText("Modifica Password");
@@ -359,6 +350,15 @@ public class ManagerTesto extends javax.swing.JFrame {
             }
         });
 
+        UtentiLB.setBackground(new java.awt.Color(204, 0, 51));
+        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        UtentiLB.setText("UTENTI");
+        UtentiLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UtenteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -366,12 +366,21 @@ public class ManagerTesto extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(34, 34, 34)
-                                                .addComponent(LOGOUTLB))
+                                                .addContainerGap()
+                                                .addComponent(ArticoliLB))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(ModificaPasswordLB, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(LibriLB))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(UtentiLB))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(ModificaPasswordLB, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(36, 36, 36)
+                                                .addComponent(LOGOUTLB)))
+                                .addGap(20, 20, 20)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
@@ -381,12 +390,18 @@ public class ManagerTesto extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(ArticoliLB)
+                                .addGap(18, 18, 18)
+                                .addComponent(LibriLB)
+                                .addGap(18, 18, 18)
+                                .addComponent(UtentiLB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ModificaPasswordLB, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(LOGOUTLB)
-                                .addGap(39, 39, 39))
+                                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -399,7 +414,6 @@ public class ManagerTesto extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
 
         pack();
         setLocationRelativeTo(null);
@@ -583,7 +597,6 @@ public class ManagerTesto extends javax.swing.JFrame {
             // L'utente ha annullato l'uscita, la finestra continua
         }
     }
-
 
     private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ApriLibri();
