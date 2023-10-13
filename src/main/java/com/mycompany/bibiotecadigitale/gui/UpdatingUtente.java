@@ -1,11 +1,4 @@
-package com.mycompany.bibiotecadigitale.gui;
-
-import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import com.mycompany.bibiotecadigitale.gui.Controller;
-
-import javax.swing.*;
-
-public class UpdatingUtente extends javax.swing.JFrame {
+{
 
     private Controller controller;
     private int codiceUtente;
@@ -14,6 +7,7 @@ public class UpdatingUtente extends javax.swing.JFrame {
         initComponents();
         utenteDAO = new UtenteDAO();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,12 +20,12 @@ public class UpdatingUtente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         IndietroLB = new javax.swing.JLabel();
-        ConfermaPassword = new javax.swing.JTextField();
+        ConfermaPassword = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         AggiornaUtente = new javax.swing.JButton();
         PulisciUtente = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        Password = new javax.swing.JTextField();
+        Password = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,6 +63,11 @@ public class UpdatingUtente extends javax.swing.JFrame {
         });
 
         PulisciUtente.setText("Pulisci");
+        PulisciUtente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PulisciTestoMouseClicked(evt);
+            }
+        });
 
         jLabel4.setBackground(new java.awt.Color(204, 0, 51));
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -190,6 +189,11 @@ public class UpdatingUtente extends javax.swing.JFrame {
         // Esegui altre azioni necessarie dopo l'aggiornamento della password
     }
 
+    private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
+        Password.setText("");
+        ConfermaPassword.setText("");
+    }
+
 
     private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -198,9 +202,9 @@ public class UpdatingUtente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JButton AggiornaUtente;
-    private javax.swing.JTextField ConfermaPassword;
+    private javax.swing.JPasswordField ConfermaPassword;
     private javax.swing.JLabel IndietroLB;
-    private javax.swing.JTextField Password;
+    private javax.swing.JPasswordField Password;
     private javax.swing.JButton PulisciUtente;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
