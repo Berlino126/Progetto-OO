@@ -1,14 +1,14 @@
-package com.mycompany.bibiotecadigitale.gui;
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import com.mycompany.bibiotecadigitale.model.Libro;
-import com.mycompany.bibiotecadigitale.model.Testo;
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import com.mycompany.bibiotecadigitale.model.Utente;
-import com.mycompany.bibiotecadigitale.gui.Controller;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import main.java.com.mycompany.bibiotecadigitale.model.Libro;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
 
 import java.awt.event.MouseEvent;
 import java.text.Normalizer;
@@ -66,6 +66,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         LibriLB = new javax.swing.JLabel();
         LOGOUTLB = new javax.swing.JLabel();
         UtentiLB = new javax.swing.JLabel();
+        ModificaPasswordLB = UtentiLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
@@ -348,6 +349,16 @@ public class ManagerTesto extends javax.swing.JFrame {
             }
         });
 
+        ModificaPasswordLB.setBackground(new java.awt.Color(204, 0, 51));
+        ModificaPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        ModificaPasswordLB.setText("Modifica Password");
+        ModificaPasswordLB.setToolTipText("");
+        ModificaPasswordLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ModificaPasswordMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -355,18 +366,12 @@ public class ManagerTesto extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(ArticoliLB))
+                                                .addGap(34, 34, 34)
+                                                .addComponent(LOGOUTLB))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(LibriLB))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(UtentiLB))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(36, 36, 36)
-                                                .addComponent(LOGOUTLB)))
-                                .addGap(20, 20, 20)
+                                                .addComponent(ModificaPasswordLB, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
@@ -376,16 +381,12 @@ public class ManagerTesto extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(ArticoliLB)
-                                .addGap(18, 18, 18)
-                                .addComponent(LibriLB)
-                                .addGap(18, 18, 18)
-                                .addComponent(UtentiLB)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ModificaPasswordLB, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(LOGOUTLB)
-                                .addGap(51, 51, 51))
+                                .addGap(39, 39, 39))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -398,6 +399,7 @@ public class ManagerTesto extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
 
         pack();
         setLocationRelativeTo(null);
@@ -420,6 +422,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         } else {
             try {
                 int codice = Integer.parseInt(CodiceTestoTF.getText());
+
                 // Verifica se il testo con lo stesso codice già esiste nel database
                 if (testoDAO.testoExists(codice)) {
                     JOptionPane.showMessageDialog(this, "Il testo con il codice " + codice + " esiste già nel database");
@@ -432,46 +435,40 @@ public class ManagerTesto extends javax.swing.JFrame {
                     String formato = FormTesto.getSelectedItem().toString();
                     String tipologia = TipologiaTesto.getSelectedItem().toString();
 
-                    // Verifica se esiste un testo con gli stessi attributi (tranne il codice)
-                    if (testoDAO.testoExistsWithSameAttributes(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia)) {
-                        JOptionPane.showMessageDialog(this, "Esiste già un testo con gli stessi attributi nel database");
-                    } else {
-                        // Continua con l'inserimento del nuovo testo nel database
-                        if (tipologia.equals("Libro")) {
-                            // Inserisci il testo come Libro con attributi di default
-                            String genere = "Non disponibile"; // Imposta il valore di default
-                            int capitoli = 0; // Imposta il valore di default
-                            int pagine = 0; // Imposta il valore di default
-                            String evento = "Non disponibile";
-                            String Collana = "Non disponibile";
-                            try {
-                                Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, evento, Collana);
-                                libroDAO.insertLibro(libro);
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento del libro");
-                            }
-                        } else if (tipologia.equals("Articolo Scientifico")) {
-                            // Inserisci il testo come Articolo Scientifico con attributi aggiunti
-                            String universita = "Non disponibile"; // Imposta il valore di default
-                            String riassunto = "Non disponibile"; // Imposta il valore di default
-                            String nomeRivista = "Non disponibile";
-                            String argomento = "Non disponibile";
-                            String responsabile = "Non disponibile";
-                            String luogoConferenza = "Non disponibile";
-                            Date dataConferenza = new Date(); // Imposta il valore di default
-
-                            try {
-                                ArticoloScientifico articolo = new ArticoloScientifico(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
-                                articoloScientificoDAO.insertArticoloScientifico(articolo);
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento dell'articolo");
-                            }
+                    if (tipologia.equals("Libro")) {
+                        // Inserisci il testo come Libro con attributi di default
+                        String genere = "Non disponibile"; // Imposta il valore di default
+                        int capitoli = 0; // Imposta il valore di default
+                        int pagine = 0; // Imposta il valore di default
+                        String evento = "Non disponibile";
+                        String Collana = "Non disponibile";
+                        try {
+                            Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, evento, Collana);
+                            libroDAO.insertLibro(libro);
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento del libro");
                         }
+                    } else if (tipologia.equals("Articolo Scientifico")) {
+                        // Inserisci il testo come Articolo Scientifico con attributi aggiunti
+                        String universita = "Non disponibile"; // Imposta il valore di default
+                        String riassunto = "Non disponibile"; // Imposta il valore di default
+                        String nomeRivista = "Non disponibile";
+                        String argomento = "Non disponibile";
+                        String responsabile = "Non disponibile";
+                        String luogoConferenza = "Non disponibile";
+                        Date dataConferenza = new Date(); // Imposta il valore di default
 
-                        JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente");
-                        refreshTestoTable();
-                        clearTextFields();
+                        try {
+                            ArticoloScientifico articolo = new ArticoloScientifico(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
+                            articoloScientificoDAO.insertArticoloScientifico(articolo);
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento dell'articolo");
+                        }
                     }
+
+                    JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente");
+                    refreshTestoTable();
+                    clearTextFields();
                 }
             } catch (ParseException e) {
                 JOptionPane.showMessageDialog(this, "Errore nella data di pubblicazione. Utilizza il formato 'yyyy-MM-dd'");
@@ -575,6 +572,19 @@ public class ManagerTesto extends javax.swing.JFrame {
         }
     }
 
+    private void ModificaPasswordMouseClicked(java.awt.event.MouseEvent evt) {
+        UIManager.put("OptionPane.yesButtonText", "Si");
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler modificare la password? Verrà aperta una nuova finestra per la modifica della password.", "Conferma modifica", JOptionPane.YES_NO_OPTION);
+
+        // Verifica della scelta dell'utente
+        if (scelta == JOptionPane.YES_OPTION) {
+            controller.ApriModificaUtente();
+        } else {
+            // L'utente ha annullato l'uscita, la finestra continua
+        }
+    }
+
+
     private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ApriLibri();
     }
@@ -669,6 +679,7 @@ public class ManagerTesto extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollTabella;
     private javax.swing.JLabel UtentiLB;
     private javax.swing.JLabel LOGOUTLB;
+    private javax.swing.JLabel ModificaPasswordLB;
     private javax.swing.JLabel ArticoliLB;
     private javax.swing.JLabel LibriLB;
     // End of variables declaration
