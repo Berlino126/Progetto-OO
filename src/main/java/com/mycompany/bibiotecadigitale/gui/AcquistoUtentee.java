@@ -1,32 +1,29 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
 
-import main.java.com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
-import main.java.com.mycompany.bibiotecadigitale.gui.Login;
-import main.java.com.mycompany.bibiotecadigitale.model.LibreriaUtente;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
-import main.java.com.mycompany.bibiotecadigitale.model.Richiesta;
-
+import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
+import com.mycompany.bibiotecadigitale.gui.Login;
+import com.mycompany.bibiotecadigitale.model.LibreriaUtente;
+import com.mycompany.bibiotecadigitale.model.Testo;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseAdapter;
+import java.text.Normalizer;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
-/**
- *
- * @author franc
- */
+
 public class AcquistoUtentee extends javax.swing.JFrame {
 
     private TestoDAO testoDAO;
     private RichiestaDAO richiestaDAO;
     private Controller controller;
     private int codiceutente;
-
+    private int codicerichiesta;
 
     public AcquistoUtentee() {
         initComponents();
@@ -36,7 +33,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     }
 
 
-    private void initComponents() {
+    private void initComponents(){
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -406,6 +403,10 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     {
         this.codiceutente = codice;
     }
+    public int getCodice()
+    {
+        return this.codiceutente;
+    }
 
 
     protected void refreshLibreriaTable() {
@@ -428,7 +429,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         }
     }
 
-
     private void refreshTestoTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
@@ -446,6 +446,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             });
         }
     }
+
 
     private void aggiornaInterfacciaConTestiFiltrati(List<Testo> testiFiltrati) {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
@@ -477,7 +478,14 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
         if (Indice != -1) { // Verifica se è stato selezionato un elemento valido
             TitoloTF.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
-            AnnoTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
+            Date annoPubblicazione = (Date) model.getValueAt(Indice, 1); // Estrai il valore Date dalla tabella
+            if (annoPubblicazione != null) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String annoPubblicazioneValue = dateFormat.format(annoPubblicazione);
+                AnnoTF.setText(annoPubblicazioneValue);
+            } else {
+                AnnoTF.setText(""); // Gestione del caso in cui la data sia nulla
+            }
             EdizioneTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
             // Imposta il valore selezionato nei JComboBox
             String formato = model.getValueAt(Indice, 2) != null ? model.getValueAt(Indice, 2).toString() : "";
@@ -503,30 +511,50 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     }
 
     private void RichiediMouseClicked(java.awt.event.MouseEvent evt) {
-        String titolo = TitoloTF.getText();
-        String edizione = EdizioneTF.getText();
+        try {
+            String titolo = TitoloTF.getText();
+            String edizione = EdizioneTF.getText();
 
-        if (titolo.isEmpty() ||  edizione.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        TestoDAO testoDAO = new TestoDAO();
-        int codiceTesto = testoDAO.RichiediTesto(titolo, edizione);
-        System.out.println(codiceTesto);
-        if (codiceTesto > 0) {
-            RichiestaDAO richiestaDAO = new RichiestaDAO();
-            richiestaDAO.insertRichiesta(codiceutente, codiceTesto);
-            JOptionPane.showMessageDialog(this, "Richiesta inserita con successo", "Successo", JOptionPane.INFORMATION_MESSAGE);
-            TitoloTF.setText("");
-            EdizioneTF.setText("");
-            int selectedRow = TabellaTesti.getSelectedRow();
-            refreshLibreriaTable();
-        } else {
-            // Messaggio di errore se il testo non è stato trovato
-            JOptionPane.showMessageDialog(this, "Testo non trovato nel database", "Errore", JOptionPane.ERROR_MESSAGE);
-        }
+            String annoPubblicazioneText = AnnoTF.getText();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date annoPubblicazione = dateFormat.parse(annoPubblicazioneText);
 
+            String formato = FormatoTestoBOX.getSelectedItem().toString();
+            String tipologia = TipologiaTestoBOX.getSelectedItem().toString();
+
+            if (titolo.isEmpty() || edizione.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Compila tutti i campi", "Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            TestoDAO testoDAO = new TestoDAO();
+            int codiceTesto = testoDAO.RichiediTesto(titolo, edizione, annoPubblicazione, formato, tipologia);
+
+            if (codiceTesto > 0) {
+                boolean isAvailable = testoDAO.isTestoAvailable(codiceTesto);
+
+                if (isAvailable) {
+                    RichiestaDAO richiestaDAO = new RichiestaDAO();
+                    richiestaDAO.insertRichiesta(codiceutente, codiceTesto);
+                    JOptionPane.showMessageDialog(this, "Richiesta inserita con successo", "Successo", JOptionPane.INFORMATION_MESSAGE);
+                    TitoloTF.setText("");
+                    EdizioneTF.setText("");
+                    int selectedRow = TabellaTesti.getSelectedRow();
+                    refreshLibreriaTable();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Il testo non è disponibile", "Errore", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Testo non trovato nel database", "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch(ParseException e)
+        {
+            JOptionPane.showMessageDialog(this, "Formato data non valido");
+        }
     }
+
+
 
 
     private void EliminaMouseClicked(java.awt.event.MouseEvent evt) {
@@ -570,12 +598,12 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         int selectedRow = TabellaResoconto.getSelectedRow();
         UIManager.put("OptionPane.yesButtonText", "Si");
         if (selectedRow >= 0) {
-        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler rimuovere dalla libreria il testo selezionato?", "Conferma rimozione", JOptionPane.YES_NO_OPTION);
+            int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler rimuovere dalla libreria il testo selezionato?", "Conferma rimozione", JOptionPane.YES_NO_OPTION);
 
-        // Verifica della scelta dell'utente
-        if (scelta == JOptionPane.YES_OPTION) {
-            int codiceRichiesta = (int) modelResoconto.getValueAt(selectedRow, 0);
-            richiestaDAO.deleteRichiesta(codiceRichiesta);
+            // Verifica della scelta dell'utente
+            if (scelta == JOptionPane.YES_OPTION) {
+                int codiceRichiesta = (int) modelResoconto.getValueAt(selectedRow, 0);
+                richiestaDAO.deleteRichiesta(codiceRichiesta);
                 modelResoconto.removeRow(selectedRow);
                 JOptionPane.showMessageDialog(null, "Il testo selezionato è stato rimosso dalla libreria.", "Conferma rimozione", JOptionPane.INFORMATION_MESSAGE);
             } else {}
@@ -627,6 +655,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify
     private javax.swing.JLabel BibliotecaDigitaleLB;
     private javax.swing.JLabel ChiudiFinestra;
@@ -656,5 +685,3 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration
 }
-
-

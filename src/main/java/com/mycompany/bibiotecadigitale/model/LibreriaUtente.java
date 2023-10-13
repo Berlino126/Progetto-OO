@@ -1,4 +1,4 @@
-package main.java.com.mycompany.bibiotecadigitale.model;
+package com.mycompany.bibiotecadigitale.model;
 import java.util.Date;
 public class LibreriaUtente {
     private int CodiceRichiesta;
@@ -97,4 +97,3 @@ public class LibreriaUtente {
     }
 
 }
-

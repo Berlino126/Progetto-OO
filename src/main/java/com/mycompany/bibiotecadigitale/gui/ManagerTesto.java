@@ -1,14 +1,14 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Utente;
-import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.Testo;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 
 import java.awt.event.MouseEvent;
 import java.text.Normalizer;
@@ -24,6 +24,7 @@ public class ManagerTesto extends javax.swing.JFrame {
     private ArticoloScientificoDAO articoloScientificoDAO;
     private LibroDAO libroDAO;
     private Controller controller;
+    private int codiceAdmin;
     public ManagerTesto(){
         initComponents();
         testoDAO = new TestoDAO();
@@ -429,14 +430,20 @@ public class ManagerTesto extends javax.swing.JFrame {
     {
         this.controller = controller;
     }
-
+    protected void setCodice (int codice)
+    {
+        this.codiceAdmin = codice;
+    }
+    protected int getCodice ()
+    {
+        return this.codiceAdmin;
+    }
     private void AggiungiTestoMouseClicked(java.awt.event.MouseEvent evt) {
         if (CodiceTestoTF.getText().isEmpty() || TitoloTestoTF.getText().isEmpty() || EdizioneTestoTF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Non hai inserito correttamente i dati");
         } else {
             try {
                 int codice = Integer.parseInt(CodiceTestoTF.getText());
-
                 // Verifica se il testo con lo stesso codice già esiste nel database
                 if (testoDAO.testoExists(codice)) {
                     JOptionPane.showMessageDialog(this, "Il testo con il codice " + codice + " esiste già nel database");
@@ -449,40 +456,46 @@ public class ManagerTesto extends javax.swing.JFrame {
                     String formato = FormTesto.getSelectedItem().toString();
                     String tipologia = TipologiaTesto.getSelectedItem().toString();
 
-                    if (tipologia.equals("Libro")) {
-                        // Inserisci il testo come Libro con attributi di default
-                        String genere = "Non disponibile"; // Imposta il valore di default
-                        int capitoli = 0; // Imposta il valore di default
-                        int pagine = 0; // Imposta il valore di default
-                        String evento = "Non disponibile";
-                        String Collana = "Non disponibile";
-                        try {
-                            Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, evento, Collana);
-                            libroDAO.insertLibro(libro);
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento del libro");
-                        }
-                    } else if (tipologia.equals("Articolo Scientifico")) {
-                        // Inserisci il testo come Articolo Scientifico con attributi aggiunti
-                        String universita = "Non disponibile"; // Imposta il valore di default
-                        String riassunto = "Non disponibile"; // Imposta il valore di default
-                        String nomeRivista = "Non disponibile";
-                        String argomento = "Non disponibile";
-                        String responsabile = "Non disponibile";
-                        String luogoConferenza = "Non disponibile";
-                        Date dataConferenza = new Date(); // Imposta il valore di default
+                    // Verifica se esiste un testo con gli stessi attributi (tranne il codice)
+                    if (testoDAO.testoExistsWithSameAttributes(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia)) {
+                        JOptionPane.showMessageDialog(this, "Esiste già un testo con gli stessi attributi nel database");
+                    } else {
+                        // Continua con l'inserimento del nuovo testo nel database
+                        if (tipologia.equals("Libro")) {
+                            // Inserisci il testo come Libro con attributi di default
+                            String genere = "Non disponibile"; // Imposta il valore di default
+                            int capitoli = 0; // Imposta il valore di default
+                            int pagine = 0; // Imposta il valore di default
+                            String evento = "Non disponibile";
+                            String Collana = "Non disponibile";
+                            try {
+                                Libro libro = new Libro(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, genere, capitoli, pagine, evento, Collana);
+                                libroDAO.insertLibro(libro);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento del libro");
+                            }
+                        } else if (tipologia.equals("Articolo Scientifico")) {
+                            // Inserisci il testo come Articolo Scientifico con attributi aggiunti
+                            String universita = "Non disponibile"; // Imposta il valore di default
+                            String riassunto = "Non disponibile"; // Imposta il valore di default
+                            String nomeRivista = "Non disponibile";
+                            String argomento = "Non disponibile";
+                            String responsabile = "Non disponibile";
+                            String luogoConferenza = "Non disponibile";
+                            Date dataConferenza = new Date(); // Imposta il valore di default
 
-                        try {
-                            ArticoloScientifico articolo = new ArticoloScientifico(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
-                            articoloScientificoDAO.insertArticoloScientifico(articolo);
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento dell'articolo");
+                            try {
+                                ArticoloScientifico articolo = new ArticoloScientifico(codice, titolo, annoPubblicazione, edizione, disponibilita, formato, tipologia, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
+                                articoloScientificoDAO.insertArticoloScientifico(articolo);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(this, "C'è stato un problema con l'inserimento dell'articolo");
+                            }
                         }
+
+                        JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente");
+                        refreshTestoTable();
+                        clearTextFields();
                     }
-
-                    JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente");
-                    refreshTestoTable();
-                    clearTextFields();
                 }
             } catch (ParseException e) {
                 JOptionPane.showMessageDialog(this, "Errore nella data di pubblicazione. Utilizza il formato 'yyyy-MM-dd'");
@@ -586,18 +599,6 @@ public class ManagerTesto extends javax.swing.JFrame {
         }
     }
 
-    private void ModificaPasswordMouseClicked(java.awt.event.MouseEvent evt) {
-        UIManager.put("OptionPane.yesButtonText", "Si");
-        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler modificare la password? Verrà aperta una nuova finestra per la modifica della password.", "Conferma modifica", JOptionPane.YES_NO_OPTION);
-
-        // Verifica della scelta dell'utente
-        if (scelta == JOptionPane.YES_OPTION) {
-            controller.ApriModificaUtente();
-        } else {
-            // L'utente ha annullato l'uscita, la finestra continua
-        }
-    }
-
     private void LibroMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ApriLibri();
     }
@@ -614,6 +615,17 @@ public class ManagerTesto extends javax.swing.JFrame {
         if (scelta == JOptionPane.YES_OPTION) {
             // L'utente ha confermato l'uscita, puoi chiudere la finestra
             controller.Logout();
+        } else {
+            // L'utente ha annullato l'uscita, la finestra continua
+        }
+    }
+    private void ModificaPasswordMouseClicked(java.awt.event.MouseEvent evt) {
+        UIManager.put("OptionPane.yesButtonText", "Si");
+        int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler modificare la password? Verrà aperta una nuova finestra per la modifica della password.", "Conferma modifica", JOptionPane.YES_NO_OPTION);
+
+        // Verifica della scelta dell'utente
+        if (scelta == JOptionPane.YES_OPTION) {
+            controller.ApriModificaAdmin();
         } else {
             // L'utente ha annullato l'uscita, la finestra continua
         }

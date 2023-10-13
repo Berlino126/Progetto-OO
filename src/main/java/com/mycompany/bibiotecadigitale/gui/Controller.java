@@ -1,10 +1,10 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
-import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.AdminDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
+package com.mycompany.bibiotecadigitale.gui;
+import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import com.mycompany.bibiotecadigitale.dao.AdminDAO;
+import com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
 public class Controller {
     private Login login;
     private ManagerTesto managerTesto;
@@ -51,9 +51,10 @@ public class Controller {
         acquistoUtentee.setVisible(true);
     }
 
-    protected void AccediAdmin() {
+    protected void AccediAdmin(int codiceAdmin) {
         login.dispose();
         managerTesto.setController(this);
+        managerTesto.setCodice(codiceAdmin);
         managerTesto.refreshTestoTable();
         managerTesto.setVisible(true);
     }
@@ -108,7 +109,15 @@ public class Controller {
     {
         acquistoUtentee.dispose();
         updatingUtente.setController(this);
+        updatingUtente.setCodice(acquistoUtentee.getCodice());
         updatingUtente.setVisible(true);
+    }
+    protected void ApriModificaAdmin()
+    {
+        managerTesto.dispose();
+        updatingAdmin.setController(this);
+        updatingAdmin.setCodice(managerTesto.getCodice());
+        updatingAdmin.setVisible(true);
     }
     protected void ChiudiApp() {
         if (utenteDAO != null) {
@@ -137,6 +146,19 @@ public class Controller {
         registrazione.setController(this);
         registrazione.setVisible(true);
     }
+    protected void IndietroAdmin ()
+    {
+        updatingAdmin.dispose();
+        managerTesto.setController(this);
+        managerTesto.setVisible(true);
+    }
+    protected void IndietroUtente()
+    {
+        updatingUtente.dispose();
+        acquistoUtentee.setController(this);
+        acquistoUtentee.setVisible(true);
+    }
+
 
 
     public static void main(String[] args) {

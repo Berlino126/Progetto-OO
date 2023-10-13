@@ -86,6 +86,17 @@ public class AdminDAO {
         }
         return credenzialiValide;
     }
+    public void updatePassword(int codiceUtente, String nuovaPassword) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Admin SET Password=? WHERE CodAdmin=?");
+            preparedStatement.setString(1, nuovaPassword);
+            preparedStatement.setInt(2, codiceUtente);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+    }
 
     // Altre operazioni CRUD e metodi accessori qui
 

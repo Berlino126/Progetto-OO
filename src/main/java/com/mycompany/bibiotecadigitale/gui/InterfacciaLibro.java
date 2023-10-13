@@ -1,8 +1,9 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+package com.mycompany.bibiotecadigitale.gui;
+
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.Testo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +36,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        ChiudiFinestra = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         GenereLB = new javax.swing.JLabel();
         GenereTF = new javax.swing.JTextField();
@@ -56,7 +57,6 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         ArticoliLB = new javax.swing.JLabel();
         TestiLB = new javax.swing.JLabel();
         LOGOUTLB = new javax.swing.JLabel();
-        UtentiLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
@@ -66,13 +66,13 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
-        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
-        ChiudiFinestra.setText("x");
-        ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel9.setBackground(new java.awt.Color(204, 0, 51));
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel9.setText("x");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ChiudiFinestraMouseClicked(evt);
+                jLabel9MouseClicked(evt);
             }
         });
 
@@ -189,7 +189,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addGap(269, 269, 269)
-                                .addComponent(ChiudiFinestra)
+                                .addComponent(jLabel9)
                                 .addContainerGap())
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
@@ -242,7 +242,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3)
-                                        .addComponent(ChiudiFinestra))
+                                        .addComponent(jLabel9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(CapitoliLB)
@@ -276,7 +276,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
         ArticoliLB.setBackground(new java.awt.Color(204, 0, 51));
         ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        ArticoliLB.setText("ARTICOLI SCIENTIFICI");
+        ArticoliLB.setText("Articoli Scientifici");
         ArticoliLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ArticoloMouseClicked(evt);
@@ -286,7 +286,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
         TestiLB.setBackground(new java.awt.Color(204, 0, 51));
         TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        TestiLB.setText("TESTI");
+        TestiLB.setText("Testi");
         TestiLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TestoMouseClicked(evt);
@@ -294,18 +294,8 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         });
 
 
-        UtentiLB.setBackground(new java.awt.Color(204, 0, 51));
-        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        UtentiLB.setText("UTENTI");
-        UtentiLB.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                UtentiMouseClicked(evt);
-            }
-        });
-
-
         LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
-        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         LOGOUTLB.setText("LOGOUT");
         LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -313,37 +303,37 @@ public class InterfacciaLibro extends javax.swing.JFrame {
             }
         });
 
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(14, 14, 14)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(LOGOUTLB)
-                                        .addComponent(UtentiLB, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(ArticoliLB)
-                                        .addComponent(TestiLB))
+                                        .addComponent(TestiLB)
+                                        .addComponent(LOGOUTLB))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
+
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(7, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(ArticoliLB)
-                                .addGap(18, 18, 18)
-                                .addComponent(TestiLB)
-                                .addGap(18, 18, 18)
-                                .addComponent(UtentiLB)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LOGOUTLB)
-                                .addGap(17, 17, 17))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(92, 92, 92)
+                                                .addComponent(ArticoliLB)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(TestiLB)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(LOGOUTLB)))
+                                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -402,7 +392,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
     }
 
 
-    private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {
         controller.ChiudiApp();
     }
 
@@ -412,10 +402,6 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
     private void ArticoloMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ApriArticoli();
-    }
-
-    private void UtentiMouseClicked(java.awt.event.MouseEvent evt) {
-        controller.ApriUtenti();
     }
 
     private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
@@ -435,18 +421,12 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         GenereTF.setText("");
         CapitoliTF.setText("");
         PagineTF.setText("");
-        CodiceTF.setText("");
-        EventoTF.setText("");
-        CollanaTF.setText("");
     }
 
     private void clearTextFields() {
         GenereTF.setText("");
         CapitoliTF.setText("");
         PagineTF.setText("");
-        CodiceTF.setText("");
-        EventoTF.setText("");
-        CollanaTF.setText("");
     }
 
     protected void refreshLibroTable() {
@@ -501,15 +481,22 @@ public class InterfacciaLibro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfacciaLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfacciaUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfacciaLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfacciaUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfacciaLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfacciaUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfacciaLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfacciaUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
 
+        /* Create and display the form */
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new InterfacciaLibro().setVisible(true);
+            }
+        });*/
     }
 
     // Variables declaration - do not modify
@@ -532,10 +519,9 @@ public class InterfacciaLibro extends javax.swing.JFrame {
     private javax.swing.JLabel TestiLB;
     private javax.swing.JTextField GenereTF;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel ChiudiFinestra;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel UtentiLB;
     // End of variables declaration
 }

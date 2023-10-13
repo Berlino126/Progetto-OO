@@ -268,7 +268,7 @@ public class Login extends javax.swing.JFrame {
                 } else {
                     AdminDAO adminDAO1 = new AdminDAO();
                     if (adminDAO1.verificaCredenziali(codiceUtente, passwordUtente)) {
-                        controller.AccediAdmin();
+                        controller.AccediAdmin(codiceUtente);
                     } else {
                         JOptionPane.showMessageDialog(this, "Credenziali admin non valide");
                     }

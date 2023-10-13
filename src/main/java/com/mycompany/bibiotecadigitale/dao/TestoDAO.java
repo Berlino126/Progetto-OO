@@ -155,18 +155,17 @@ public class TestoDAO {
         }
         return testi;
     }
-    public int RichiediTesto(String titolo, String edizione, Date annoPubblicazione, boolean disponibilita, String formato, String tipologia) {
+    public int RichiediTesto(String titolo, String edizione, Date annoPubblicazione, String formato, String tipologia) {
         int codiceTesto = -1; // Valore di default nel caso il testo non sia trovato
 
         try {
-            String query = "SELECT CodTesto FROM Testo WHERE Titolo = ? AND Edizione = ? AND AnnoPubblicazione = ? AND Disponibilita = ? AND Formato = ? AND Tipologia = ?";
+            String query = "SELECT CodTesto FROM Testo WHERE Titolo = ? AND Edizione = ? AND AnnoPubblicazione = ?  AND Formato = ? AND Tipologia = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, titolo);
             preparedStatement.setString(2, edizione);
             preparedStatement.setDate(3, new java.sql.Date(annoPubblicazione.getTime()));
-            preparedStatement.setBoolean(4, disponibilita);
-            preparedStatement.setString(5, formato);
-            preparedStatement.setString(6, tipologia);
+            preparedStatement.setString(4, formato);
+            preparedStatement.setString(5, tipologia);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -208,7 +207,23 @@ public class TestoDAO {
         return exists;
     }
 
-    // Altre operazioni CRUD e metodi accessori qui
+    public boolean isTestoAvailable(int codiceTesto) {
+        boolean isAvailable = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT Disponibilita FROM Testo WHERE CodTesto = ?");
+            preparedStatement.setInt(1, codiceTesto);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                isAvailable = resultSet.getBoolean("Disponibilita");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+        return isAvailable;
+    }
+
 
     public void close() {
         try {

@@ -500,8 +500,6 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
                 String dataConferenzaText= DataTF.getText();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date dataConferenza = dateFormat.parse(dataConferenzaText);
-
-
                 articoloScientificoDAO.updateArticoloScientifico(codice, universita, riassunto, nomeRivista, argomento, responsabile, luogoConferenza, dataConferenza);
 
                 JOptionPane.showMessageDialog(this, "Testo modificato correttamente");

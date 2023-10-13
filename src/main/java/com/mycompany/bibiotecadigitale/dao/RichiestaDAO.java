@@ -1,8 +1,7 @@
-package main.java.com.mycompany.bibiotecadigitale.dao;
+package com.mycompany.bibiotecadigitale.dao;
 
-import main.java.com.mycompany.bibiotecadigitale.model.Libreria;
-import main.java.com.mycompany.bibiotecadigitale.model.LibreriaUtente;
-import main.java.com.mycompany.bibiotecadigitale.model.Richiesta;
+import com.mycompany.bibiotecadigitale.model.LibreriaUtente;
+import com.mycompany.bibiotecadigitale.model.Richiesta;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +17,6 @@ public class RichiestaDAO {
     public RichiestaDAO() {
         connection = ConnectionManager.getConnection();
     }
-
     public List<LibreriaUtente> getAllRichiesteLibreria(int codUtente) {
         List<LibreriaUtente> libreriaUtenteList = new ArrayList<>();
         try {
@@ -46,7 +44,6 @@ public class RichiestaDAO {
         }
         return libreriaUtenteList;
     }
-
     public List<Richiesta> getAllRichieste(int codUtente) {
         List<Richiesta> richieste = new ArrayList<>();
         try {
@@ -68,13 +65,13 @@ public class RichiestaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             // Gestisci l'eccezione
-        /*} finally {
+        } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 // Gestisci l'eccezione
-            }*/
+            }
         }
         return richieste;
     }
@@ -108,7 +105,14 @@ public class RichiestaDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+            // Gestisci l'eccezione
+        } /*finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Gestisci l'eccezione
+            }*/
     }
     public void close() {
         try {
@@ -133,3 +137,4 @@ public class RichiestaDAO {
     }
 
 }
+
