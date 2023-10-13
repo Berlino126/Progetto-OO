@@ -1,7 +1,8 @@
 package main.java.com.mycompany.bibiotecadigitale.model;
 import java.util.Date;
 public class LibreriaUtente {
-    private String CodiceUtente;
+    private int CodiceRichiesta;
+    private int CodiceUtente;
     private String Titolo;
     private Date AnnoPubblicazione;
     private String Formato;
@@ -10,7 +11,8 @@ public class LibreriaUtente {
     private Date dataRichiesta;
     private String Stato;
 
-    public LibreriaUtente(String codiceUtente, String titolo, Date annoPubblicazione, String formato, String edizione, String tipologia, Date dataRichiesta, String stato) {
+    public LibreriaUtente(int codiceRichiesta, int codiceUtente, String titolo, Date annoPubblicazione, String formato, String edizione, String tipologia, Date dataRichiesta, String stato) {
+        this.CodiceRichiesta = codiceRichiesta;
         this.CodiceUtente = codiceUtente;
         this.Titolo = titolo;
         this.AnnoPubblicazione = annoPubblicazione;
@@ -21,11 +23,20 @@ public class LibreriaUtente {
         this.Stato = stato;
     }
 
-    public String getCodiceUtente() {
+    public int getCodiceRichiesta() {
+        return CodiceRichiesta;
+    }
+
+    public void setCodiceRichiesta(int codiceRichiesta) {
+        CodiceRichiesta = codiceRichiesta;
+    }
+
+
+    public int getCodiceUtente() {
         return CodiceUtente;
     }
 
-    public void setCodiceUtente(String codiceUtente) {
+    public void setCodiceUtente(int codiceUtente) {
         CodiceUtente = codiceUtente;
     }
 
