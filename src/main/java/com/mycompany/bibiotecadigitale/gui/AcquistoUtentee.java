@@ -26,7 +26,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private RichiestaDAO richiestaDAO;
     private Controller controller;
     private int codiceutente;
-    private int codicerichiesta;
+
 
     public AcquistoUtentee() {
         initComponents();
@@ -44,8 +44,8 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         BibliotecaDigitaleLB = new javax.swing.JLabel();
         TitoloLB = new javax.swing.JLabel();
         TitoloTF = new javax.swing.JTextField();
-        GenereTF = new javax.swing.JTextField();
-        GenereLB = new javax.swing.JLabel();
+        AnnoTF = new javax.swing.JTextField();
+        AnnoLB = new javax.swing.JLabel();
         TipologiaTestoBOX = new javax.swing.JComboBox<String>();
         RichiediBTN = new javax.swing.JButton();
         FiltraBTN = new javax.swing.JButton();
@@ -100,10 +100,10 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             }
         });
 
-        GenereLB.setBackground(new java.awt.Color(204, 0, 51));
-        GenereLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        GenereLB.setForeground(new java.awt.Color(204, 0, 51));
-        GenereLB.setText("Genere");
+        AnnoLB.setBackground(new java.awt.Color(204, 0, 51));
+        AnnoLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        AnnoLB.setForeground(new java.awt.Color(204, 0, 51));
+        AnnoLB.setText("Anno");
 
         TipologiaTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Libro", "Articolo Scientifico"}));
         TipologiaTestoBOX.addActionListener(new java.awt.event.ActionListener() {
@@ -176,11 +176,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         TabellaResoconto.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
-                        "Titolo", "Anno Pubblicazione", "Formato", "Edizione", "Tipologia", "Data Richiesta", "Stato"
+                        "Codice Richiesta", "Titolo", "Anno Pubblicazione", "Formato", "Edizione", "Tipologia", "Data Richiesta", "Stato"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, false
+                    false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -218,11 +218,13 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                                 .addGap(26, 26, 26)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(EdizioneLB)
-                                                        .addComponent(TitoloLB))
+                                                        .addComponent(TitoloLB)
+                                                        .addComponent(AnnoLB))
                                                 .addGap(61, 61, 61)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(EdizioneTF, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                                        .addComponent(TitoloTF)))
+                                                        .addComponent(AnnoTF)
+                                                        .addComponent(TitoloTF)
+                                                        .addComponent(EdizioneTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(59, 59, 59)
                                                 .addComponent(RichiediBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,13 +289,17 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                         .addComponent(TitoloLB)
                                         .addComponent(TitoloTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(14, 14, 14)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(29, 29, 29)
+                                                .addGap(4, 4, 4)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(AnnoLB)
+                                                        .addComponent(AnnoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(EdizioneLB)
                                                         .addComponent(EdizioneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(44, 44, 44)
+                                                .addGap(29, 29, 29)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(RichiediBTN)
                                                         .addComponent(PulisciBTN))
@@ -410,6 +416,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
         for (LibreriaUtente libreriaUtente : libreriaUtenteList) {
             model.addRow(new Object[]{
+                    libreriaUtente.getCodiceRichiesta(),
                     libreriaUtente.getTitolo(),
                     libreriaUtente.getAnnoPubblicazione(),
                     libreriaUtente.getFormato(),
@@ -470,8 +477,8 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
         if (Indice != -1) { // Verifica se è stato selezionato un elemento valido
             TitoloTF.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
+            AnnoTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
             EdizioneTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
-
             // Imposta il valore selezionato nei JComboBox
             String formato = model.getValueAt(Indice, 2) != null ? model.getValueAt(Indice, 2).toString() : "";
             String tipologia = model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "";
@@ -528,9 +535,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         DefaultTableModel modelResoconto = (DefaultTableModel) TabellaResoconto.getModel();
         if (scelta == JOptionPane.YES_OPTION) {
             // Rimuovi tutte le righe dalla tabella di destinazione
-            while (modelResoconto.getRowCount() > 0) {
-                richiestaDAO.deleteRichiesta(codicerichiesta);
-                modelResoconto.removeRow(0);
+            int rowCount = modelResoconto.getRowCount();
+            for (int i = rowCount - 1; i >= 0; i--) {
+                int identificatore = (int) modelResoconto.getValueAt(i, 0);
+                richiestaDAO.deleteRichiesta(identificatore);
+                modelResoconto.removeRow(i);
             }
             JOptionPane.showMessageDialog(null, "Libreria eliminata.", "Conferma", JOptionPane.INFORMATION_MESSAGE);
         } else {}
@@ -560,22 +569,19 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         // Ottieni l'indice della riga selezionata nella tabella di destinazione
         int selectedRow = TabellaResoconto.getSelectedRow();
         UIManager.put("OptionPane.yesButtonText", "Si");
+        if (selectedRow >= 0) {
         int scelta = JOptionPane.showConfirmDialog(null, "Sei sicuro di voler rimuovere dalla libreria il testo selezionato?", "Conferma rimozione", JOptionPane.YES_NO_OPTION);
 
         // Verifica della scelta dell'utente
         if (scelta == JOptionPane.YES_OPTION) {
-
-            // Verifica se è stata selezionata una riga
-            if (selectedRow != -1) {
-                // Rimuovi la riga selezionata dalla tabella di destinazione
+            int codiceRichiesta = (int) modelResoconto.getValueAt(selectedRow, 0);
+            richiestaDAO.deleteRichiesta(codiceRichiesta);
                 modelResoconto.removeRow(selectedRow);
                 JOptionPane.showMessageDialog(null, "Il testo selezionato è stato rimosso dalla libreria.", "Conferma rimozione", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                // Nessuna riga è stata selezionata, mostra un messaggio di avviso all'utente
-                JOptionPane.showMessageDialog(null, "Seleziona una riga da eliminare.", "Attenzione", JOptionPane.WARNING_MESSAGE);
-            }
+            } else {}
         }
-        else {}
+        else { JOptionPane.showMessageDialog(null, "Seleziona una riga da eliminare.", "Attenzione", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
@@ -628,8 +634,8 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private javax.swing.JTextField EdizioneTF;
     private javax.swing.JButton EliminaBTN;
     private javax.swing.JComboBox<String> FormatoTestoBOX;
-    private javax.swing.JLabel GenereLB;
-    private javax.swing.JTextField GenereTF;
+    private javax.swing.JLabel AnnoLB;
+    private javax.swing.JTextField AnnoTF;
     private javax.swing.JLabel LOGOUTLB;
     private javax.swing.JLabel ListaProdottiLB;
     private javax.swing.JButton FiltraBTN;
@@ -650,4 +656,5 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration
 }
+
 
