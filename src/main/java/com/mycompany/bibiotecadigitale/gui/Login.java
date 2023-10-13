@@ -1,10 +1,10 @@
 
-package com.mycompany.bibiotecadigitale.gui;
-import com.mycompany.bibiotecadigitale.model.Utente;
-import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import com.mycompany.bibiotecadigitale.model.Admin;
-import com.mycompany.bibiotecadigitale.dao.AdminDAO;
-import com.mycompany.bibiotecadigitale.gui.Controller;
+package main.java.com.mycompany.bibiotecadigitale.gui;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.Admin;
+import main.java.com.mycompany.bibiotecadigitale.dao.AdminDAO;
+import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -33,7 +33,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         CodiceUtente = new javax.swing.JTextField();
-        PasswordUtente = new javax.swing.JTextField();
+        PasswordUtente = new javax.swing.JPasswordField();
         Modalita = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -288,7 +288,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton Accedi;
     private javax.swing.JLabel Chiudi;
     private javax.swing.JTextField CodiceUtente;
-    private javax.swing.JTextField PasswordUtente;
+    private javax.swing.JPasswordField PasswordUtente;
     private javax.swing.JButton Pulisci;
     private javax.swing.JComboBox<String> Modalita;
     private javax.swing.JButton Registrati;
