@@ -88,7 +88,7 @@ public class AdminDAO {
     }
     public void updatePassword(int codiceUtente, String nuovaPassword) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Admin SET Password=? WHERE CodAdmin=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Admin SET Password=? WHERE id=?");
             preparedStatement.setString(1, nuovaPassword);
             preparedStatement.setInt(2, codiceUtente);
             preparedStatement.executeUpdate();

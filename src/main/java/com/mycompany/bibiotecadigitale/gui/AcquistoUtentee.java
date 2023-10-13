@@ -4,6 +4,7 @@ package com.mycompany.bibiotecadigitale.gui;
 import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
 import com.mycompany.bibiotecadigitale.gui.Login;
 import com.mycompany.bibiotecadigitale.model.LibreriaUtente;
+import com.mycompany.bibiotecadigitale.model.Richiesta;
 import com.mycompany.bibiotecadigitale.model.Testo;
 import com.mycompany.bibiotecadigitale.dao.TestoDAO;
 import com.mycompany.bibiotecadigitale.gui.Controller;
@@ -395,15 +396,15 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ChiudiApp();
     }
-    public void setController(Controller controller)
+    protected void setController(Controller controller)
     {
         this.controller = controller;
     }
-    public void setCodice(int codice)
+    protected void setCodice(int codice)
     {
         this.codiceutente = codice;
     }
-    public int getCodice()
+    protected int getCodice()
     {
         return this.codiceutente;
     }
@@ -412,7 +413,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     protected void refreshLibreriaTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaResoconto.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
-
+        richiestaDAO.updateRichiestaStatus();
         List<LibreriaUtente> libreriaUtenteList = richiestaDAO.getAllRichiesteLibreria(codiceutente);
 
         for (LibreriaUtente libreriaUtente : libreriaUtenteList) {
@@ -489,7 +490,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             EdizioneTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
             // Imposta il valore selezionato nei JComboBox
             String formato = model.getValueAt(Indice, 2) != null ? model.getValueAt(Indice, 2).toString() : "";
-            String tipologia = model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "";
+            String tipologia = model.getValueAt(Indice, 5) != null ? model.getValueAt(Indice, 5).toString() : "";
 
             FormatoTestoBOX.setSelectedItem(formato);
             TipologiaTestoBOX.setSelectedItem(tipologia);
@@ -514,11 +515,9 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         try {
             String titolo = TitoloTF.getText();
             String edizione = EdizioneTF.getText();
-
             String annoPubblicazioneText = AnnoTF.getText();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date annoPubblicazione = dateFormat.parse(annoPubblicazioneText);
-
             String formato = FormatoTestoBOX.getSelectedItem().toString();
             String tipologia = TipologiaTestoBOX.getSelectedItem().toString();
 
@@ -531,25 +530,33 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             int codiceTesto = testoDAO.RichiediTesto(titolo, edizione, annoPubblicazione, formato, tipologia);
 
             if (codiceTesto > 0) {
+                // Verifica se esiste già una richiesta "valida" per questo testo e utente
+                RichiestaDAO richiestaDAO = new RichiestaDAO();
+                List<Richiesta> existingRequests = richiestaDAO.getAllRichieste(codiceutente);
+
+                for (Richiesta request : existingRequests) {
+                    if (request.getCodiceTesto() == codiceTesto && "Valido".equals(request.getStato())) {
+                        JOptionPane.showMessageDialog(this, "Hai già una richiesta valida per questo testo");
+                        return;
+                    }
+                }
+
                 boolean isAvailable = testoDAO.isTestoAvailable(codiceTesto);
 
                 if (isAvailable) {
-                    RichiestaDAO richiestaDAO = new RichiestaDAO();
                     richiestaDAO.insertRichiesta(codiceutente, codiceTesto);
-                    JOptionPane.showMessageDialog(this, "Richiesta inserita con successo", "Successo", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Richiesta inserita con successo");
                     TitoloTF.setText("");
                     EdizioneTF.setText("");
                     int selectedRow = TabellaTesti.getSelectedRow();
                     refreshLibreriaTable();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Il testo non è disponibile", "Errore", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Il testo non è disponibile");
                 }
             } else {
-
-                JOptionPane.showMessageDialog(this, "Testo non trovato nel database", "Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Testo non trovato nel database");
             }
-        } catch(ParseException e)
-        {
+        } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Formato data non valido");
         }
     }

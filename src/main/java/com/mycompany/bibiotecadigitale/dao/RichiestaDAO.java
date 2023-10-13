@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -65,14 +66,14 @@ public class RichiestaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             // Gestisci l'eccezione
-        } finally {
+        } /*finally {
             try {
-                connection.close();
+                //connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 // Gestisci l'eccezione
             }
-        }
+        }*/
         return richieste;
     }
 
@@ -135,6 +136,20 @@ public class RichiestaDAO {
             // Gestisci l'eccezione
         }
     }
+    public void updateRichiestaStatus() {
+        Calendar oneMonthAgo = Calendar.getInstance();
+        oneMonthAgo.add(Calendar.MONTH, -1);
 
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE Richiesta SET Stato = 'Non Valido' " +
+                            "WHERE DataRichiesta < ? AND Stato = 'Valido'");
+            preparedStatement.setTimestamp(1, new java.sql.Timestamp(oneMonthAgo.getTimeInMillis()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+    }
 }
 
