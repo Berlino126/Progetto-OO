@@ -57,7 +57,7 @@ CREATE TABLE Richiesta (
 );
 
 CREATE VIEW LibreriaUtente AS
-SELECT R.CodiceUtente, T.Titolo, T.AnnoPubblicazione, T.Formato, T.Edizione, T.Tipologia, R.DataRichiesta, R.Stato
+SELECT R.CodiceUtente, R.CodRichiesta, T.Titolo, T.AnnoPubblicazione, T.Formato, T.Edizione, T.Tipologia, R.DataRichiesta, R.Stato
 FROM Testo AS T, Richiesta AS R, Utente AS U 
 WHERE T.CodTesto = R.CodiceTesto AND R.CodiceUtente = U.CodUtente
 
