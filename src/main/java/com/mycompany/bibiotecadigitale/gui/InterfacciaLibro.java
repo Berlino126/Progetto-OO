@@ -1,9 +1,8 @@
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
-package com.mycompany.bibiotecadigitale.gui;
-
-import com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import com.mycompany.bibiotecadigitale.model.Libro;
-import com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.Libro;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -421,12 +420,18 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         GenereTF.setText("");
         CapitoliTF.setText("");
         PagineTF.setText("");
+        CodiceTF.setText("");
+        EventoTF.setText("");
+        CollanaTF.setText("");
     }
 
     private void clearTextFields() {
         GenereTF.setText("");
         CapitoliTF.setText("");
         PagineTF.setText("");
+        CodiceTF.setText("");
+        EventoTF.setText("");
+        CollanaTF.setText("");
     }
 
     protected void refreshLibroTable() {
@@ -481,22 +486,15 @@ public class InterfacciaLibro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfacciaUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfacciaLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfacciaUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfacciaLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfacciaUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfacciaLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfacciaUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfacciaLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfacciaLibro().setVisible(true);
-            }
-        });*/
     }
 
     // Variables declaration - do not modify
