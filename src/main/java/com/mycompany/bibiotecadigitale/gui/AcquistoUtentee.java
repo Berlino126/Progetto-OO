@@ -1,13 +1,13 @@
-package com.mycompany.bibiotecadigitale.gui;
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
 
-import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
-import com.mycompany.bibiotecadigitale.gui.Login;
-import com.mycompany.bibiotecadigitale.model.LibreriaUtente;
-import com.mycompany.bibiotecadigitale.model.Richiesta;
-import com.mycompany.bibiotecadigitale.model.Testo;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.gui.Controller;
+import main.java.com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
+import main.java.com.mycompany.bibiotecadigitale.gui.Login;
+import main.java.com.mycompany.bibiotecadigitale.model.LibreriaUtente;
+import main.java.com.mycompany.bibiotecadigitale.model.Richiesta;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.text.Normalizer;
@@ -622,11 +622,13 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
         TitoloTF.setText("");
         EdizioneTF.setText("");
+        AnnoTF.setText("");
     }
 
     private void clearTextField() {
         TitoloTF.setText("");
         EdizioneTF.setText("");
+        AnnoTF.setText("");
     }
 
 
