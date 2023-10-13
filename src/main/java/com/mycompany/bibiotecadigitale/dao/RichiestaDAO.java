@@ -27,7 +27,8 @@ public class RichiestaDAO {
             preparedStatement.setInt(1, codUtente);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String codiceUtente = resultSet.getString("CodiceUtente");
+                int codiceRichiesta = resultSet.getInt("CodRichiesta");
+                int codiceUtente = resultSet.getInt("CodiceUtente");
                 Date dataRichiesta = resultSet.getDate("DataRichiesta");
                 String stato = resultSet.getString("Stato");
                 String titolo = resultSet.getString("Titolo");
@@ -37,7 +38,7 @@ public class RichiestaDAO {
                 String formato = resultSet.getString("Formato");
                 String tipologia = resultSet.getString("Tipologia");
 
-                LibreriaUtente libreriaUtente = new LibreriaUtente(codiceUtente, titolo, annoPubblicazione, edizione, formato, tipologia, dataRichiesta,  stato);
+                LibreriaUtente libreriaUtente = new LibreriaUtente(codiceRichiesta, codiceUtente, titolo, annoPubblicazione, edizione, formato, tipologia, dataRichiesta,  stato);
                 libreriaUtenteList.add(libreriaUtente);
             }
         } catch (SQLException e) {
@@ -107,7 +108,7 @@ public class RichiestaDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } 
+        }
     }
     public void close() {
         try {
