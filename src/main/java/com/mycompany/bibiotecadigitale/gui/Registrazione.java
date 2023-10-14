@@ -1,10 +1,10 @@
-package com.mycompany.bibiotecadigitale.gui;
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import com.mycompany.bibiotecadigitale.gui.AcquistoUtentee;
-import com.mycompany.bibiotecadigitale.gui.Login;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import com.mycompany.bibiotecadigitale.model.Utente;
+import main.java.com.mycompany.bibiotecadigitale.gui.AcquistoUtentee;
+import main.java.com.mycompany.bibiotecadigitale.gui.Login;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -289,13 +289,40 @@ public class Registrazione extends javax.swing.JFrame {
         this.controller = controller;
     }
 
+    private boolean isStringNumeric(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isValidEmail(String email) {
+        // Verifica che ci sia almeno un "@" nell'indirizzo email
+        if (email.contains("@")) {
+            // Verifica che ci sia almeno un carattere prima e dopo l'@" per considerare l'email valida
+            int atIndex = email.indexOf("@");
+            return atIndex > 0 && atIndex < email.length() - 1;
+        }
+        return false;
+    }
+
     private void RegistratiMouseClicked (java.awt.event.MouseEvent evt) {
+        int CodiceUtente = utenteDAO.getUtenteRegistrato();
+        CodiceUtente += 1;
         if (NomeTF.getText().isEmpty() || CognomeTF.getText().isEmpty() || TelefonoTF.getText().isEmpty()
                 || PasswordPF.getText().isEmpty() || ConfermaPasswordPF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Non hai inserito correttamente i dati.", "Attenzione", JOptionPane.WARNING_MESSAGE);
         }
         else if (!PasswordPF.getText().equals(ConfermaPasswordPF.getText())) {
             JOptionPane.showMessageDialog(null, "Le password non coincidono, riprova.", "Attenzione", JOptionPane.WARNING_MESSAGE);
+        }
+        else if (!isStringNumeric(TelefonoTF.getText())) {
+            JOptionPane.showMessageDialog(this, "Il numero di telefono non è valido. Assicurati di inserire un numero corretto.", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (!isValidEmail(EmailTF.getText())) {
+            JOptionPane.showMessageDialog(this, "L'indirizzo email non è valido. Assicurati di inserire un indirizzo email corretto.", "Errore", JOptionPane.ERROR_MESSAGE);
         }
         else {
             String nome = NomeTF.getText();
@@ -304,12 +331,22 @@ public class Registrazione extends javax.swing.JFrame {
             String email = EmailTF.getText();
             String password = String.valueOf(PasswordPF.getPassword());
             utenteDAO.registerUtente(nome, cognome, email, telefono, password);
-            JOptionPane.showMessageDialog(this, "Registrazione avvenuta con successo!");
+            JOptionPane.showMessageDialog(this, "Registrazione avvenuta con successo! Il tuo codice è: " + CodiceUtente);
+            ClearTextFields();
             controller.Logout();
         }
     }
 
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
+        NomeTF.setText("");
+        CognomeTF.setText("");
+        TelefonoTF.setText("");
+        EmailTF.setText("");
+        PasswordPF.setText("");
+        ConfermaPasswordPF.setText("");
+    }
+
+    private void ClearTextFields () {
         NomeTF.setText("");
         CognomeTF.setText("");
         TelefonoTF.setText("");
