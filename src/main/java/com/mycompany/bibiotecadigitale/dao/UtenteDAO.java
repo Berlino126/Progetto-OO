@@ -1,6 +1,6 @@
-package com.mycompany.bibiotecadigitale.dao;
+package main.java.com.mycompany.bibiotecadigitale.dao;
 
-import com.mycompany.bibiotecadigitale.model.Utente;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +11,22 @@ public class UtenteDAO {
 
     public UtenteDAO() {
         connection = ConnectionManager.getConnection();
+    }
+
+    public int getUtenteRegistrato () {
+        int largestCode = -1; // Inizializziamo a -1 nel caso in cui non ci siano utenti nel database
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT MAX(CodUtente) FROM Utente");
+
+            if (resultSet.next()) {
+                largestCode = resultSet.getInt(1); // Ottieni il valore del codice utente più grande
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione
+        }
+        return largestCode;
     }
 
     public List<Utente> getAllUtenti() {
