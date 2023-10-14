@@ -1,14 +1,14 @@
-package com.mycompany.bibiotecadigitale.gui;
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import com.mycompany.bibiotecadigitale.model.Libro;
-import com.mycompany.bibiotecadigitale.model.Testo;
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import com.mycompany.bibiotecadigitale.model.Utente;
-import com.mycompany.bibiotecadigitale.gui.Controller;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import main.java.com.mycompany.bibiotecadigitale.model.Libro;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
 
 import java.awt.event.MouseEvent;
 import java.text.Normalizer;
@@ -143,18 +143,13 @@ public class ManagerTesto extends javax.swing.JFrame {
         });
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
+                new Object [][] {},
                 new String [] {
-                        "Titolo", "Codice", "Anno Pubblicazione", "Edizione", "Disponibilita", "Formato", "Tipologia"
+                        "Codice", "Titolo", "Anno Pubblicazione", "Edizione", "Disponibilita", "Formato", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, true
+                    false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
