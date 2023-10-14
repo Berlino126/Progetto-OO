@@ -1,18 +1,18 @@
-package com.mycompany.bibiotecadigitale.gui;
+package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import com.mycompany.bibiotecadigitale.gui.InterfacciaLibro;
-import com.mycompany.bibiotecadigitale.gui.Login;
-import com.mycompany.bibiotecadigitale.gui.ManagerTesto;
-import com.mycompany.bibiotecadigitale.gui.ManagerUtenti;
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import com.mycompany.bibiotecadigitale.model.Libro;
-import com.mycompany.bibiotecadigitale.model.Testo;
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import com.mycompany.bibiotecadigitale.model.Utente;
-import com.mycompany.bibiotecadigitale.gui.Controller;
+import main.java.com.mycompany.bibiotecadigitale.gui.InterfacciaLibro;
+import main.java.com.mycompany.bibiotecadigitale.gui.Login;
+import main.java.com.mycompany.bibiotecadigitale.gui.ManagerTesto;
+import main.java.com.mycompany.bibiotecadigitale.gui.ManagerUtenti;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import main.java.com.mycompany.bibiotecadigitale.model.Libro;
+import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -129,18 +129,13 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         });
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null}
-                },
+                new Object [][] {},
                 new String [] {
-                        "Codice", "Responsabile", "Argomento", "Rivista", "Università", "Riassunto", "Luogo Conferenza", "Data Conferenza"
+                        "Codice", "Argomento", "Rivista", "Responsabile", "Università", "Riassunto", "Luogo Conferenza", "Data Conferenza"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, false, true
+                    false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -438,9 +433,9 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         int Indice = TabellaTesti.getSelectedRow();
         if (Indice != -1) {
             CodiceTF.setText(model.getValueAt(Indice, 0) != null ? model.getValueAt(Indice, 0).toString() : "");
-            ResponsabileTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
-            ArgomentoTF.setText(model.getValueAt(Indice, 2) != null ? model.getValueAt(Indice, 2).toString() : "");
-            RivistaTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
+            ArgomentoTF.setText(model.getValueAt(Indice, 1) != null ? model.getValueAt(Indice, 1).toString() : "");
+            RivistaTF.setText(model.getValueAt(Indice, 2) != null ? model.getValueAt(Indice, 2).toString() : "");
+            ResponsabileTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
             UniversitàTF.setText(model.getValueAt(Indice, 4) != null ? model.getValueAt(Indice, 4).toString() : "");
             RiassuntoTF.setText(model.getValueAt(Indice, 5) != null ? model.getValueAt(Indice, 5).toString() : "");
             LuogoTF.setText(model.getValueAt(Indice, 6) != null ? model.getValueAt(Indice, 6).toString() : "");
