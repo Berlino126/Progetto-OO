@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -443,11 +445,19 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         CollanaTF.setText("");
     }
 
-    protected void refreshLibroTable() {
+     protected void refreshLibroTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
 
         List<Libro> libri = LibroDAO.getAllLibri();
+
+        // Ordina la lista dei libri in base all'attributo "Collana"
+        Collections.sort(libri, new Comparator<Libro>() {
+            @Override
+            public int compare(Libro libro1, Libro libro2) {
+                return libro1.getCollana().compareTo(libro2.getCollana());
+            }
+        });
 
         for (Libro libro : libri) {
             model.addRow(new Object[]{
