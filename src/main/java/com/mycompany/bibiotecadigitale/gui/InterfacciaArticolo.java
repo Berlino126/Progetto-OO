@@ -1,18 +1,18 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.gui.InterfacciaLibro;
-import main.java.com.mycompany.bibiotecadigitale.gui.Login;
-import main.java.com.mycompany.bibiotecadigitale.gui.ManagerTesto;
-import main.java.com.mycompany.bibiotecadigitale.gui.ManagerUtenti;
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Utente;
-import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
+import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
+import com.mycompany.bibiotecadigitale.gui.InterfacciaLibro;
+import com.mycompany.bibiotecadigitale.gui.Login;
+import com.mycompany.bibiotecadigitale.gui.ManagerTesto;
+import com.mycompany.bibiotecadigitale.gui.ManagerUtenti;
+import com.mycompany.bibiotecadigitale.implementazione_dao.TestoDAOImpl;
+import com.mycompany.bibiotecadigitale.model.ArticoloScientifico;
+import com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.Testo;
+import com.mycompany.bibiotecadigitale.implementazione_dao.ArticoloScientificoDAOImpl;
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,20 +25,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
 
-/**
- *
- * @author franc
- */
-
 public class InterfacciaArticolo extends javax.swing.JFrame {
     private Controller controller;
-    private TestoDAO testoDAO;
-    private ArticoloScientificoDAO articoloScientificoDAO;
+    private TestoDAOImpl testoDAO;
+    private ArticoloScientificoDAOImpl articoloScientificoDAO;
 
     public InterfacciaArticolo() {
         initComponents();
-        testoDAO = new TestoDAO();
-        articoloScientificoDAO = new ArticoloScientificoDAO();
+        testoDAO = new TestoDAOImpl();
+        articoloScientificoDAO = new ArticoloScientificoDAOImpl();
         refreshArticoloTable();
     }
 
@@ -564,7 +559,8 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
 
-        List<ArticoloScientifico> articoli = ArticoloScientificoDAO.getAllArticolo();
+        ArticoloScientificoDAOImpl dao = new ArticoloScientificoDAOImpl(); // Crea un'istanza del DAO
+        List<ArticoloScientifico> articoli = dao.getAllArticolo(); // Chiama il metodo su un'istanza
 
         for (ArticoloScientifico articoloScientifico : articoli) {
             model.addRow(new Object[]{
@@ -579,6 +575,7 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
             });
         }
     }
+
 
 
     // Variables declaration - do not modify

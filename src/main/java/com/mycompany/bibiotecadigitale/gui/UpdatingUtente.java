@@ -1,13 +1,19 @@
-{
+package com.mycompany.bibiotecadigitale.gui;
+
+import com.mycompany.bibiotecadigitale.implementazione_dao.UtenteDAOImpl;
+import com.mycompany.bibiotecadigitale.gui.Controller;
+
+import javax.swing.*;
+
+public class UpdatingUtente extends javax.swing.JFrame {
 
     private Controller controller;
     private int codiceUtente;
-    private UtenteDAO utenteDAO;
+    private UtenteDAOImpl utenteDAO;
     public UpdatingUtente() {
         initComponents();
-        utenteDAO = new UtenteDAO();
+        utenteDAO = new UtenteDAOImpl();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -20,12 +26,12 @@
 
         jPanel1 = new javax.swing.JPanel();
         IndietroLB = new javax.swing.JLabel();
-        ConfermaPassword = new javax.swing.JPasswordField();
+        ConfermaPassword = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         AggiornaUtente = new javax.swing.JButton();
         PulisciUtente = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        Password = new javax.swing.JPasswordField();
+        Password = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,11 +69,6 @@
         });
 
         PulisciUtente.setText("Pulisci");
-        PulisciUtente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PulisciTestoMouseClicked(evt);
-            }
-        });
 
         jLabel4.setBackground(new java.awt.Color(204, 0, 51));
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -181,17 +182,12 @@
             return;
         }
 
-        UtenteDAO utenteDAO = new UtenteDAO();
+        UtenteDAOImpl utenteDAO = new UtenteDAOImpl();
         // Aggiorna la password dell'utente nel database
         utenteDAO.updatePassword(codiceUtente, password);
         JOptionPane.showMessageDialog(this, "Password aggiornata con successo", "Successo", JOptionPane.INFORMATION_MESSAGE);
 
         // Esegui altre azioni necessarie dopo l'aggiornamento della password
-    }
-
-    private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
-        Password.setText("");
-        ConfermaPassword.setText("");
     }
 
 
@@ -202,9 +198,9 @@
 
     // Variables declaration - do not modify
     private javax.swing.JButton AggiornaUtente;
-    private javax.swing.JPasswordField ConfermaPassword;
+    private javax.swing.JTextField ConfermaPassword;
     private javax.swing.JLabel IndietroLB;
-    private javax.swing.JPasswordField Password;
+    private javax.swing.JTextField Password;
     private javax.swing.JButton PulisciUtente;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;

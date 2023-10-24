@@ -1,8 +1,10 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Libro;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
+package com.mycompany.bibiotecadigitale.gui;
+
+import com.mycompany.bibiotecadigitale.dao.LibroDAO;
+import com.mycompany.bibiotecadigitale.implementazione_dao.LibroDAOImpl;
+import com.mycompany.bibiotecadigitale.model.Libro;
+import com.mycompany.bibiotecadigitale.model.Testo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,17 +14,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- *
- * @author franc
- */
 public class InterfacciaLibro extends javax.swing.JFrame {
     private Controller controller;
-    private LibroDAO libroDAO;
+    private LibroDAOImpl libroDAO;
     public InterfacciaLibro() {
         initComponents();
         this.controller = controller;
-        libroDAO = new LibroDAO();
+        libroDAO = new LibroDAOImpl();
         refreshLibroTable();
     }
 
@@ -445,11 +443,12 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         CollanaTF.setText("");
     }
 
-     protected void refreshLibroTable() {
+    protected void refreshLibroTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         model.setRowCount(0); // Cancella tutte le righe attuali
 
-        List<Libro> libri = LibroDAO.getAllLibri();
+        LibroDAOImpl dao = new LibroDAOImpl(); // Crea un'istanza del DAO
+        List<Libro> libri = dao.getAllLibri(); // Chiama il metodo su un'istanza
 
         // Ordina la lista dei libri in base all'attributo "Collana"
         Collections.sort(libri, new Comparator<Libro>() {
@@ -470,6 +469,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
             });
         }
     }
+
     private void TabellaTestoMouseClicked(java.awt.event.MouseEvent evt) {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         int Indice = TabellaTesti.getSelectedRow();

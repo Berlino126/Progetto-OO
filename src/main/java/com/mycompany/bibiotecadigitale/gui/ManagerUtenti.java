@@ -1,7 +1,8 @@
 
 package com.mycompany.bibiotecadigitale.gui;
+import com.mycompany.bibiotecadigitale.implementazione_dao.UtenteDAOImpl;
 import com.mycompany.bibiotecadigitale.model.Utente;
-import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
+import com.mycompany.bibiotecadigitale.implementazione_dao.UtenteDAOImpl;
 import com.mycompany.bibiotecadigitale.gui.Controller;
 import java.util.List;
 import javax.swing.*;
@@ -9,11 +10,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class ManagerUtenti extends javax.swing.JFrame {
 
-    private UtenteDAO utenteDAO;
+    private UtenteDAOImpl utenteDAO;
     private Controller controller;
     public ManagerUtenti() {
         initComponents();
-        utenteDAO = new UtenteDAO();
+        utenteDAO = new UtenteDAOImpl();
         refreshUtenteTable();
     }
 

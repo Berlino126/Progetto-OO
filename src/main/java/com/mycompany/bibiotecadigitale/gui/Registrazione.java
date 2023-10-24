@@ -1,24 +1,19 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
-import main.java.com.mycompany.bibiotecadigitale.gui.AcquistoUtentee;
-import main.java.com.mycompany.bibiotecadigitale.gui.Login;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import main.java.com.mycompany.bibiotecadigitale.model.Utente;
+import com.mycompany.bibiotecadigitale.gui.AcquistoUtentee;
+import com.mycompany.bibiotecadigitale.gui.Login;
+import com.mycompany.bibiotecadigitale.implementazione_dao.UtenteDAOImpl;
+import com.mycompany.bibiotecadigitale.model.Utente;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author franc
- */
 public class Registrazione extends javax.swing.JFrame {
     private Controller controller;
-    private UtenteDAO utenteDAO;
+    private UtenteDAOImpl utenteDAO;
     public Registrazione() {
         initComponents();
-        utenteDAO = new UtenteDAO();
+        utenteDAO = new UtenteDAOImpl();
     }
 
     private void initComponents() {

@@ -1,10 +1,12 @@
 package com.mycompany.bibiotecadigitale.gui;
-import com.mycompany.bibiotecadigitale.dao.UtenteDAO;
-import com.mycompany.bibiotecadigitale.dao.AdminDAO;
-import com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import com.mycompany.bibiotecadigitale.dao.LibroDAO;
-import com.mycompany.bibiotecadigitale.dao.ArticoloScientificoDAO;
-import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
+import com.mycompany.bibiotecadigitale.dao.*;
+import com.mycompany.bibiotecadigitale.implementazione_dao.AdminDAOImpl;
+import com.mycompany.bibiotecadigitale.implementazione_dao.TestoDAOImpl;
+import com.mycompany.bibiotecadigitale.implementazione_dao.LibroDAOImpl;
+import com.mycompany.bibiotecadigitale.implementazione_dao.ArticoloScientificoDAOImpl;
+import com.mycompany.bibiotecadigitale.implementazione_dao.RichiestaDAOImpl;
+import com.mycompany.bibiotecadigitale.implementazione_dao.UtenteDAOImpl;
+
 public class Controller {
     private Login login;
     private ManagerTesto managerTesto;
@@ -17,8 +19,8 @@ public class Controller {
     private UpdatingUtente updatingUtente;
     private Registrazione registrazione;
     private UtenteDAO utenteDAO;
-    private AdminDAO adminDAO;
-    private TestoDAO testoDAO;
+    private AdminDAOImpl adminDAO;
+    private TestoDAOImpl testoDAO;
     private LibroDAO libroDAO;
     private ArticoloScientificoDAO articoloScientificoDAO;
     private RichiestaDAO richiestaDAO;
@@ -34,8 +36,8 @@ public class Controller {
         this.interfacciaLibro = interfacciaLibro;
         this.updatingUtente = updatingUtente;
         this.registrazione = registrazione;
-        UtenteDAO utenteDAO = new UtenteDAO();
-        AdminDAO adminDAO = new AdminDAO();
+        UtenteDAO utenteDAO = new UtenteDAOImpl();
+        AdminDAO adminDAO = new AdminDAOImpl();
         // Mostra la finestra di login
         login.setController(this);
         login.setVisible(true);

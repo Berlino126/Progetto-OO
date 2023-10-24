@@ -1,13 +1,14 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
+package com.mycompany.bibiotecadigitale.gui;
 
 
-import main.java.com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
-import main.java.com.mycompany.bibiotecadigitale.gui.Login;
-import main.java.com.mycompany.bibiotecadigitale.model.LibreriaUtente;
-import main.java.com.mycompany.bibiotecadigitale.model.Richiesta;
-import main.java.com.mycompany.bibiotecadigitale.model.Testo;
-import main.java.com.mycompany.bibiotecadigitale.dao.TestoDAO;
-import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
+import com.mycompany.bibiotecadigitale.implementazione_dao.RichiestaDAOImpl;
+import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
+import com.mycompany.bibiotecadigitale.gui.Login;
+import com.mycompany.bibiotecadigitale.implementazione_dao.TestoDAOImpl;
+import com.mycompany.bibiotecadigitale.model.LibreriaUtente;
+import com.mycompany.bibiotecadigitale.model.Richiesta;
+import com.mycompany.bibiotecadigitale.model.Testo;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.text.Normalizer;
@@ -20,7 +21,7 @@ import java.util.Vector;
 
 public class AcquistoUtentee extends javax.swing.JFrame {
 
-    private TestoDAO testoDAO;
+    private TestoDAOImpl testoDAO;
     private RichiestaDAO richiestaDAO;
     private Controller controller;
     private int codiceutente;
@@ -28,8 +29,8 @@ public class AcquistoUtentee extends javax.swing.JFrame {
 
     public AcquistoUtentee() {
         initComponents();
-        testoDAO = new TestoDAO();
-        richiestaDAO = new RichiestaDAO();
+        testoDAO = new TestoDAOImpl();
+        richiestaDAO = new RichiestaDAOImpl();
         refreshTestoTable();
     }
 
@@ -526,12 +527,12 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                 return;
             }
 
-            TestoDAO testoDAO = new TestoDAO();
+            TestoDAOImpl testoDAO = new TestoDAOImpl();
             int codiceTesto = testoDAO.RichiediTesto(titolo, edizione, annoPubblicazione, formato, tipologia);
 
             if (codiceTesto > 0) {
                 // Verifica se esiste già una richiesta "valida" per questo testo e utente
-                RichiestaDAO richiestaDAO = new RichiestaDAO();
+                RichiestaDAO richiestaDAO = new RichiestaDAOImpl();
                 List<Richiesta> existingRequests = richiestaDAO.getAllRichieste(codiceutente);
 
                 for (Richiesta request : existingRequests) {
@@ -622,13 +623,11 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
         TitoloTF.setText("");
         EdizioneTF.setText("");
-        AnnoTF.setText("");
     }
 
     private void clearTextField() {
         TitoloTF.setText("");
         EdizioneTF.setText("");
-        AnnoTF.setText("");
     }
 
 

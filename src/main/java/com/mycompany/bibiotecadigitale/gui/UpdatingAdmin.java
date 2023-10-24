@@ -1,6 +1,7 @@
-package main.java.com.mycompany.bibiotecadigitale.gui;
-import main.java.com.mycompany.bibiotecadigitale.dao.AdminDAO;
-import main.java.com.mycompany.bibiotecadigitale.gui.Controller;
+package com.mycompany.bibiotecadigitale.gui;
+import com.mycompany.bibiotecadigitale.implementazione_dao.AdminDAOImpl;
+import com.mycompany.bibiotecadigitale.dao.AdminDAO;
+import com.mycompany.bibiotecadigitale.gui.Controller;
 
 import javax.swing.*;
 
@@ -9,22 +10,22 @@ public class UpdatingAdmin extends javax.swing.JFrame {
     private Controller controller;
     private int codiceAdmin;
     private AdminDAO adminDAO;
-
     public UpdatingAdmin() {
         initComponents();
-        adminDAO = new AdminDAO();
+        adminDAO = new AdminDAOImpl();
     }
-
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         IndietroLB = new javax.swing.JLabel();
-        ConfermaPassword = new javax.swing.JPasswordField();
+        ConfermaPassword = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         AggiornaAdmin = new javax.swing.JButton();
         PulisciAdmin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        Password = new javax.swing.JPasswordField();
+        Password = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,11 +63,6 @@ public class UpdatingAdmin extends javax.swing.JFrame {
         });
 
         PulisciAdmin.setText("Pulisci");
-        PulisciAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PulisciTestoMouseClicked(evt);
-            }
-        });
 
         jLabel4.setBackground(new java.awt.Color(204, 0, 51));
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -154,15 +150,14 @@ public class UpdatingAdmin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>
-
-    public void setController(Controller controller) {
+    public void setController(Controller controller)
+    {
         this.controller = controller;
     }
-
-    protected void setCodice(int codice) {
+    protected void setCodice (int codice)
+    {
         this.codiceAdmin = codice;
     }
-
     private void ConfermaPasswordActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -174,33 +169,29 @@ public class UpdatingAdmin extends javax.swing.JFrame {
     private void AggiornaAdminMouseClicked(java.awt.event.MouseEvent evt) {
         String password = Password.getText();
         String confermaPassword = ConfermaPassword.getText();
-        if (!password.equals((confermaPassword))) {
+        if (!password.equals((confermaPassword)))
+        {
             JOptionPane.showMessageDialog(this, "Le password non corrispondono ", "Errore", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        AdminDAO adminDAO = new AdminDAO();
+        AdminDAO adminDAO = new AdminDAOImpl();
         adminDAO.updatePassword(codiceAdmin, password);
         JOptionPane.showMessageDialog(this, "Password aggiornata con successo ");
-    }
-
-    private void PulisciTestoMouseClicked(java.awt.event.MouseEvent evt) {
-        Password.setText("");
-        ConfermaPassword.setText("");
     }
 
     private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify                     
     private javax.swing.JButton AggiornaAdmin;
-    private javax.swing.JPasswordField ConfermaPassword;
+    private javax.swing.JTextField ConfermaPassword;
     private javax.swing.JLabel IndietroLB;
-    private javax.swing.JPasswordField Password;
+    private javax.swing.JTextField Password;
     private javax.swing.JButton PulisciAdmin;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    // End of variables declaration
+    // End of variables declaration                   
 }
