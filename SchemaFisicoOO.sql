@@ -52,6 +52,7 @@ CREATE TABLE Richiesta (
     DataRichiesta DATE, 
     CodiceUtente INT, 
     CodiceTesto INT,
+    Stato VARCHAR(16),
     FOREIGN KEY (CodiceUtente) REFERENCES Utente(codUtente) ON DELETE CASCADE,
     FOREIGN KEY (CodiceTesto) References Testo(codTesto) ON DELETE CASCADE
 );
