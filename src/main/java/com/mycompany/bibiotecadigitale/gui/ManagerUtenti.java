@@ -50,47 +50,32 @@ public class ManagerUtenti extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 0, 51));
         setUndecorated(true);
 
-
         jPanel1.setBackground(new java.awt.Color(204, 0, 51));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
-        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24));
         ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
         ChiudiFinestra.setText("x");
         ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                ChiudiFinestraMouseClicked(evt);
             }
         });
 
-
         ManagerUtentiLB.setBackground(new java.awt.Color(204, 0, 51));
-        ManagerUtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ManagerUtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         ManagerUtentiLB.setForeground(new java.awt.Color(204, 0, 51));
         ManagerUtentiLB.setText("MANAGER UTENTI");
 
         CodiceLB.setBackground(new java.awt.Color(204, 0, 51));
-        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         CodiceLB.setForeground(new java.awt.Color(204, 0, 51));
         CodiceLB.setText("Codice");
-        CodiceLB.setToolTipText("");
-
-        CodiceUtente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodiceUtenteActionPerformed(evt);
-            }
-        });
-
-        NomeUtente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomeUtenteActionPerformed(evt);
-            }
-        });
 
         NomeLB.setBackground(new java.awt.Color(204, 0, 51));
-        NomeLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        NomeLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         NomeLB.setForeground(new java.awt.Color(204, 0, 51));
         NomeLB.setText("Nome");
 
@@ -123,12 +108,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
         });
 
         TabellaUtente.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
+                new Object [][] {},
                 new String [] {
                         "Cod", "Nome", "Cognome", "Email", "Telefono"
                 }
@@ -153,12 +133,6 @@ public class ManagerUtenti extends javax.swing.JFrame {
         CognomeLB.setForeground(new java.awt.Color(204, 0, 51));
         CognomeLB.setText("Cognome");
 
-        CognomeUtente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CognomeUtenteActionPerformed(evt);
-            }
-        });
-
         EmailLB.setBackground(new java.awt.Color(204, 0, 51));
         EmailLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         EmailLB.setForeground(new java.awt.Color(204, 0, 51));
@@ -168,18 +142,6 @@ public class ManagerUtenti extends javax.swing.JFrame {
         TelefonoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         TelefonoLB.setForeground(new java.awt.Color(204, 0, 51));
         TelefonoLB.setText("Telefono");
-
-        TelefonoUtente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TelefonoUtenteActionPerformed(evt);
-            }
-        });
-
-        EmailUtente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailUtenteActionPerformed(evt);
-            }
-        });
 
         ListaUtentiLB.setBackground(new java.awt.Color(204, 0, 51));
         ListaUtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -279,7 +241,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
         );
 
         LibriLB.setBackground(new java.awt.Color(204, 0, 51));
-        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         LibriLB.setText("LIBRI");
         LibriLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -288,7 +250,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
         });
 
         TestiLB.setBackground(new java.awt.Color(204, 0, 51));
-        TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         TestiLB.setText("TESTI");
         TestiLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -297,7 +259,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
         });
 
         LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
-        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         LOGOUTLB.setText("LOGOUT");
         LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -306,7 +268,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
         });
 
         ArticoliLB.setBackground(new java.awt.Color(204, 0, 51));
-        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         ArticoliLB.setText("ARTICOLI SCIENTIFICI");
         ArticoliLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -360,28 +322,9 @@ public class ManagerUtenti extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void CodiceUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodiceUtenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CodiceUtenteActionPerformed
-
-    private void NomeUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeUtenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomeUtenteActionPerformed
-
-    private void CognomeUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CognomeUtenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CognomeUtenteActionPerformed
-
-    private void TelefonoUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonoUtenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TelefonoUtenteActionPerformed
-
-    private void EmailUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailUtenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailUtenteActionPerformed
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {
+    private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ChiudiApp();
     }
     public void setController(Controller controller)
@@ -423,7 +366,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
         CognomeUtente.setText(model.getValueAt(Indice, 2).toString());
         EmailUtente.setText(model.getValueAt(Indice, 3).toString());
         TelefonoUtente.setText(model.getValueAt(Indice, 4).toString());
-    }//GEN-LAST:event_TabellaUtenteMouseClicked
+    }
 
     private void PulisciUtenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PulisciUtenteMouseClicked
         NomeUtente.setText("");
@@ -431,7 +374,7 @@ public class ManagerUtenti extends javax.swing.JFrame {
         CognomeUtente.setText("");
         EmailUtente.setText("");
         TelefonoUtente.setText("");
-    }//GEN-LAST:event_PulisciUtenteMouseClicked
+    }
 
     private void EliminaUtenteMouseClicked(java.awt.event.MouseEvent evt) {
         if (CodiceUtente.getText().isEmpty()) {
@@ -526,9 +469,6 @@ public class ManagerUtenti extends javax.swing.JFrame {
         controller.ApriArticoli();
     }
 
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AggiungiUtente;
     private javax.swing.JTextField CodiceUtente;
     private javax.swing.JTextField CognomeUtente;
@@ -554,5 +494,4 @@ public class ManagerUtenti extends javax.swing.JFrame {
     private javax.swing.JLabel LOGOUTLB;
     private javax.swing.JLabel ArticoliLB;
     private javax.swing.JLabel LibriLB;
-    // End of variables declaration//GEN-END:variables
 }
