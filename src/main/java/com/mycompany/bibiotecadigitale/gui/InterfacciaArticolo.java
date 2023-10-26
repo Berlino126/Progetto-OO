@@ -78,7 +78,7 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
-        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24));
         ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
         ChiudiFinestra.setText("x");
         ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,24 +88,18 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         });
 
         ArticoliScientificiLB.setBackground(new java.awt.Color(204, 0, 51));
-        ArticoliScientificiLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ArticoliScientificiLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         ArticoliScientificiLB.setForeground(new java.awt.Color(204, 0, 51));
         ArticoliScientificiLB.setText("ARTICOLI SCIENTIFICI");
 
         ResponsabileLB.setBackground(new java.awt.Color(204, 0, 51));
-        ResponsabileLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        ResponsabileLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         ResponsabileLB.setForeground(new java.awt.Color(204, 0, 51));
         ResponsabileLB.setText("Responsabile");
         ResponsabileLB.setToolTipText("");
 
-        ResponsabileTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ResponsabileTFActionPerformed(evt);
-            }
-        });
-
         UniversitàLB.setBackground(new java.awt.Color(204, 0, 51));
-        UniversitàLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        UniversitàLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         UniversitàLB.setForeground(new java.awt.Color(204, 0, 51));
         UniversitàLB.setText("Università");
 
@@ -146,72 +140,42 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         });
 
         RivistaLB.setBackground(new java.awt.Color(204, 0, 51));
-        RivistaLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        RivistaLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         RivistaLB.setForeground(new java.awt.Color(204, 0, 51));
         RivistaLB.setText("Rivista");
 
-        RiassuntoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RiassuntoTFActionPerformed(evt);
-            }
-        });
-
         RiassuntoLB.setBackground(new java.awt.Color(204, 0, 51));
-        RiassuntoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        RiassuntoLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         RiassuntoLB.setForeground(new java.awt.Color(204, 0, 51));
         RiassuntoLB.setText("Riassunto");
         RiassuntoLB.setToolTipText("");
 
         LuogoLB.setBackground(new java.awt.Color(204, 0, 51));
-        LuogoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        LuogoLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         LuogoLB.setForeground(new java.awt.Color(204, 0, 51));
         LuogoLB.setText("Luogo");
         LuogoLB.setToolTipText("");
 
-        LuogoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LuogoTFActionPerformed(evt);
-            }
-        });
-
         CodiceLB.setBackground(new java.awt.Color(204, 0, 51));
-        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         CodiceLB.setForeground(new java.awt.Color(204, 0, 51));
         CodiceLB.setText("Codice");
         CodiceLB.setToolTipText("");
 
-        CodiceTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodiceTFActionPerformed(evt);
-            }
-        });
-
         ArgomentoLB.setBackground(new java.awt.Color(204, 0, 51));
-        ArgomentoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        ArgomentoLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         ArgomentoLB.setForeground(new java.awt.Color(204, 0, 51));
         ArgomentoLB.setText("Argomento");
         ArgomentoLB.setToolTipText("");
 
-        ArgomentoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ArgomentoTFActionPerformed(evt);
-            }
-        });
-
         DataLB.setBackground(new java.awt.Color(204, 0, 51));
-        DataLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        DataLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         DataLB.setForeground(new java.awt.Color(204, 0, 51));
         DataLB.setText("Data");
         DataLB.setToolTipText("");
 
-        DataTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DataTFActionPerformed(evt);
-            }
-        });
-
         ConferenzaLB.setBackground(new java.awt.Color(204, 0, 51));
-        ConferenzaLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        ConferenzaLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         ConferenzaLB.setForeground(new java.awt.Color(204, 0, 51));
         ConferenzaLB.setText("CONFERENZA:");
 
@@ -340,7 +304,7 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         );
 
         LibriLB.setBackground(new java.awt.Color(204, 0, 51));
-        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         LibriLB.setText("LIBRI");
         LibriLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -349,7 +313,7 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         });
 
         TestiLB.setBackground(new java.awt.Color(204, 0, 51));
-        TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         TestiLB.setText("TESTI");
         TestiLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -358,7 +322,7 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         });
 
         LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
-        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         LOGOUTLB.setText("LOGOUT");
         LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -367,7 +331,7 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         });
 
         UtentiLB.setBackground(new java.awt.Color(204, 0, 51));
-        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         UtentiLB.setText("UTENTI");
         UtentiLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -447,29 +411,6 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         }
     }
 
-    private void ResponsabileTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void RiassuntoTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void LuogoTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void CodiceTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void ArgomentoTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void DataTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
     public void setController(Controller controller)
     {
         this.controller = controller;
@@ -502,7 +443,6 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
             }
         }
     }
-
 
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ChiudiApp();
@@ -576,9 +516,6 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
         }
     }
 
-
-
-    // Variables declaration - do not modify
     private javax.swing.JLabel ArgomentoLB;
     private javax.swing.JTextField ArgomentoTF;
     private javax.swing.JLabel CodiceLB;
@@ -608,5 +545,4 @@ public class InterfacciaArticolo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane ScrollTabella;
-    // End of variables declaration
 }
