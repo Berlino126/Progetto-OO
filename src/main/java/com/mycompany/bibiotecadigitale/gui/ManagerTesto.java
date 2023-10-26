@@ -32,11 +32,8 @@ public class ManagerTesto extends javax.swing.JFrame {
         refreshTestoTable();
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        //FormatoTesto = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         ChiudiFinestra = new javax.swing.JLabel();
@@ -77,7 +74,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
-        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24));
         ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
         ChiudiFinestra.setText("x");
         ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,29 +84,23 @@ public class ManagerTesto extends javax.swing.JFrame {
         });
 
         ManagerTestiLB.setBackground(new java.awt.Color(204, 0, 51));
-        ManagerTestiLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ManagerTestiLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         ManagerTestiLB.setForeground(new java.awt.Color(204, 0, 51));
         ManagerTestiLB.setText("MANAGER TESTI");
 
         CodiceLB.setBackground(new java.awt.Color(204, 0, 51));
-        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         CodiceLB.setForeground(new java.awt.Color(204, 0, 51));
         CodiceLB.setText("Codice");
         CodiceLB.setToolTipText("");
 
         TipologiaLB.setBackground(new java.awt.Color(204, 0, 51));
-        TipologiaLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TipologiaLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         TipologiaLB.setForeground(new java.awt.Color(204, 0, 51));
         TipologiaLB.setText("Tipologia");
 
-        CodiceTestoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodiceTestoActionPerformed(evt);
-            }
-        });
-
         TitoloLB.setBackground(new java.awt.Color(204, 0, 51));
-        TitoloLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TitoloLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         TitoloLB.setForeground(new java.awt.Color(204, 0, 51));
         TitoloLB.setText("Titolo");
 
@@ -142,18 +133,13 @@ public class ManagerTesto extends javax.swing.JFrame {
         });
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
-                },
+                new Object [][] {},
                 new String [] {
                         "Titolo", "Codice", "Anno Pubblicazione", "Edizione", "Disponibilita", "Formato", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, true
+                    false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -169,29 +155,29 @@ public class ManagerTesto extends javax.swing.JFrame {
 
 
         AnnoPubblicazioneLB.setBackground(new java.awt.Color(204, 0, 51));
-        AnnoPubblicazioneLB.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        AnnoPubblicazioneLB.setFont(new java.awt.Font("Century Gothic", 1, 12));
         AnnoPubblicazioneLB.setForeground(new java.awt.Color(204, 0, 51));
         AnnoPubblicazioneLB.setText("Anno Pubblicazione");
 
         FormatoLB.setBackground(new java.awt.Color(204, 0, 51));
-        FormatoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        FormatoLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         FormatoLB.setForeground(new java.awt.Color(204, 0, 51));
         FormatoLB.setText("Formato");
 
         EdizioneLB.setBackground(new java.awt.Color(204, 0, 51));
-        EdizioneLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        EdizioneLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         EdizioneLB.setForeground(new java.awt.Color(204, 0, 51));
         EdizioneLB.setText("Edizione");
 
         FormTesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digitale", "Cartaceo", "AudioLibro"}));
 
         TipologiaLB2.setBackground(new java.awt.Color(204, 0, 51));
-        TipologiaLB2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TipologiaLB2.setFont(new java.awt.Font("Century Gothic", 1, 14));
         TipologiaLB2.setForeground(new java.awt.Color(204, 0, 51));
         TipologiaLB2.setText("Tipologia");
 
         DisponibilitaLB.setBackground(new java.awt.Color(204, 0, 51));
-        DisponibilitaLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        DisponibilitaLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         DisponibilitaLB.setForeground(new java.awt.Color(204, 0, 51));
         DisponibilitaLB.setText("Disponibilità");
 
@@ -314,7 +300,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         );
 
         ArticoliLB.setBackground(new java.awt.Color(204, 0, 51));
-        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         ArticoliLB.setText("ARTICOLI SCIENTIFICI");
         ArticoliLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -323,7 +309,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         });
 
         LibriLB.setBackground(new java.awt.Color(204, 0, 51));
-        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         LibriLB.setText("LIBRI");
         LibriLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -332,7 +318,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         });
 
         LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
-        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         LOGOUTLB.setText("LOGOUT");
         LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -341,7 +327,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         });
 
         ModificaPasswordLB.setBackground(new java.awt.Color(204, 0, 51));
-        ModificaPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        ModificaPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 16));
         ModificaPasswordLB.setText("Modifica Password");
         ModificaPasswordLB.setToolTipText("");
         ModificaPasswordLB.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -351,7 +337,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         });
 
         UtentiLB.setBackground(new java.awt.Color(204, 0, 51));
-        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         UtentiLB.setText("UTENTI");
         UtentiLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -419,9 +405,6 @@ public class ManagerTesto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void CodiceTestoActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ChiudiApp();
     }
@@ -462,9 +445,9 @@ public class ManagerTesto extends javax.swing.JFrame {
                         // Continua con l'inserimento del nuovo testo nel database
                         if (tipologia.equals("Libro")) {
                             // Inserisci il testo come Libro con attributi di default
-                            String genere = "Non disponibile"; // Imposta il valore di default
-                            int capitoli = 0; // Imposta il valore di default
-                            int pagine = 0; // Imposta il valore di default
+                            String genere = "Non disponibile";
+                            int capitoli = 0;
+                            int pagine = 0;
                             String evento = "Non disponibile";
                             String Collana = "Non disponibile";
                             try {
@@ -504,7 +487,6 @@ public class ManagerTesto extends javax.swing.JFrame {
         }
     }
 
-
     private void TabellaTestoMouseClicked(java.awt.event.MouseEvent evt) {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         int Indice = TabellaTesti.getSelectedRow();
@@ -526,7 +508,7 @@ public class ManagerTesto extends javax.swing.JFrame {
 
             EdizioneTestoTF.setText(model.getValueAt(Indice, 3) != null ? model.getValueAt(Indice, 3).toString() : "");
 
-            // Imposta il valore selezionato nei JComboBox
+
             String disponibilita = model.getValueAt(Indice, 4) != null ? model.getValueAt(Indice, 4).toString() : "";
             String formato = model.getValueAt(Indice, 5) != null ? model.getValueAt(Indice, 5).toString() : "";
             String tipologia = model.getValueAt(Indice, 6) != null ? model.getValueAt(Indice, 6).toString() : "";
@@ -656,7 +638,7 @@ public class ManagerTesto extends javax.swing.JFrame {
                     testo.getTitolo(),
                     testo.getAnnoPubblicazione(),
                     testo.getEdizione(),
-                    testo.isDisponibilita() ? "True" : "False", // Modifica la rappresentazione della disponibilità
+                    testo.isDisponibilita() ? "True" : "False",
                     testo.getFormato(),
                     testo.getTipologia()
             });
@@ -668,14 +650,11 @@ public class ManagerTesto extends javax.swing.JFrame {
         TitoloTestoTF.setText("");
         AnnoPubblicazioneTestoTF.setText("");
         EdizioneTestoTF.setText("");
-        DisponibilitaTesto.setSelectedIndex(0); // Imposta la selezione predefinita
-        FormTesto.setSelectedIndex(0); // Imposta la selezione predefinita
-        TipologiaTesto.setSelectedIndex(0); // Imposta la selezione predefinita
+        DisponibilitaTesto.setSelectedIndex(0);
+        FormTesto.setSelectedIndex(0);
+        TipologiaTesto.setSelectedIndex(0);
     }
 
-
-
-    // Variables declaration - do not modify
     private javax.swing.JButton AggiungiTestoBTN;
     private javax.swing.JTextField AnnoPubblicazioneTestoTF;
     private javax.swing.JTextField CodiceTestoTF;
@@ -706,5 +685,4 @@ public class ManagerTesto extends javax.swing.JFrame {
     private javax.swing.JLabel ModificaPasswordLB;
     private javax.swing.JLabel ArticoliLB;
     private javax.swing.JLabel LibriLB;
-    // End of variables declaration
 }
