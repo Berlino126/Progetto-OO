@@ -48,7 +48,7 @@ public class Registrazione extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
-        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 10));
         ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
         ChiudiFinestra.setText("Indietro");
         ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -58,24 +58,18 @@ public class Registrazione extends javax.swing.JFrame {
         });
 
         RegistrazioneLB.setBackground(new java.awt.Color(204, 0, 51));
-        RegistrazioneLB.setFont(new java.awt.Font("Century Gothic", 1, 26)); // NOI18N
+        RegistrazioneLB.setFont(new java.awt.Font("Century Gothic", 1, 26));
         RegistrazioneLB.setForeground(new java.awt.Color(204, 0, 51));
         RegistrazioneLB.setText("REGISTRAZIONE");
 
         CognomeLB.setBackground(new java.awt.Color(204, 0, 51));
-        CognomeLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        CognomeLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         CognomeLB.setForeground(new java.awt.Color(204, 0, 51));
         CognomeLB.setText("Cognome");
         CognomeLB.setToolTipText("");
 
-        TelefonoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TelefonoTFActionPerformed(evt);
-            }
-        });
-
         NomeLB.setBackground(new java.awt.Color(204, 0, 51));
-        NomeLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        NomeLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         NomeLB.setForeground(new java.awt.Color(204, 0, 51));
         NomeLB.setText("Nome");
 
@@ -95,39 +89,27 @@ public class Registrazione extends javax.swing.JFrame {
         });
 
         EmailLB.setBackground(new java.awt.Color(204, 0, 51));
-        EmailLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        EmailLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         EmailLB.setForeground(new java.awt.Color(204, 0, 51));
         EmailLB.setText("Email");
 
-        EmailTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailTFActionPerformed(evt);
-            }
-        });
-
         TelefonoLB.setBackground(new java.awt.Color(204, 0, 51));
-        TelefonoLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        TelefonoLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         TelefonoLB.setForeground(new java.awt.Color(204, 0, 51));
         TelefonoLB.setText("Telefono");
 
         CPasswordLB.setBackground(new java.awt.Color(204, 0, 51));
-        CPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        CPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         CPasswordLB.setForeground(new java.awt.Color(204, 0, 51));
         CPasswordLB.setText("Password");
 
         ConfermaLB.setBackground(new java.awt.Color(204, 0, 51));
-        ConfermaLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        ConfermaLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         ConfermaLB.setForeground(new java.awt.Color(204, 0, 51));
         ConfermaLB.setText("Conferma");
 
-        ConfermaPasswordPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfermaPasswordPFActionPerformed(evt);
-            }
-        });
-
         PasswordLB.setBackground(new java.awt.Color(204, 0, 51));
-        PasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        PasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         PasswordLB.setForeground(new java.awt.Color(204, 0, 51));
         PasswordLB.setText("Password");
 
@@ -220,7 +202,7 @@ public class Registrazione extends javax.swing.JFrame {
         );
 
         AccediLB.setBackground(new java.awt.Color(204, 0, 51));
-        AccediLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        AccediLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         AccediLB.setText("ACCEDI");
         AccediLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -268,17 +250,6 @@ public class Registrazione extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void ConfermaPasswordPFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void EmailTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void TelefonoTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
     public void setController(Controller controller)
     {
         this.controller = controller;
@@ -365,7 +336,6 @@ public class Registrazione extends javax.swing.JFrame {
         controller.Logout();
     }
 
-    // Variables declaration - do not modify
     private javax.swing.JLabel AccediLB;
     private javax.swing.JLabel CPasswordLB;
     private javax.swing.JLabel ChiudiFinestra;
@@ -386,5 +356,4 @@ public class Registrazione extends javax.swing.JFrame {
     private javax.swing.JTextField TelefonoTF;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    // End of variables declaration
 }
