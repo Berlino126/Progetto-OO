@@ -14,19 +14,18 @@ public class UpdatingAdmin extends javax.swing.JFrame {
         initComponents();
         adminDAO = new AdminDAOImpl();
     }
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         IndietroLB = new javax.swing.JLabel();
-        ConfermaPassword = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        ConfermaPasswordPF = new javax.swing.JPasswordField();
+        ConfermaPasswordLB = new javax.swing.JLabel();
         AggiornaAdmin = new javax.swing.JButton();
         PulisciAdmin = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        Password = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        UpdateAdminLB = new javax.swing.JLabel();
+        PasswordPF = new javax.swing.JPasswordField();
+        PasswordLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -34,7 +33,7 @@ public class UpdatingAdmin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 0, 51));
 
         IndietroLB.setBackground(new java.awt.Color(204, 0, 51));
-        IndietroLB.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        IndietroLB.setFont(new java.awt.Font("Century Gothic", 1, 10));
         IndietroLB.setForeground(new java.awt.Color(255, 255, 255));
         IndietroLB.setText("Indietro");
         IndietroLB.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -43,17 +42,10 @@ public class UpdatingAdmin extends javax.swing.JFrame {
             }
         });
 
-        ConfermaPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfermaPasswordActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Conferma Password");
-        jLabel9.setToolTipText("");
+        ConfermaPasswordLB.setBackground(new java.awt.Color(204, 0, 51));
+        ConfermaPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 10));
+        ConfermaPasswordLB.setForeground(new java.awt.Color(255, 255, 255));
+        ConfermaPasswordLB.setText("Conferma Password");
 
         AggiornaAdmin.setText("Aggiorna");
         AggiornaAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,22 +56,16 @@ public class UpdatingAdmin extends javax.swing.JFrame {
 
         PulisciAdmin.setText("Pulisci");
 
-        jLabel4.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Update Admin");
+        UpdateAdminLB.setBackground(new java.awt.Color(204, 0, 51));
+        UpdateAdminLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
+        UpdateAdminLB.setForeground(new java.awt.Color(255, 255, 255));
+        UpdateAdminLB.setText("Update Admin");
 
-        Password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Password");
-        jLabel10.setToolTipText("");
+        PasswordLB.setBackground(new java.awt.Color(204, 0, 51));
+        PasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
+        PasswordLB.setForeground(new java.awt.Color(255, 255, 255));
+        PasswordLB.setText("Password");
+        PasswordLB.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,34 +79,34 @@ public class UpdatingAdmin extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(27, 27, 27)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jLabel9)
-                                                        .addComponent(jLabel10))
+                                                        .addComponent(ConfermaPasswordLB)
+                                                        .addComponent(PasswordLB))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(ConfermaPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(PasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(ConfermaPasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(AggiornaAdmin)
                                                         .addComponent(PulisciAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(0, 71, Short.MAX_VALUE)))
                                 .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
+                                .addComponent(UpdateAdminLB)
                                 .addGap(88, 88, 88))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel4)
+                                .addComponent(UpdateAdminLB)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel10)
-                                        .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(PasswordLB)
+                                        .addComponent(PasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(22, 22, 22)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(ConfermaPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel9))
+                                        .addComponent(ConfermaPasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ConfermaPasswordLB))
                                 .addGap(26, 26, 26)
                                 .addComponent(AggiornaAdmin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -149,7 +135,7 @@ public class UpdatingAdmin extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>
+    }
     public void setController(Controller controller)
     {
         this.controller = controller;
@@ -158,17 +144,15 @@ public class UpdatingAdmin extends javax.swing.JFrame {
     {
         this.codiceAdmin = codice;
     }
-    private void ConfermaPasswordActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+
 
     private void IndietroLBMouseClicked(java.awt.event.MouseEvent evt) {
         controller.IndietroAdmin();
     }
 
     private void AggiornaAdminMouseClicked(java.awt.event.MouseEvent evt) {
-        String password = Password.getText();
-        String confermaPassword = ConfermaPassword.getText();
+        String password = PasswordPF.getText();
+        String confermaPassword = ConfermaPasswordPF.getText();
         if (!password.equals((confermaPassword)))
         {
             JOptionPane.showMessageDialog(this, "Le password non corrispondono ", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -179,19 +163,13 @@ public class UpdatingAdmin extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Password aggiornata con successo ");
     }
 
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    // Variables declaration - do not modify                     
     private javax.swing.JButton AggiornaAdmin;
-    private javax.swing.JTextField ConfermaPassword;
+    private javax.swing.JPasswordField ConfermaPasswordPF;
     private javax.swing.JLabel IndietroLB;
-    private javax.swing.JTextField Password;
+    private javax.swing.JPasswordField PasswordPF;
     private javax.swing.JButton PulisciAdmin;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel PasswordLB;
+    private javax.swing.JLabel UpdateAdminLB;
+    private javax.swing.JLabel ConfermaPasswordLB;
     private javax.swing.JPanel jPanel1;
-    // End of variables declaration                   
 }
