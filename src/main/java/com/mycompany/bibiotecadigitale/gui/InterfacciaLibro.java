@@ -60,34 +60,28 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
-        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24));
         ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
         ChiudiFinestra.setText("x");
         ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                ChiudiFinestraMouseClicked(evt);
             }
         });
 
         LibriLB.setBackground(new java.awt.Color(204, 0, 51));
-        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LibriLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         LibriLB.setForeground(new java.awt.Color(204, 0, 51));
         LibriLB.setText("LIBRI");
 
         GenereLB.setBackground(new java.awt.Color(204, 0, 51));
-        GenereLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        GenereLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         GenereLB.setForeground(new java.awt.Color(204, 0, 51));
         GenereLB.setText("Genere");
         GenereLB.setToolTipText("");
 
-        GenereTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TitoloTFActionPerformed(evt);
-            }
-        });
-
         CapitoliLB.setBackground(new java.awt.Color(204, 0, 51));
-        CapitoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CapitoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         CapitoliLB.setForeground(new java.awt.Color(204, 0, 51));
         CapitoliLB.setText("Capitoli");
 
@@ -113,18 +107,13 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
 
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null}
-                },
+                new Object [][] {},
                 new String [] {
                         "Codice", "Genere", "Capitoli", "Pagine", "Evento", "Collana"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false
+                    false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -134,45 +123,27 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         ScrollTabella.setViewportView(TabellaTesti);
 
         PagineLB.setBackground(new java.awt.Color(204, 0, 51));
-        PagineLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        PagineLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         PagineLB.setForeground(new java.awt.Color(204, 0, 51));
         PagineLB.setText("Pagine");
 
-        EventoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EventoTFActionPerformed(evt);
-            }
-        });
-
         EventoLB.setBackground(new java.awt.Color(204, 0, 51));
-        EventoLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        EventoLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         EventoLB.setForeground(new java.awt.Color(204, 0, 51));
         EventoLB.setText("Evento");
         EventoLB.setToolTipText("");
 
         CollanaLB.setBackground(new java.awt.Color(204, 0, 51));
-        CollanaLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CollanaLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         CollanaLB.setForeground(new java.awt.Color(204, 0, 51));
         CollanaLB.setText("Collana");
         CollanaLB.setToolTipText("");
 
-        CollanaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CollanaTFActionPerformed(evt);
-            }
-        });
-
         CodiceLB.setBackground(new java.awt.Color(204, 0, 51));
-        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        CodiceLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         CodiceLB.setForeground(new java.awt.Color(204, 0, 51));
         CodiceLB.setText("Codice");
         CodiceLB.setToolTipText("");
-
-        CodiceTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodiceTFActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -268,7 +239,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
 
         ArticoliLB.setBackground(new java.awt.Color(204, 0, 51));
-        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        ArticoliLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         ArticoliLB.setText("ARTICOLI SCIENTIFICI");
         ArticoliLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -276,9 +247,8 @@ public class InterfacciaLibro extends javax.swing.JFrame {
             }
         });
 
-
         TestiLB.setBackground(new java.awt.Color(204, 0, 51));
-        TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        TestiLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         TestiLB.setText("TESTI");
         TestiLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -287,7 +257,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         });
 
         UtentiLB.setBackground(new java.awt.Color(204, 0, 51));
-        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        UtentiLB.setFont(new java.awt.Font("Century Gothic", 1, 14));
         UtentiLB.setText("UTENTI");
         UtentiLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -295,16 +265,14 @@ public class InterfacciaLibro extends javax.swing.JFrame {
             }
         });
 
-
         LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
-        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         LOGOUTLB.setText("LOGOUT");
         LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LOGOUTMouseClicked(evt);
             }
         });
-
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -353,23 +321,8 @@ public class InterfacciaLibro extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>
-
-    private void TitoloTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
-    private void EventoTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void CollanaTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void CodiceTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
     public void setController(Controller controller)
     {
         this.controller = controller;
@@ -395,8 +348,7 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         }
     }
 
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {
+    private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ChiudiApp();
     }
 
@@ -494,10 +446,6 @@ public class InterfacciaLibro extends javax.swing.JFrame {
         }
     }
 
-
-
-
-    // Variables declaration - do not modify
     private javax.swing.JLabel ArticoliLB;
     private javax.swing.JLabel CapitoliLB;
     private javax.swing.JTextField CapitoliTF;
@@ -522,5 +470,4 @@ public class InterfacciaLibro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane ScrollTabella;
-    // End of variables declaration
 }
