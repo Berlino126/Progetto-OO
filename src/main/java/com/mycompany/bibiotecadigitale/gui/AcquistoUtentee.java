@@ -3,20 +3,17 @@ package com.mycompany.bibiotecadigitale.gui;
 
 import com.mycompany.bibiotecadigitale.implementazione_dao.RichiestaDAOImpl;
 import com.mycompany.bibiotecadigitale.dao.RichiestaDAO;
-import com.mycompany.bibiotecadigitale.gui.Login;
 import com.mycompany.bibiotecadigitale.implementazione_dao.TestoDAOImpl;
 import com.mycompany.bibiotecadigitale.model.LibreriaUtente;
-import com.mycompany.bibiotecadigitale.model.Richiesta;
 import com.mycompany.bibiotecadigitale.model.Testo;
-import com.mycompany.bibiotecadigitale.gui.Controller;
+import com.mycompany.bibiotecadigitale.model.Richiesta;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 
 public class AcquistoUtentee extends javax.swing.JFrame {
@@ -34,7 +31,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         refreshTestoTable();
     }
 
-
     private void initComponents(){
 
         jPanel1 = new javax.swing.JPanel();
@@ -50,13 +46,13 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         FiltraBTN = new javax.swing.JButton();
         RipristinaBTN = new javax.swing.JButton();
         PulisciBTN = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        ScrollTabella = new javax.swing.JScrollPane();
         TabellaTesti = new javax.swing.JTable();
         EdizioneTF = new javax.swing.JTextField();
         EdizioneLB = new javax.swing.JLabel();
         FormatoTestoBOX = new javax.swing.JComboBox<String>();
         ListaProdottiLB = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        ScrollTabella2 = new javax.swing.JScrollPane();
         TabellaResoconto = new javax.swing.JTable();
         LibreriaLB = new javax.swing.JLabel();
         EliminaBTN = new javax.swing.JButton();
@@ -73,7 +69,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         ChiudiFinestra.setBackground(new java.awt.Color(204, 0, 51));
-        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        ChiudiFinestra.setFont(new java.awt.Font("Century Gothic", 1, 24));
         ChiudiFinestra.setForeground(new java.awt.Color(204, 0, 51));
         ChiudiFinestra.setText("x");
         ChiudiFinestra.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,33 +79,23 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
 
         BibliotecaDigitaleLB.setBackground(new java.awt.Color(204, 0, 51));
-        BibliotecaDigitaleLB.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        BibliotecaDigitaleLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
         BibliotecaDigitaleLB.setForeground(new java.awt.Color(204, 0, 51));
         BibliotecaDigitaleLB.setText("BIBLIOTECA DIGITALE");
 
         TitoloLB.setBackground(new java.awt.Color(204, 0, 51));
-        TitoloLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        TitoloLB.setFont(new java.awt.Font("Century Gothic", 1, 16));
         TitoloLB.setForeground(new java.awt.Color(204, 0, 51));
         TitoloLB.setText("Titolo");
         TitoloLB.setToolTipText("");
 
-        TitoloTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TitoloTFActionPerformed(evt);
-            }
-        });
 
         AnnoLB.setBackground(new java.awt.Color(204, 0, 51));
-        AnnoLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        AnnoLB.setFont(new java.awt.Font("Century Gothic", 1, 16));
         AnnoLB.setForeground(new java.awt.Color(204, 0, 51));
         AnnoLB.setText("Anno");
 
         TipologiaTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Libro", "Articolo Scientifico"}));
-        TipologiaTestoBOX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipologiaTestoBOXActionPerformed(evt);
-            }
-        });
 
         RichiediBTN.setText("Richiedi");
         RichiediBTN.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,14 +132,14 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                 }
         ) {
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, true
+                    false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TabellaTesti);
+        ScrollTabella.setViewportView(TabellaTesti);
         TabellaTesti.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TabellaTestoMouseClicked(evt);
@@ -161,14 +147,14 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
 
         EdizioneLB.setBackground(new java.awt.Color(204, 0, 51));
-        EdizioneLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        EdizioneLB.setFont(new java.awt.Font("Century Gothic", 1, 16));
         EdizioneLB.setForeground(new java.awt.Color(204, 0, 51));
         EdizioneLB.setText("Edizione");
 
         FormatoTestoBOX.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Digitale", "Cartaceo", "AudioLibro"}));
 
         ListaProdottiLB.setBackground(new java.awt.Color(204, 0, 51));
-        ListaProdottiLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        ListaProdottiLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         ListaProdottiLB.setForeground(new java.awt.Color(204, 0, 51));
         ListaProdottiLB.setText("LISTA PRODOTTI");
 
@@ -186,10 +172,10 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(TabellaResoconto);
+        ScrollTabella2.setViewportView(TabellaResoconto);
 
         LibreriaLB.setBackground(new java.awt.Color(204, 0, 51));
-        LibreriaLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        LibreriaLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         LibreriaLB.setForeground(new java.awt.Color(204, 0, 51));
         LibreriaLB.setText("LIBRERIA:");
 
@@ -250,7 +236,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                                 .addComponent(ChiudiFinestra, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap())
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1)
+                                                .addComponent(ScrollTabella)
                                                 .addContainerGap())))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -262,7 +248,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane2)
+                                .addComponent(ScrollTabella2)
                                 .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -304,18 +290,18 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                                                         .addComponent(PulisciBTN))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(RimuoviBTN))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(ScrollTabella, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(LibreriaLB)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ScrollTabella2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(EliminaBTN)
                                 .addGap(10, 10, 10))
         );
 
         LOGOUTLB.setBackground(new java.awt.Color(204, 0, 51));
-        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        LOGOUTLB.setFont(new java.awt.Font("Century Gothic", 1, 18));
         LOGOUTLB.setText("LOGOUT");
         LOGOUTLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -324,7 +310,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         });
 
         ModificaPasswordLB.setBackground(new java.awt.Color(204, 0, 51));
-        ModificaPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        ModificaPasswordLB.setFont(new java.awt.Font("Century Gothic", 1, 16));
         ModificaPasswordLB.setText("Modifica Password");
         ModificaPasswordLB.setToolTipText("");
         ModificaPasswordLB.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -378,16 +364,8 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void TitoloTFActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
     private void RipristinaBTNActionPerformed(java.awt.event.ActionEvent evt) {
         refreshTestoTable();
-    }
-
-    private void TipologiaTestoBOXActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     private void RichiediOraBTNActionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,7 +387,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     {
         return this.codiceutente;
     }
-
 
     protected void refreshLibreriaTable() {
         DefaultTableModel model = (DefaultTableModel) TabellaResoconto.getModel();
@@ -449,7 +426,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         }
     }
 
-
     private void aggiornaInterfacciaConTestiFiltrati(List<Testo> testiFiltrati) {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
         // Rimuovi tutte le righe attualmente presenti nella tabella
@@ -472,7 +448,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         // Aggiorna l'interfaccia utente per riflettere i nuovi dati
         model.fireTableDataChanged();
     }
-
 
     private void TabellaTestoMouseClicked(java.awt.event.MouseEvent evt) {
         DefaultTableModel model = (DefaultTableModel) TabellaTesti.getModel();
@@ -497,7 +472,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             TipologiaTestoBOX.setSelectedItem(tipologia);
         }
     }
-
 
     private void LOGOUTMouseClicked(java.awt.event.MouseEvent evt) {
         UIManager.put("OptionPane.yesButtonText", "Si");
@@ -549,6 +523,7 @@ public class AcquistoUtentee extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Richiesta inserita con successo");
                     TitoloTF.setText("");
                     EdizioneTF.setText("");
+                    AnnoTF.setText("");
                     int selectedRow = TabellaTesti.getSelectedRow();
                     refreshLibreriaTable();
                 } else {
@@ -561,9 +536,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Formato data non valido");
         }
     }
-
-
-
 
     private void EliminaMouseClicked(java.awt.event.MouseEvent evt) {
         UIManager.put("OptionPane.yesButtonText", "Si");
@@ -623,16 +595,15 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private void PulisciTestoMouseClicked (java.awt.event.MouseEvent evt) {
         TitoloTF.setText("");
         EdizioneTF.setText("");
+        AnnoTF.setText("");
     }
 
     private void clearTextField() {
         TitoloTF.setText("");
         EdizioneTF.setText("");
+        AnnoTF.setText("");
     }
 
-
-
-    // Variables declaration - do not modify
     private javax.swing.JLabel BibliotecaDigitaleLB;
     private javax.swing.JLabel ChiudiFinestra;
     private javax.swing.JLabel EdizioneLB;
@@ -657,7 +628,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
     private javax.swing.JTextField TitoloTF;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    // End of variables declaration
+    private javax.swing.JScrollPane ScrollTabella;
+    private javax.swing.JScrollPane ScrollTabella2;
 }
