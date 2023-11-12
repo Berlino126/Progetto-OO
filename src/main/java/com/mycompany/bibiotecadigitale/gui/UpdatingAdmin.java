@@ -55,6 +55,11 @@ public class UpdatingAdmin extends javax.swing.JFrame {
         });
 
         PulisciAdmin.setText("Pulisci");
+        PulisciAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PulisciAdminMouseClicked(evt);
+            }
+        });
 
         UpdateAdminLB.setBackground(new java.awt.Color(204, 0, 51));
         UpdateAdminLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
@@ -145,7 +150,10 @@ public class UpdatingAdmin extends javax.swing.JFrame {
         this.codiceAdmin = codice;
     }
 
-
+    private void PulisciAdminMouseClicked (java.awt.event.MouseEvent evt) {
+        PasswordPF.setText("");
+        ConfermaPasswordPF.setText("");
+    }
     private void IndietroLBMouseClicked(java.awt.event.MouseEvent evt) {
         controller.IndietroAdmin();
     }
