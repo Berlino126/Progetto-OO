@@ -49,7 +49,6 @@ public class Controller {
         acquistoUtentee.setController(this);
         acquistoUtentee.setCodice(codiceUtente);
         acquistoUtentee.refreshLibreriaTable();
-        //System.out.println(codiceUtente);
         acquistoUtentee.setVisible(true);
     }
 
@@ -160,8 +159,6 @@ public class Controller {
         acquistoUtentee.setController(this);
         acquistoUtentee.setVisible(true);
     }
-
-
 
     public static void main(String[] args) {
         // Esempio di inizializzazione delle classi necessarie
