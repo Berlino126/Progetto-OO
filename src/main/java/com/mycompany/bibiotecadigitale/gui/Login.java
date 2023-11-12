@@ -245,7 +245,6 @@ public class Login extends javax.swing.JFrame {
         if (CodiceUtenteTF.getText().isEmpty() || PasswordUtentePF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Credenziali mancanti");
         } else {
-            System.out.println("OK");
             String codiceUtenteText = CodiceUtenteTF.getText();
             String passwordUtente = PasswordUtentePF.getText();
             try {
