@@ -55,6 +55,11 @@ public class UpdatingUtente extends javax.swing.JFrame {
         });
 
         PulisciUtente.setText("Pulisci");
+        PulisciUtente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PulisciUtenteMouseClicked(evt);
+            }
+        });
 
         UpdateUtenteLB.setBackground(new java.awt.Color(204, 0, 51));
         UpdateUtenteLB.setFont(new java.awt.Font("Century Gothic", 1, 24));
@@ -143,6 +148,10 @@ public class UpdatingUtente extends javax.swing.JFrame {
     protected void setCodice (int codice)
     {
         this.codiceUtente = codice;
+    }
+    private void PulisciUtenteMouseClicked (java.awt.event.MouseEvent evt) {
+        PasswordPF.setText("");
+        ConfermaPasswordPF.setText("");
     }
 
     private void IndietroLBMouseClicked(java.awt.event.MouseEvent evt) {
