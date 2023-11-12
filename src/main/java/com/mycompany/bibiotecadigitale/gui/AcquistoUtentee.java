@@ -368,10 +368,6 @@ public class AcquistoUtentee extends javax.swing.JFrame {
         refreshTestoTable();
     }
 
-    private void RichiediOraBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        System.out.println("Richiedi");
-    }
-
     private void ChiudiFinestraMouseClicked(java.awt.event.MouseEvent evt) {
         controller.ChiudiApp();
     }
