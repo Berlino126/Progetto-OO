@@ -2,9 +2,6 @@ package com.mycompany.bibiotecadigitale.gui;
 import com.mycompany.bibiotecadigitale.dao.*;
 import com.mycompany.bibiotecadigitale.implementazione_dao.AdminDAOImpl;
 import com.mycompany.bibiotecadigitale.implementazione_dao.TestoDAOImpl;
-import com.mycompany.bibiotecadigitale.implementazione_dao.LibroDAOImpl;
-import com.mycompany.bibiotecadigitale.implementazione_dao.ArticoloScientificoDAOImpl;
-import com.mycompany.bibiotecadigitale.implementazione_dao.RichiestaDAOImpl;
 import com.mycompany.bibiotecadigitale.implementazione_dao.UtenteDAOImpl;
 
 public class Controller {
@@ -13,7 +10,6 @@ public class Controller {
     private ManagerUtenti managerUtenti;
     private UpdatingAdmin updatingAdmin;
     private AcquistoUtentee acquistoUtentee;
-    private Loading loading;
     private InterfacciaArticolo interfacciaArticolo;
     private InterfacciaLibro interfacciaLibro;
     private UpdatingUtente updatingUtente;
@@ -25,13 +21,12 @@ public class Controller {
     private ArticoloScientificoDAO articoloScientificoDAO;
     private RichiestaDAO richiestaDAO;
 
-    public Controller(Login login, ManagerTesto managerTesto, ManagerUtenti managerUtenti, UpdatingAdmin updatingAdmin, AcquistoUtentee acquistoUtentee, Loading loading, InterfacciaArticolo interfacciaArticolo, InterfacciaLibro interfacciaLibro, UpdatingUtente updatingUtente, Registrazione registrazione) {
+    public Controller(Login login, ManagerTesto managerTesto, ManagerUtenti managerUtenti, UpdatingAdmin updatingAdmin, AcquistoUtentee acquistoUtentee, InterfacciaArticolo interfacciaArticolo, InterfacciaLibro interfacciaLibro, UpdatingUtente updatingUtente, Registrazione registrazione) {
         this.login = login;
         this.managerTesto = managerTesto;
         this.managerUtenti = managerUtenti;
         this.updatingAdmin = updatingAdmin;
         this.acquistoUtentee = acquistoUtentee;
-        this.loading = loading;
         this.interfacciaArticolo = interfacciaArticolo;
         this.interfacciaLibro = interfacciaLibro;
         this.updatingUtente = updatingUtente;
@@ -160,6 +155,8 @@ public class Controller {
         acquistoUtentee.setVisible(true);
     }
 
+
+
     public static void main(String[] args) {
         // Esempio di inizializzazione delle classi necessarie
         Login login = new Login();
@@ -167,12 +164,11 @@ public class Controller {
         ManagerUtenti managerUtenti = new ManagerUtenti();
         UpdatingAdmin updatingadmin = new UpdatingAdmin();
         AcquistoUtentee acquistoUtentee = new AcquistoUtentee();
-        Loading loading = new Loading();
         InterfacciaArticolo interfacciaArticolo = new InterfacciaArticolo();
         InterfacciaLibro interfacciaLibro = new InterfacciaLibro();
         UpdatingUtente updatingutente = new UpdatingUtente();
         Registrazione registrazione = new Registrazione();
         // Creazione dell'istanza del controller
-        Controller controller = new Controller(login, managerTesto, managerUtenti, updatingadmin, acquistoUtentee, loading, interfacciaArticolo, interfacciaLibro, updatingutente, registrazione);
+        Controller controller = new Controller(login, managerTesto, managerUtenti, updatingadmin, acquistoUtentee, interfacciaArticolo, interfacciaLibro, updatingutente, registrazione);
     }
 }
