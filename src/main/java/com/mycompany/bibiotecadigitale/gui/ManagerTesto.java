@@ -135,7 +135,7 @@ public class ManagerTesto extends javax.swing.JFrame {
         TabellaTesti.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
-                        "Titolo", "Codice", "Anno Pubblicazione", "Edizione", "Disponibilita", "Formato", "Tipologia"
+                        "Codice", "Titolo", "Anno Pubblicazione", "Edizione", "Disponibilita", "Formato", "Tipologia"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -474,7 +474,7 @@ public class ManagerTesto extends javax.swing.JFrame {
                             }
                         }
 
-                        JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente");
+                        JOptionPane.showMessageDialog(this, "Testo aggiunto correttamente, assicurati di inserire i dati appositi.");
                         refreshTestoTable();
                         clearTextFields();
                     }
